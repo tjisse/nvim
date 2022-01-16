@@ -1,0 +1,13 @@
+{
+    "defsc": {
+        "prefix": ["defsc"],
+        "body": [
+            "(defsc $1",
+            "  [this {:keys [$2]}]",
+            "  {:query [$2]",
+            "   :ident $3}",
+            "  $0)"
+        ],
+        "description": "Fulcro component"
+    }
+}
