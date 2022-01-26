@@ -14,6 +14,7 @@ require('packer').startup(function(use)
   use 'github/copilot.vim'
   use 'goolord/nvim-clap-lsp'
   use { 'editorconfig/editorconfig-vim', config = function() require('plugin-config/editorconfig-vim') end }
+  use 'farmergreg/vim-lastplace'
   use { 'folke/which-key.nvim', config = function() require('plugin-config/which-key_nvim') end }
   use { 'guns/vim-sexp', config = function() require('plugin-config/vim-sexp') end }
   use 'hardikpthv/vscode-wc-snippets'

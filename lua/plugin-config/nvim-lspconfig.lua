@@ -35,12 +35,6 @@ vim.g.lsp_utils_location_opts = {
       title = 'Location Preview',
       border = true
     },
-    keymaps = {
-      n = {
-        ['<C-n>'] = 'j',
-        ['<C-p>'] = 'k',
-      }
-    }
 }
 
 vim.g.lsp_utils_symbols_opts = {
@@ -56,7 +50,7 @@ vim.g.lsp_utils_symbols_opts = {
 map('i', '<c-space>', '<Plug>(completion_trigger)', default_opts)
 map('n', 'K', ':lua vim.lsp.buf.hover()<CR>', default_opts)
 map('n', 'gD', ':lua vim.lsp.buf.implementation()<CR>', default_opts)
-map('n', '<c-k>', ':lua vim.lsp.buf.signature_help()<CR>', default_opts)
+map('n', '<c-p>', ':lua vim.lsp.buf.signature_help()<CR>', default_opts)
 map('n', 'gt', ':lua vim.lsp.buf.type_definition()<CR>', default_opts)
 map('n', 'gr', ':lua vim.lsp.buf.references()<CR>', default_opts)
 map('n', 'gs', ':lua vim.lsp.buf.document_symbol()<CR>', default_opts)

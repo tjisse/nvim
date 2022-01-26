@@ -96,6 +96,11 @@ wk.register({
   U = { ':MundoToggle<CR>', 'undo tree', unpack(default_opts) },
   q = { ':quitall<CR>', 'quit', unpack(default_opts) },
   Q = { ':quitall!<CR>', 'quit without saving', unpack(default_opts) },
+  r = {
+    name = '+run',
+    t = { ':UltestNearest<CR>', 'run nearest test' },
+    T = { ':Ultest<CR>', 'run all tests in file' },
+  },
   s = {
     name = '+search',
     b = 'search in buffer',
