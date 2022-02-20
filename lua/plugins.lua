@@ -38,7 +38,7 @@ require('packer').startup(function(use)
     after = { 'nvcode-color-schemes.vim' },
   }
   use { 'liuchengxu/vim-better-default', config = function() require('plugin-config/vim-better-default') end }
-  use { 'liuchengxu/vim-clap', tag = 'v0.31', config = function() require('plugin-config/vim-clap') end, run = ':Clap install-binary!' }
+  use { 'liuchengxu/vim-clap', tag = 'v0.32', config = function() require('plugin-config/vim-clap') end, run = ':Clap install-binary!' }
   use {
     'lewis6991/gitsigns.nvim',
     requires = { 'nvim-lua/plenary.nvim' },
