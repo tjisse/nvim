@@ -32,13 +32,14 @@ require('packer').startup(function(use)
   use { 'itchyny/lightline.vim', config = function() require('plugin-config/lightline_vim') end }
   use 'jbyuki/one-small-step-for-vimkind'
   use 'josa42/nvim-lightline-lsp'
+  use { 'kkoomen/vim-doge', run = 'doge#install()' }
   use {
     'kyazdani42/nvim-web-devicons',
     config = function() require('nvim-web-devicons') end,
     after = { 'nvcode-color-schemes.vim' },
   }
   use { 'liuchengxu/vim-better-default', config = function() require('plugin-config/vim-better-default') end }
-  use { 'liuchengxu/vim-clap', tag = 'v0.32', config = function() require('plugin-config/vim-clap') end, run = ':Clap install-binary!' }
+  use { 'liuchengxu/vim-clap', tag = 'v0.34', config = function() require('plugin-config/vim-clap') end, run = ':Clap install-binary!' }
   use {
     'lewis6991/gitsigns.nvim',
     requires = { 'nvim-lua/plenary.nvim' },
@@ -60,7 +61,7 @@ require('packer').startup(function(use)
   use { 'qpkorr/vim-bufkill', config = function() require('plugin-config/vim-bufkill') end }
   use 'radenling/vim-dispatch-neovim'
   use { 'ray-x/lsp_signature.nvim', config = function() require('plugin-config/lsp_signature_nvim') end }
-  use { 'rcarriga/vim-ultest', requires = {'vim-test/vim-test'}, run = ':UpdateRemotePlugins' }
+  use { 'rcarriga/vim-ultest', config = function() require('plugin-config/vim-ultest') end, requires = {'vim-test/vim-test'}, run = ':UpdateRemotePlugins' }
   use { 'rmagatti/auto-session', config = function() require('plugin-config/auto-session') end }
   use { 'rrethy/vim-hexokinase', run = 'make hexokinase' }
   use 'simnalamburt/vim-mundo'
