@@ -3,11 +3,6 @@ local wk = require('which-key')
 
 local default_opts = { silent = true, noremap = true }
 
-map('i', '<C-h>', '<C-w>h', default_opts)
-map('i', '<C-j>', '<C-w>j', default_opts)
-map('i', '<C-k>', '<C-w>k', default_opts)
-map('i', '<C-l>', '<C-w>l', default_opts)
-
 map('v', '<S-l>', '$', default_opts)
 map('v', '<S-h>', '^', default_opts)
 
