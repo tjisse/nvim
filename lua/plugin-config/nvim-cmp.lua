@@ -1,4 +1,5 @@
 local cmp = require('cmp')
+local lspkind = require('lspkind')
 
 cmp.setup({
   snippet = {
@@ -39,7 +40,10 @@ cmp.setup({
     { name = 'copilot' },
     { name = 'buffer' },
     { name = 'path' },
-  }
+  },
+  formatting = {
+    format = lspkind.cmp_format(),
+  },
 })
 
 vim.opt.completeopt = 'menu,menuone,noinsert'

@@ -55,7 +55,7 @@ wk.register({
     l = { ':blast<CR>', 'last buffer', unpack(default_opts) },
     n = { ':bnext<CR>', 'next buffer', unpack(default_opts) },
     N = { ':bprevious<CR>', 'previous buffer', unpack(default_opts) },
-    b = { ':Clap buffers<CR>', 'open buffers', unpack(default_opts) },
+    b = { ':lua require(\'telescope.builtin\').buffers()<CR>', 'open buffers', unpack(default_opts) },
   },
   f = {
     name = '+files/fold',
@@ -69,11 +69,11 @@ wk.register({
     ['7'] = '7 fold level',
     ['8'] = '8 fold level',
     ['9'] = '9 fold level',
-    d = { ':Clap files %:p:h<CR>', 'files in current directory', unpack(default_opts) },
-    f = { ':Clap filer %:p:h<CR>', 'filer in current directory', unpack(default_opts) },
-    h = { ':Clap files --hidden ~<CR>' , 'files in home directory' },
+    d = { ':lua require(\'telescope.builtin\').find_files({ cwd = vim.fn.expand(\'%:p:h\') })<CR>', 'files in current directory', unpack(default_opts) },
+    f = { ':lua require(\'telescope\').extensions.file_browser.file_browser()<CR>', 'file browser in current directory', unpack(default_opts) },
+    h = { ':lua require(\'telescope.builtin\').find_files({ cwd = \'~\', hidden = true })<CR>' , 'files in home directory' },
     s = 'save file',
-    r = {  ':Clap history<CR>', 'recent files', unpack(default_opts) },
+    r = {  ':Telescope oldfiles<CR>', 'recent files', unpack(default_opts) },
   },
   h = {
     name = '+git hunk',
@@ -85,8 +85,9 @@ wk.register({
   p = {
     name = '+project',
     a = { ':FSHere<CR>', 'switch to test/implementation', unpack(default_opts) },
-    f = { ':Clap files --hidden .<CR>', 'find file in project', unpack(default_opts) },
-    s = { ':Clap grep2 .<CR>', 'search in project', unpack(default_opts) }
+    f = { ':lua require(\'telescope.builtin\').find_files()<CR>', 'find file in project', unpack(default_opts) },
+    p = { ':lua require(\'telescope\').extensions.projects.projects()<CR>', 'find project', unpack(default_opts) },
+    s = { ':lua require(\'telescope.builtin\').live_grep()<CR>', 'search in project', unpack(default_opts) }
   },
   U = { ':MundoToggle<CR>', 'undo tree', unpack(default_opts) },
   q = { ':quitall<CR>', 'quit', unpack(default_opts) },
@@ -113,7 +114,7 @@ wk.register({
     ['|'] = 'split window right',
     ['2'] = 'layout double columns',
     ['='] = 'balance window',
-    ['?'] = ':Clap windows',
+    f = { ':lua require(\'telescope\').extensions.windows.list()<CR>', 'find window' },
     w = 'other window',
     d = 'delete window',
     h = 'window left',
@@ -125,6 +126,6 @@ wk.register({
     L = 'expand window right',
     K = 'expand window up',
     s = 'split window below',
-    v = 'split window below',
+    v = 'split window right',
   }
 }, { prefix = '<leader>'})

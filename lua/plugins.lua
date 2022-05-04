@@ -10,9 +10,9 @@ require('packer').startup(function(use)
   }
   use { 'ahmedkhalf/project.nvim', config = function() require('plugin-config/project_nvim') end }
   use { 'derekwyatt/vim-fswitch', config = function() require('plugin-config/vim-fswitch') end }
+  use { 'gbrlsnchs/telescope-lsp-handlers.nvim', config = function() require('telescope').load_extension('lsp_handlers') end }
   use 'ggandor/lightspeed.nvim'
   use 'github/copilot.vim'
-  use 'goolord/nvim-clap-lsp'
   use { 'editorconfig/editorconfig-vim', config = function() require('plugin-config/editorconfig-vim') end }
   use 'farmergreg/vim-lastplace'
   use { 'folke/which-key.nvim', config = function() require('plugin-config/which-key_nvim') end }
@@ -34,12 +34,20 @@ require('packer').startup(function(use)
   use 'josa42/nvim-lightline-lsp'
   use { 'kkoomen/vim-doge', run = 'doge#install()' }
   use {
+    'nvim-telescope/telescope.nvim',
+    tag = 'nvim-0.6',
+    requires = { 'nvim-lua/plenary.nvim' },
+    config = function() require('plugin-config/telescope_nvim') end,
+  }
+  use { "nvim-telescope/telescope-file-browser.nvim", config = function() require('telescope').load_extension('file_browser') end }
+  use { "nvim-telescope/telescope-fzy-native.nvim", config = function() require('telescope').load_extension('fzy_native') end }
+  use {
     'kyazdani42/nvim-web-devicons',
     config = function() require('nvim-web-devicons') end,
     after = { 'nvcode-color-schemes.vim' },
   }
+  use { 'kyoh86/telescope-windows.nvim', config = function() require('telescope').load_extension('windows') end }
   use { 'liuchengxu/vim-better-default', config = function() require('plugin-config/vim-better-default') end }
-  use { 'liuchengxu/vim-clap', tag = 'v0.34', config = function() require('plugin-config/vim-clap') end, run = ':Clap install-binary!' }
   use {
     'lewis6991/gitsigns.nvim',
     requires = { 'nvim-lua/plenary.nvim' },
@@ -57,6 +65,7 @@ require('packer').startup(function(use)
     after = 'tabout.nvim',
   }
   use { 'nvim-treesitter/nvim-treesitter', config = function() require('plugin-config/nvim-treesitter') end }
+  use 'onsails/lspkind.nvim'
   use 'psliwka/vim-smoothie'
   use { 'qpkorr/vim-bufkill', config = function() require('plugin-config/vim-bufkill') end }
   use 'radenling/vim-dispatch-neovim'
