@@ -1,4 +1,9 @@
 require('packer').startup(function(use)
+  use {
+    "NTBBloodbath/rest.nvim",
+    requires = { "nvim-lua/plenary.nvim" },
+    config = function() require('rest-nvim').setup() end,
+  }
   use 'Olical/aniseed'
   use { 'Olical/conjure', config = function() require('plugin-config.conjure') end }
   use 'PeterRincker/vim-argumentative'
@@ -35,7 +40,6 @@ require('packer').startup(function(use)
   use { 'kkoomen/vim-doge', run = 'doge#install()' }
   use {
     'nvim-telescope/telescope.nvim',
-    tag = 'nvim-0.6',
     requires = { 'nvim-lua/plenary.nvim' },
     config = function() require('plugin-config.telescope_nvim') end,
   }
@@ -64,7 +68,7 @@ require('packer').startup(function(use)
     config = function() require('plugin-config.nvim-lspconfig') end,
     after = 'tabout.nvim',
   }
-  use { 'nvim-treesitter/nvim-treesitter', commit = 'bc25a6a5c4fd659bbf78ba0a2442ecf14eb00398', config = function() require('plugin-config.nvim-treesitter') end }
+  use { 'nvim-treesitter/nvim-treesitter', config = function() require('plugin-config.nvim-treesitter') end }
   use 'onsails/lspkind.nvim'
   use 'psliwka/vim-smoothie'
   use { 'qpkorr/vim-bufkill', config = function() require('plugin-config.vim-bufkill') end }

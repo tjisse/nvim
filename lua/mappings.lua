@@ -68,7 +68,7 @@ wk.register({
     ['8'] = '8 fold level',
     ['9'] = '9 fold level',
     d = { ':lua require(\'telescope.builtin\').find_files({ cwd = vim.fn.expand(\'%:p:h\') })<CR>', 'files in current directory', unpack(default_opts) },
-    f = { ':lua require(\'telescope\').extensions.file_browser.file_browser()<CR>', 'file browser in current directory', unpack(default_opts) },
+    f = { ':lua require(\'telescope\').extensions.file_browser.file_browser({ cwd = vim.fn.expand(\'%:p:h\') })<CR>', 'file browser in current directory', unpack(default_opts) },
     h = { ':lua require(\'telescope.builtin\').find_files({ cwd = \'~\', hidden = true })<CR>' , 'files in home directory' },
     s = 'save file',
     r = {  ':Telescope oldfiles<CR>', 'recent files', unpack(default_opts) },
@@ -92,8 +92,8 @@ wk.register({
   Q = { ':quitall!<CR>', 'quit without saving', unpack(default_opts) },
   r = {
     name = '+run',
-    t = { ':UltestNearest<CR>', 'run nearest test' },
-    T = { ':Ultest<CR>', 'run all tests in file' },
+    T = { ':UltestNearest<CR>', 'run nearest test' },
+    t = { ':Ultest<CR>', 'run all tests in file' },
   },
   s = {
     name = '+search',
