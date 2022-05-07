@@ -7,8 +7,6 @@ map('v', '<S-l>', '$', default_opts)
 map('v', '<S-h>', '^', default_opts)
 
 -- Move line / block of text in visual mode
--- alt + k to move up
--- alt + j to move down
 map('n', '<C-S-j>', ':move .+1<CR>==', default_opts)
 map('n', '<C-S-k>', ':move .-2<CR>==', default_opts)
 map('x', '<C-S-j>', ':move \'<-2<CR>gv-gv', default_opts)
