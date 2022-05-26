@@ -56,8 +56,8 @@ map('n', 'dn', ':lua vim.lsp.diagnostic.goto_next()<CR>', default_opts)
 map('n', 'dN', ':lua vim.lsp.diagnostic.goto_prev()<CR>', default_opts)
 map('n', 'dq', ':lua vim.lsp.diagnostic.set_qflist()<CR>', default_opts)
 map('n', 'dl', ':lua vim.lsp.diagnostic.set_loclist()<CR>', default_opts)
-map('n', '<M-CR>', ':lua require(\'telescope.builtin\').lsp_code_actions()<CR>', default_opts)
-map('i', '<M-CR>', '<C-o>:lua require(\'telescope.builtin\').lsp_code_actions()<CR>', default_opts)
+map('n', '<M-CR>', ':lua vim.lsp.buf.code_action()<CR>', default_opts)
+map('i', '<M-CR>', '<C-o>:lua vim.lsp.buf.code_action()<CR>', default_opts)
 
 wk.register({
   ['='] = { ':lua vim.lsp.buf.formatting()<CR>', 'format buffer', noremap = true, silent = true },

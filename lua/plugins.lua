@@ -45,6 +45,7 @@ require('packer').startup(function(use)
   }
   use { "nvim-telescope/telescope-file-browser.nvim", config = function() require('telescope').load_extension('file_browser') end }
   use { "nvim-telescope/telescope-fzy-native.nvim", config = function() require('telescope').load_extension('fzy_native') end }
+  use {'nvim-telescope/telescope-ui-select.nvim', config = function() require('telescope').load_extension('ui-select') end }
   use {
     'kyazdani42/nvim-web-devicons',
     config = function() require('nvim-web-devicons') end,
