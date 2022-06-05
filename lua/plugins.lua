@@ -37,15 +37,16 @@ require('packer').startup(function(use)
   use { 'itchyny/lightline.vim', config = function() require('plugin-config.lightline_vim') end }
   use 'jbyuki/one-small-step-for-vimkind'
   use 'josa42/nvim-lightline-lsp'
-  use { 'kkoomen/vim-doge', run = 'doge#install()' }
+  use { 'kkoomen/vim-doge', config = function() require('plugin-config.vim-doge') end, run = 'doge#install()' }
   use {
     'nvim-telescope/telescope.nvim',
     requires = { 'nvim-lua/plenary.nvim' },
     config = function() require('plugin-config.telescope_nvim') end,
   }
-  use { "nvim-telescope/telescope-file-browser.nvim", config = function() require('telescope').load_extension('file_browser') end }
-  use { "nvim-telescope/telescope-fzy-native.nvim", config = function() require('telescope').load_extension('fzy_native') end }
-  use {'nvim-telescope/telescope-ui-select.nvim', config = function() require('telescope').load_extension('ui-select') end }
+  use { 'nvim-telescope/telescope-file-browser.nvim', config = function() require('telescope').load_extension('file_browser') end }
+  use { 'nvim-telescope/telescope-fzy-native.nvim', config = function() require('telescope').load_extension('fzy_native') end }
+  use { 'nvim-telescope/telescope-ui-select.nvim', config = function() require('telescope').load_extension('ui-select') end }
+  use 'kevinhwang91/nvim-hlslens'
   use {
     'kyazdani42/nvim-web-devicons',
     config = function() require('nvim-web-devicons') end,
@@ -71,6 +72,7 @@ require('packer').startup(function(use)
   }
   use { 'nvim-treesitter/nvim-treesitter', config = function() require('plugin-config.nvim-treesitter') end }
   use 'onsails/lspkind.nvim'
+  use { 'petertriho/nvim-scrollbar', config = function() require('plugin-config.nvim-scrollbar') end }
   use 'psliwka/vim-smoothie'
   use { 'qpkorr/vim-bufkill', config = function() require('plugin-config.vim-bufkill') end }
   use 'radenling/vim-dispatch-neovim'
