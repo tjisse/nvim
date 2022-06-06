@@ -77,7 +77,8 @@ wk.register({
     name = '+git hunk',
     p = { ':Gitsigns preview_hunk<CR>', 'preview hunk', unpack(default_opts) },
     s = { ':Gitsigns stage_hunk<CR>', 'stage hunk', unpack(default_opts) },
-    u = { ':Gitsigns undo_hunk<CR>', 'undo hunk', unpack(default_opts) },
+    u = { ':Gitsigns undo_stage_hunk<CR>', 'undo stage hunk', unpack(default_opts) },
+    r = { ':Gitsigns reset_hunk<CR>', 'reset hunk', unpack(default_opts) },
   },
   M = { ':MerginalToggle<CR>', 'merginal', unpack(default_opts) },
   p = {
