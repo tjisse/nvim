@@ -15,6 +15,8 @@ require('packer').startup(function(use)
   }
   use { 'ahmedkhalf/project.nvim', config = function() require('plugin-config.project_nvim') end }
   use { 'derekwyatt/vim-fswitch', config = function() require('plugin-config.vim-fswitch') end }
+  use { 'gbprod/yanky.nvim', config = function() require('plugin-config.yanky_nvim') end }
+  use { 'gbprod/substitute.nvim', config = function() require('plugin-config.substitute_nvim') end }
   use { 'gbrlsnchs/telescope-lsp-handlers.nvim', config = function() require('telescope').load_extension('lsp_handlers') end }
   use 'ggandor/lightspeed.nvim'
   use 'github/copilot.vim'
@@ -63,7 +65,6 @@ require('packer').startup(function(use)
   use { 'mfussenegger/nvim-dap', config = function() require('plugin-config.nvim-dap') end }
   use 'mfussenegger/nvim-jdtls'
   use { 'mfussenegger/nvim-lint', config = function() require('plugin-config.nvim-lint') end }
-  use { 'mg979/vim-visual-multi', branch = 'master' }
   use 'mhinz/vim-startify'
   use {
     'neovim/nvim-lspconfig',
