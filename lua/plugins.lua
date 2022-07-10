@@ -1,7 +1,7 @@
 require('packer').startup(function(use)
   use {
-    "NTBBloodbath/rest.nvim",
-    requires = { "nvim-lua/plenary.nvim" },
+    'NTBBloodbath/rest.nvim',
+    requires = { 'nvim-lua/plenary.nvim' },
     config = function() require('rest-nvim').setup() end,
   }
   use 'Olical/aniseed'
@@ -26,6 +26,8 @@ require('packer').startup(function(use)
   use { 'guns/vim-sexp', config = function() require('plugin-config.vim-sexp') end }
   use 'hardikpthv/vscode-wc-snippets'
   use 'hrsh7th/cmp-nvim-lsp'
+  use 'hrsh7th/cmp-nvim-lsp-document-symbol'
+  use 'hrsh7th/cmp-nvim-lsp-signature-help'
   use 'hrsh7th/cmp-buffer'
   use 'hrsh7th/cmp-path'
   use { 'hrsh7th/nvim-cmp', config = function() require('plugin-config.nvim-cmp') end, run = ':TSUpdate' }
@@ -40,6 +42,17 @@ require('packer').startup(function(use)
   use 'jbyuki/one-small-step-for-vimkind'
   use 'josa42/nvim-lightline-lsp'
   use { 'kkoomen/vim-doge', config = function() require('plugin-config.vim-doge') end, run = 'doge#install()' }
+  use {
+    'nvim-neotest/neotest',
+    requires = {
+      'nvim-lua/plenary.nvim',
+      'nvim-treesitter/nvim-treesitter',
+      'antoinemadec/FixCursorHold.nvim',
+      'nvim-neotest/neotest-vim-test',
+      'vim-test/vim-test'
+    },
+    config = function() require('plugin-config.nvim-neotest') end,
+  }
   use {
     'nvim-telescope/telescope.nvim',
     requires = { 'nvim-lua/plenary.nvim' },
@@ -77,8 +90,6 @@ require('packer').startup(function(use)
   use 'psliwka/vim-smoothie'
   use { 'qpkorr/vim-bufkill', config = function() require('plugin-config.vim-bufkill') end }
   use 'radenling/vim-dispatch-neovim'
-  use { 'ray-x/lsp_signature.nvim', config = function() require('plugin-config.lsp_signature_nvim') end }
-  use { 'rcarriga/vim-ultest', config = function() require('plugin-config.vim-ultest') end, requires = {'vim-test/vim-test'}, run = ':UpdateRemotePlugins' }
   use { 'rmagatti/auto-session', config = function() require('plugin-config.auto-session') end }
   use { 'rrethy/vim-hexokinase', run = 'make hexokinase' }
   use 'simnalamburt/vim-mundo'

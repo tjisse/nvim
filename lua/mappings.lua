@@ -34,6 +34,9 @@ map('n', '<C-Down>', ' :resize +2<CR>', default_opts)
 map('n', '<C-Left>', ' :vertical resize -2<CR>', default_opts)
 map('n', '<C-Right>', ':vertical resize +2<CR>', default_opts)
 
+map('n', 'f', '<Plug>Lightspeed_s', default_opts)
+map('n', 'F', '<Plug>Lightspeed_S', default_opts)
+
 wk.register({
   ['1'] = { ':1tabnext<CR>', 'tab 1', unpack(default_opts) },
   ['2'] = { ':2tabnext<CR>', 'tab 2', unpack(default_opts) },
@@ -93,8 +96,8 @@ wk.register({
   Q = { ':quitall!<CR>', 'quit without saving', unpack(default_opts) },
   r = {
     name = '+run',
-    T = { ':UltestNearest<CR>', 'run nearest test' },
-    t = { ':Ultest<CR>', 'run all tests in file' },
+    t = { ':lua require("neotest").run.run()<CR>', 'run nearest test' },
+    T = { ':lua require("neotest").run.run(vim.fn.expand("%"))<CR>', 'run all tests in file' },
   },
   s = {
     name = '+search',
