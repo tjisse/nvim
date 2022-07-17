@@ -1,11 +1,16 @@
 local lsp_installer = require('nvim-lsp-installer')
 local wk = require('which-key')
+local lspconfig = require('lspconfig')
 local map = vim.api.nvim_set_keymap
 
 local default_opts = { noremap = true, silent = true }
 
 vim.opt.shortmess:append('c')
 vim.cmd[[autocmd CursorMoved * lua vim.diagnostic.open_float({focusable=false})]]
+
+lspconfig.jdtls.setup({
+  use_lombok_agent = true
+})
 
 lsp_installer.on_server_ready(function(server)
   if server.name ~= 'jdtls' then
