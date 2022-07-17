@@ -60,6 +60,8 @@ require('packer').startup(function(use)
   use { 'nvim-telescope/telescope-fzy-native.nvim', config = function() require('telescope').load_extension('fzy_native') end }
   use { 'nvim-telescope/telescope-ui-select.nvim', config = function() require('telescope').load_extension('ui-select') end }
   use 'kevinhwang91/nvim-hlslens'
+  use 'kristijanhusak/vim-dadbod-completion'
+  use 'kristijanhusak/vim-dadbod-ui'
   use {
     'kyazdani42/nvim-web-devicons',
     config = function() require('nvim-web-devicons') end,
@@ -95,6 +97,7 @@ require('packer').startup(function(use)
   use { 'stevearc/qf_helper.nvim', config = function() require'qf_helper'.setup() end }
   use { 'tjisse/nvcode-color-schemes.vim', config = function() require('plugin-config.nvcode-color-schemes_vim') end }
   use 'tpope/vim-commentary'
+  use { 'tpope/vim-dadbod', config = function() require('plugin-config/vim-dadbod') end }
   use 'tpope/vim-dispatch'
   use 'tpope/vim-eunuch'
   use { 'tpope/vim-fugitive', config = function() require('plugin-config.vim-fugitive') end }
