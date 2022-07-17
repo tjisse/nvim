@@ -6,7 +6,7 @@ local map = vim.api.nvim_set_keymap
 local default_opts = { noremap = true, silent = true }
 
 vim.opt.shortmess:append('c')
-vim.cmd[[autocmd CursorMoved * lua vim.diagnostic.open_float({focusable=false})]]
+vim.api.nvim_create_autocmd('CursorHold', { pattern = '*', callback = function() vim.diagnostic.open_float({focusable=false}) end })
 
 lspconfig.jdtls.setup({
   use_lombok_agent = true

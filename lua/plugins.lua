@@ -109,9 +109,5 @@ require('packer').startup(function(use)
   use { 'zbirenbaum/copilot-cmp', module = 'copilot_cmp' }
 end)
 
-vim.cmd[[
-  augroup packer_user_config
-    autocmd!
-    autocmd BufWritePost plugins.lua source <afile> | PackerCompile
-  augroup end
-]]
+local packerUserConfig = vim.api.nvim_create_augroup('packer_user_config', { clear = true })
+vim.api.nvim_create_autocmd('BufWritePost', { pattern = 'plugins.lua', command = 'source <afile> | PackerCompile', group = packerUserConfig })

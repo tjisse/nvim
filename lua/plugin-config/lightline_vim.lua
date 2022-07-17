@@ -11,4 +11,4 @@ vim.g.lightline = {
   }
 }
 
-vim.cmd[[call lightline#lsp#register()]]
+vim.call('lightline#lsp#register')

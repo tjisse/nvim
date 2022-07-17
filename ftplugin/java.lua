@@ -8,7 +8,7 @@ if available then
   local default_jdtls_opts = jdtls._default_options
   local opts = {
     capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities()),
-    root_dir = require('jdtls.setup').find_root({'.git', 'mvnw', 'gradlew', 'pom.xml', 'build.gradle'}),
+    root_dir = require('jdtls.setup').find_root({ '.git', 'mvnw', 'gradlew', 'pom.xml', 'build.gradle' }),
     settings = {
       java = {
         signatureHelp = { enabled = true };
@@ -37,11 +37,10 @@ bmap(0, 'n', '<leader>rec', ':lua require(\'jdtls\').extract_constant()<CR>', de
 bmap(0, 'v', '<leader>rec', '<Esc>:lua require(\'jdtls\').extract_constant(true)<CR>', default_opts)
 bmap(0, 'v', '<leader>rem', '<Esc>:lua require(\'jdtls\').extract_method(true)<CR>', default_opts)
 
-vim.cmd[[
-  command! -buffer JdtCompile lua require('jdtls').compile()
-  command! -buffer JdtUpdateConfig lua require('jdtls').update_project_config()
-  command! -buffer JdtJol lua require('jdtls').jol()
-  command! -buffer JdtBytecode lua require('jdtls').javap()
-  command! -buffer JdtJshell lua require('jdtls').jshell()
-  au BufWritePost <buffer> lua require('lint').try_lint()
-]]
+vim.api.nvim_buf_create_user_command(0, 'JdtCompile', "lua require('jdtls').compile()", {})
+vim.api.nvim_buf_create_user_command(0, 'JdtUpdateConfig', "lua require('jdtls').update_project_config()", {})
+vim.api.nvim_buf_create_user_command(0, 'JdtJol', "lua require('jdtls').jol()", {})
+vim.api.nvim_buf_create_user_command(0, 'JdtBytecode', "lua require('jdtls').javap()", {})
+vim.api.nvim_buf_create_user_command(0, 'JdtJshell', "lua require('jdtls').jshell()", {})
+vim.api.nvim_create_autocmd('BufWritePost',
+  { pattern = '<buffer>', callback = function() require('lint').try_lint() end })
