@@ -19,7 +19,6 @@ require('packer').startup(function(use)
   use { 'gbprod/substitute.nvim', config = function() require('plugin-config.substitute_nvim') end }
   use { 'gbrlsnchs/telescope-lsp-handlers.nvim', config = function() require('telescope').load_extension('lsp_handlers') end }
   use 'ggandor/lightspeed.nvim'
-  use 'github/copilot.vim'
   use { 'editorconfig/editorconfig-vim', config = function() require('plugin-config.editorconfig-vim') end }
   use 'farmergreg/vim-lastplace'
   use { 'folke/which-key.nvim', config = function() require('plugin-config.which-key_nvim') end }
@@ -31,7 +30,6 @@ require('packer').startup(function(use)
   use 'hrsh7th/cmp-buffer'
   use 'hrsh7th/cmp-path'
   use { 'hrsh7th/nvim-cmp', config = function() require('plugin-config.nvim-cmp') end, run = ':TSUpdate' }
-  use 'hrsh7th/cmp-copilot'
   use 'hrsh7th/cmp-vsnip'
   use { 'hrsh7th/vim-vsnip', config = function() require('plugin-config.vim-vsnip') end }
   use 'hrsh7th/vim-vsnip-integ'
@@ -107,6 +105,8 @@ require('packer').startup(function(use)
   use 'wbthomason/packer.nvim'
   use 'williamboman/nvim-lsp-installer'
   use { 'windwp/nvim-autopairs', config = function() require('plugin-config.nvim-autopairs') end }
+  use { 'zbirenbaum/copilot.lua', event = { 'VimEnter' }, config = function() require('plugin-config.copilot') end }
+  use { 'zbirenbaum/copilot-cmp', module = 'copilot_cmp' }
 end)
 
 vim.cmd[[

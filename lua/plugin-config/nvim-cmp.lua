@@ -43,8 +43,16 @@ cmp.setup({
     { name = 'path' },
   },
   formatting = {
-    format = lspkind.cmp_format(),
+    format = function(entry, vim_item)
+      if entry.source.name == 'copilot' then
+        vim_item.kind = ' Copilot'
+        vim_item.kind_hl_group = 'CmpItemKindCopilot'
+        return vim_item
+      end
+      return lspkind.cmp_format()(entry, vim_item)
+    end
   },
 })
 
+vim.api.nvim_set_hl(0, 'CmpItemKindCopilot', { fg = '#6CC644' })
 vim.opt.completeopt = 'menu,menuone,noinsert'
