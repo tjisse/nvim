@@ -21,6 +21,7 @@ require('packer').startup(function(use)
   use 'ggandor/lightspeed.nvim'
   use { 'editorconfig/editorconfig-vim', config = function() require('plugin-config.editorconfig-vim') end }
   use 'farmergreg/vim-lastplace'
+  use 'folke/lua-dev.nvim'
   use { 'folke/which-key.nvim', config = function() require('plugin-config.which-key_nvim') end }
   use { 'guns/vim-sexp', config = function() require('plugin-config.vim-sexp') end }
   use 'hardikpthv/vscode-wc-snippets'
@@ -82,7 +83,7 @@ require('packer').startup(function(use)
   use {
     'neovim/nvim-lspconfig',
     config = function() require('plugin-config.nvim-lspconfig') end,
-    after = 'tabout.nvim',
+    after = { 'tabout.nvim', 'nvim-lsp-installer' },
   }
   use { 'nvim-treesitter/nvim-treesitter', config = function() require('plugin-config.nvim-treesitter') end }
   use 'onsails/lspkind.nvim'
