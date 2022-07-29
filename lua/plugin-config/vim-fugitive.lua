@@ -4,7 +4,7 @@ wk.register({
   g = {
     name = '+git',
     b = { ':Git blame<CR>', 'fugitive blame', noremap = false, silent = true },
-    c = { ':Clap bcommits<CR>', 'commits for current buffer', noremap = false, silent = true },
+    c = { ':lua require(\'telescope.builtin\').git_bcommits()<CR>', 'commits for current buffer', noremap = false, silent = true },
     C = { ':Git commit --verbose<CR>', 'fugitive commit', noremap = false, silent = true },
     d = { ':Gdiff<CR>', 'fugitive diff', noremap = false, silent = true },
     e = { ':Gedit<CR>', 'fugitive edit', noremap = false, silent = true },

@@ -3,17 +3,10 @@ local wk = require('which-key')
 
 local default_opts = { silent = true, noremap = true }
 
-map('i', '<C-h>', '<C-w>h', default_opts)
-map('i', '<C-j>', '<C-w>j', default_opts)
-map('i', '<C-k>', '<C-w>k', default_opts)
-map('i', '<C-l>', '<C-w>l', default_opts)
-
 map('v', '<S-l>', '$', default_opts)
 map('v', '<S-h>', '^', default_opts)
 
 -- Move line / block of text in visual mode
--- alt + k to move up
--- alt + j to move down
 map('n', '<C-S-j>', ':move .+1<CR>==', default_opts)
 map('n', '<C-S-k>', ':move .-2<CR>==', default_opts)
 map('x', '<C-S-j>', ':move \'<-2<CR>gv-gv', default_opts)
@@ -41,6 +34,9 @@ map('n', '<C-Down>', ' :resize +2<CR>', default_opts)
 map('n', '<C-Left>', ' :vertical resize -2<CR>', default_opts)
 map('n', '<C-Right>', ':vertical resize +2<CR>', default_opts)
 
+map('n', 'f', '<Plug>Lightspeed_s', default_opts)
+map('n', 'F', '<Plug>Lightspeed_S', default_opts)
+
 wk.register({
   ['1'] = { ':1tabnext<CR>', 'tab 1', unpack(default_opts) },
   ['2'] = { ':2tabnext<CR>', 'tab 2', unpack(default_opts) },
@@ -60,7 +56,7 @@ wk.register({
     l = { ':blast<CR>', 'last buffer', unpack(default_opts) },
     n = { ':bnext<CR>', 'next buffer', unpack(default_opts) },
     N = { ':bprevious<CR>', 'previous buffer', unpack(default_opts) },
-    b = { ':Clap buffers<CR>', 'open buffers', unpack(default_opts) },
+    b = { ':lua require(\'telescope.builtin\').buffers()<CR>', 'open buffers', unpack(default_opts) },
   },
   f = {
     name = '+files/fold',
@@ -74,28 +70,35 @@ wk.register({
     ['7'] = '7 fold level',
     ['8'] = '8 fold level',
     ['9'] = '9 fold level',
-    d = { ':Clap files %:p:h<CR>', 'files in current directory', unpack(default_opts) },
-    f = { ':Clap filer %:p:h<CR>', 'filer in current directory', unpack(default_opts) },
-    h = { ':Clap files --hidden ~<CR>' , 'files in home directory' },
+    d = { ':lua require(\'telescope.builtin\').find_files({ cwd = vim.fn.expand(\'%:p:h\') })<CR>', 'files in current directory', unpack(default_opts) },
+    f = { ':lua require(\'telescope\').extensions.file_browser.file_browser({ cwd = vim.fn.expand(\'%:p:h\') })<CR>', 'file browser in current directory', unpack(default_opts) },
+    h = { ':lua require(\'telescope.builtin\').find_files({ cwd = \'~\', hidden = true })<CR>' , 'files in home directory' },
     s = 'save file',
-    r = {  ':Clap history<CR>', 'recent files', unpack(default_opts) },
+    r = {  ':Telescope oldfiles<CR>', 'recent files', unpack(default_opts) },
   },
   h = {
     name = '+git hunk',
-    p = 'preview hunk',
-    s = 'stage hunk',
-    u = 'undo hunk',
+    p = { ':Gitsigns preview_hunk<CR>', 'preview hunk', unpack(default_opts) },
+    s = { ':Gitsigns stage_hunk<CR>', 'stage hunk', unpack(default_opts) },
+    u = { ':Gitsigns undo_stage_hunk<CR>', 'undo stage hunk', unpack(default_opts) },
+    r = { ':Gitsigns reset_hunk<CR>', 'reset hunk', unpack(default_opts) },
   },
   M = { ':MerginalToggle<CR>', 'merginal', unpack(default_opts) },
   p = {
     name = '+project',
     a = { ':FSHere<CR>', 'switch to test/implementation', unpack(default_opts) },
-    f = { ':Clap files --hidden .<CR>', 'find file in project', unpack(default_opts) },
-    s = { ':Clap grep2 .<CR>', 'search in project', unpack(default_opts) }
+    f = { ':lua require(\'telescope.builtin\').find_files()<CR>', 'find file in project', unpack(default_opts) },
+    p = { ':lua require(\'telescope\').extensions.projects.projects()<CR>', 'find project', unpack(default_opts) },
+    s = { ':lua require(\'telescope.builtin\').live_grep()<CR>', 'search in project', unpack(default_opts) }
   },
   U = { ':MundoToggle<CR>', 'undo tree', unpack(default_opts) },
   q = { ':quitall<CR>', 'quit', unpack(default_opts) },
   Q = { ':quitall!<CR>', 'quit without saving', unpack(default_opts) },
+  r = {
+    name = '+run',
+    t = { ':lua require("neotest").run.run()<CR>', 'run nearest test' },
+    T = { ':lua require("neotest").run.run(vim.fn.expand("%"))<CR>', 'run all tests in file' },
+  },
   s = {
     name = '+search',
     b = 'search in buffer',
@@ -113,7 +116,7 @@ wk.register({
     ['|'] = 'split window right',
     ['2'] = 'layout double columns',
     ['='] = 'balance window',
-    ['?'] = ':Clap windows',
+    f = { ':lua require(\'telescope\').extensions.windows.list()<CR>', 'find window' },
     w = 'other window',
     d = 'delete window',
     h = 'window left',
@@ -125,6 +128,6 @@ wk.register({
     L = 'expand window right',
     K = 'expand window up',
     s = 'split window below',
-    v = 'split window below',
+    v = 'split window right',
   }
 }, { prefix = '<leader>'})

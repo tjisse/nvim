@@ -12,6 +12,7 @@ vim.opt.cursorcolumn = true
 vim.opt.updatetime = 100
 vim.opt.sessionoptions = 'blank,curdir,folds,help,tabpages,winsize'
 vim.opt.selection = 'inclusive'
+vim.opt.cmdheight = 0
 vim.opt.shell = 'powershell'
 vim.opt.shellquote = ''
 vim.opt.shellpipe = '|'

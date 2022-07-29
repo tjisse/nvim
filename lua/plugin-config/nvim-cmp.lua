@@ -1,4 +1,5 @@
 local cmp = require('cmp')
+local lspkind = require('lspkind')
 
 cmp.setup({
   snippet = {
@@ -7,6 +8,8 @@ cmp.setup({
     end,
   },
   mapping = {
+    ['<C-j>'] = cmp.mapping.select_next_item(),
+    ['<C-k>'] = cmp.mapping.select_prev_item(),
     ['<C-d>'] = cmp.mapping.scroll_docs(-4),
     ['<C-f>'] = cmp.mapping.scroll_docs(4),
     ['<C-Space>'] = cmp.mapping.complete(),
@@ -33,11 +36,23 @@ cmp.setup({
   },
   sources = {
     { name = 'nvim_lsp' },
+    { name = 'nvim_lsp_signature_help' },
     { name = 'vsnip' },
     { name = 'copilot' },
     { name = 'buffer' },
     { name = 'path' },
-  }
+  },
+  formatting = {
+    format = function(entry, vim_item)
+      if entry.source.name == 'copilot' then
+        vim_item.kind = ' Copilot'
+        vim_item.kind_hl_group = 'CmpItemKindCopilot'
+        return vim_item
+      end
+      return lspkind.cmp_format()(entry, vim_item)
+    end
+  },
 })
 
+vim.api.nvim_set_hl(0, 'CmpItemKindCopilot', { fg = '#6CC644' })
 vim.opt.completeopt = 'menu,menuone,noinsert'

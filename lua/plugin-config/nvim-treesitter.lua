@@ -1,4 +1,4 @@
-require('nvim-treesitter.configs').setup {
+require('nvim-treesitter.configs').setup({
   ensure_installed = {
     'java',
     'clojure',
@@ -15,6 +15,7 @@ require('nvim-treesitter.configs').setup {
     'yaml',
     'bash',
     'dockerfile',
+    'http',
   },
   highlight = {
     enable = true,
@@ -29,4 +30,4 @@ require('nvim-treesitter.configs').setup {
   indent = {
     enable = true,
   }
-}
+})
