@@ -83,7 +83,7 @@ require('packer').startup(function(use)
   use {
     'neovim/nvim-lspconfig',
     config = function() require('plugin-config.nvim-lspconfig') end,
-    after = { 'tabout.nvim', 'nvim-lsp-installer' },
+    after = { 'tabout.nvim', 'mason-lspconfig.nvim' },
   }
   use { 'nvim-treesitter/nvim-treesitter', config = function() require('plugin-config.nvim-treesitter') end }
   use 'onsails/lspkind.nvim'
@@ -107,10 +107,11 @@ require('packer').startup(function(use)
   use 'tpope/vim-surround'
   use 'tpope/vim-vinegar'
   use 'wbthomason/packer.nvim'
-  use 'williamboman/nvim-lsp-installer'
+  use 'williamboman/mason.nvim'
+  use "williamboman/mason-lspconfig.nvim"
   use { 'windwp/nvim-autopairs', config = function() require('plugin-config.nvim-autopairs') end }
-  use { 'zbirenbaum/copilot.lua', event = { 'VimEnter' }, config = function() require('plugin-config.copilot') end }
-  use { 'zbirenbaum/copilot-cmp', module = 'copilot_cmp' }
+  -- use { 'zbirenbaum/copilot.lua', event = { 'VimEnter' }, config = function() require('plugin-config.copilot') end }
+  -- use { 'zbirenbaum/copilot-cmp', module = 'copilot_cmp' }
 end)
 
 local packerUserConfig = vim.api.nvim_create_augroup('packer_user_config', { clear = true })

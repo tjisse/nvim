@@ -73,6 +73,7 @@ wk.register({
     d = { ':lua require(\'telescope.builtin\').find_files({ cwd = vim.fn.expand(\'%:p:h\') })<CR>', 'files in current directory', unpack(default_opts) },
     f = { ':lua require(\'telescope\').extensions.file_browser.file_browser({ cwd = vim.fn.expand(\'%:p:h\') })<CR>', 'file browser in current directory', unpack(default_opts) },
     h = { ':lua require(\'telescope.builtin\').find_files({ cwd = \'~\', hidden = true })<CR>' , 'files in home directory' },
+    p = { ':lua require(\'telescope.builtin\').find_files({ cwd = \'D:/work/Projects\', hidden = true })<CR>' , 'files in project folder' },
     s = 'save file',
     r = {  ':Telescope oldfiles<CR>', 'recent files', unpack(default_opts) },
   },

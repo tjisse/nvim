@@ -2,7 +2,7 @@ local wk = require('which-key')
 local lspconfig = require('lspconfig')
 local map = vim.keymap.set
 
-local on_attach = function (client, bufnr)
+local on_attach = function(client, bufnr)
   local buffer_opts = { noremap = true, silent = true, buffer = bufnr }
   map('i', '<c-space>', '<Plug>(completion_trigger)', buffer_opts)
   map('n', 'K', ':lua vim.lsp.buf.hover()<CR>', buffer_opts)
@@ -30,7 +30,8 @@ local on_attach = function (client, bufnr)
   }, { prefix = '<leader>' })
 end
 
-require("nvim-lsp-installer").setup({
+require('mason').setup()
+require('mason-lspconfig').setup({
   automatic_installation = true,
 })
 
@@ -38,46 +39,71 @@ vim.opt.shortmess:append('c')
 vim.api.nvim_create_autocmd('CursorHold',
   { pattern = '*', callback = function() vim.diagnostic.open_float({ focusable = false }) end })
 
+local cmp_nvim_lsp_capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
+
 lspconfig.angularls.setup({
+  capabilities = cmp_nvim_lsp_capabilities,
   on_attach = on_attach,
 })
 
 lspconfig.bashls.setup({
+  capabilities = cmp_nvim_lsp_capabilities,
   on_attach = on_attach,
 })
 
 lspconfig.clojure_lsp.setup({
+  capabilities = cmp_nvim_lsp_capabilities,
   on_attach = on_attach,
 })
 
 lspconfig.cssls.setup({
+  capabilities = cmp_nvim_lsp_capabilities,
   on_attach = on_attach,
 })
 
 lspconfig.html.setup({
+  capabilities = cmp_nvim_lsp_capabilities,
   on_attach = on_attach,
-})
-
-lspconfig.jdtls.setup({
-  on_attach = on_attach,
-  use_lombok_agent = true,
-  capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities()),
 })
 
 lspconfig.jsonls.setup({
+  capabilities = cmp_nvim_lsp_capabilities,
   on_attach = on_attach,
 })
 
 lspconfig.sqlls.setup({
+  capabilities = cmp_nvim_lsp_capabilities,
+  on_attach = on_attach,
+})
+
+lspconfig.html.setup({
+  capabilities = cmp_nvim_lsp_capabilities,
+  on_attach = on_attach,
+})
+
+lspconfig.jsonls.setup({
+  capabilities = cmp_nvim_lsp_capabilities,
+  on_attach = on_attach,
+})
+
+lspconfig.sqlls.setup({
+  capabilities = cmp_nvim_lsp_capabilities,
   on_attach = on_attach,
 })
 
 local luadev = require('lua-dev').setup({
+  capabilities = cmp_nvim_lsp_capabilities,
   on_attach = on_attach,
 })
 lspconfig.sumneko_lua.setup(luadev)
 
 lspconfig.tsserver.setup({
+  capabilities = cmp_nvim_lsp_capabilities,
+  on_attach = on_attach,
+})
+
+lspconfig.cucumber_language_server.setup({
+  capabilities = cmp_nvim_lsp_capabilities,
   on_attach = on_attach,
 })
 
@@ -86,3 +112,5 @@ vim.lsp.handlers['textDocument/publishDiagnostics'] = vim.lsp.with(
   virtual_text = false,
   signs = false,
 })
+
+return { on_attach = on_attach }
