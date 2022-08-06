@@ -37,6 +37,8 @@ map('n', '<C-Right>', ':vertical resize +2<CR>', default_opts)
 map('n', 'f', '<Plug>Lightspeed_s', default_opts)
 map('n', 'F', '<Plug>Lightspeed_S', default_opts)
 
+map('n', '-', ':lua require(\'telescope\').extensions.file_browser.file_browser({ cwd = vim.fn.expand(\'%:p:h\') })<CR>', default_opts)
+
 wk.register({
   ['1'] = { ':1tabnext<CR>', 'tab 1', unpack(default_opts) },
   ['2'] = { ':2tabnext<CR>', 'tab 2', unpack(default_opts) },

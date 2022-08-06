@@ -105,7 +105,6 @@ require('packer').startup(function(use)
   use 'tpope/vim-repeat'
   use 'tpope/vim-sleuth'
   use 'tpope/vim-surround'
-  use 'tpope/vim-vinegar'
   use 'wbthomason/packer.nvim'
   use 'williamboman/mason.nvim'
   use "williamboman/mason-lspconfig.nvim"
