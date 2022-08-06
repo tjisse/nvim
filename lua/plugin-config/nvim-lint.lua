@@ -4,5 +4,7 @@ lint.linters_by_ft = {
   java = { 'checkstyle' }
 }
 
-lint.linters.checkstyle.cmd = 'checkstyle.bat'
+if vim.fn.has('win32') then
+  lint.linters.checkstyle.cmd = 'checkstyle.bat'
+end
 lint.linters.checkstyle.config_file = 'rules-checkstyle.xml'

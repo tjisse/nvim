@@ -1,6 +1,13 @@
 local map = vim.api.nvim_set_keymap
 local wk = require('which-key')
 
+local projects_path
+if vim.fn.has('win32') then
+  projects_path = 'D:/work/Projects'
+else
+  projects_path = '~/Projects'
+end
+
 local default_opts = { silent = true, noremap = true }
 
 map('v', '<S-l>', '$', default_opts)
@@ -75,7 +82,7 @@ wk.register({
     d = { ':lua require(\'telescope.builtin\').find_files({ cwd = vim.fn.expand(\'%:p:h\') })<CR>', 'files in current directory', unpack(default_opts) },
     f = { ':lua require(\'telescope\').extensions.file_browser.file_browser({ cwd = vim.fn.expand(\'%:p:h\') })<CR>', 'file browser in current directory', unpack(default_opts) },
     h = { ':lua require(\'telescope.builtin\').find_files({ cwd = \'~\', hidden = true })<CR>' , 'files in home directory' },
-    p = { ':lua require(\'telescope.builtin\').find_files({ cwd = \'D:/work/Projects\', hidden = true })<CR>' , 'files in project folder' },
+    p = { ':lua require(\'telescope.builtin\').find_files({ cwd = \'' .. projects_path .. '\', hidden = true })<CR>' , 'files in project folder' },
     s = 'save file',
     r = {  ':Telescope oldfiles<CR>', 'recent files', unpack(default_opts) },
   },

@@ -10,6 +10,7 @@ local install_dir = require('mason-registry.jdtls'):get_install_path()
 local executable = vim.env.JAVA_HOME and path.concat { vim.env.JAVA_HOME, 'bin', 'java' } or 'java'
 local jar = vim.fn.expand(path.concat { install_dir, 'plugins', 'org.eclipse.equinox.launcher_*.jar' })
 local lombok = vim.fn.expand(path.concat { install_dir, 'lombok.jar' })
+local debug_plugin = vim.fn.expand(path.concat { install_dir, 'com.microsoft.java.debug.plugin-*.jar' })
 local workspace_root = vim.env.WORKSPACE and vim.env.WORKSPACE or path.concat { vim.env.HOME, "workspace" }
 local workspace_dir = vim.fn.fnamemodify(vim.fn.getcwd(), ':p:h:t')
 
@@ -76,7 +77,7 @@ local opts = {
   },
   init_options = {
     bundles = {
-      vim.fn.glob("D:/work/tools/com.microsoft.java.debug.plugin-*.jar")
+      vim.fn.glob(debug_plugin)
     }
   }
 }

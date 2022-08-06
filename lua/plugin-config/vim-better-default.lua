@@ -11,6 +11,8 @@ vim.cmd[[runtime! plugin/default.vim]]
 vim.opt.listchars:append({eol = ' '})
 vim.opt.undodir = vim.fn.stdpath('config') .. '/undo'
 vim.opt.showmode = false
+vim.opt.wrap = true
+vim.opt.breakindent = true
 
 map('n', 'j', 'j', default_opts)
 map('n', 'k', 'k', default_opts)
