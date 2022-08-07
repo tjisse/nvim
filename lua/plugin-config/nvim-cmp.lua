@@ -1,7 +1,12 @@
 local cmp = require('cmp')
 local lspkind = require('lspkind')
 
+vim.opt.completeopt = 'menu,menuone,noinsert'
+
 cmp.setup({
+  completion = {
+    completeopt = 'menu,menuone,noinsert',
+  },
   snippet = {
     expand = function(args)
       vim.fn['vsnip#anonymous'](args.body)
@@ -54,5 +59,12 @@ cmp.setup({
   },
 })
 
+cmp.setup.cmdline(':', {
+  mapping = cmp.mapping.preset.cmdline(),
+  sources = {
+    { name = 'cmdline' },
+    { name = 'buffer' },
+  }
+})
+
 vim.api.nvim_set_hl(0, 'CmpItemKindCopilot', { fg = '#6CC644' })
-vim.opt.completeopt = 'menu,menuone,noinsert'

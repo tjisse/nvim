@@ -1,4 +1,5 @@
 require('packer').startup(function(use)
+  use { 'Mofiqul/vscode.nvim', config = function() require('plugin-config.vscode_nvim') end }
   use {
     'NTBBloodbath/rest.nvim',
     requires = { 'nvim-lua/plenary.nvim' },
@@ -29,6 +30,7 @@ require('packer').startup(function(use)
   use 'hrsh7th/cmp-nvim-lsp-document-symbol'
   use 'hrsh7th/cmp-nvim-lsp-signature-help'
   use 'hrsh7th/cmp-buffer'
+  use 'hrsh7th/cmp-cmdline'
   use 'hrsh7th/cmp-path'
   use { 'hrsh7th/nvim-cmp', config = function() require('plugin-config.nvim-cmp') end, run = ':TSUpdate' }
   use 'hrsh7th/cmp-vsnip'
@@ -66,7 +68,7 @@ require('packer').startup(function(use)
   use {
     'kyazdani42/nvim-web-devicons',
     config = function() require('nvim-web-devicons') end,
-    after = { 'nvcode-color-schemes.vim' },
+    after = { 'vscode.nvim' },
   }
   use { 'kyoh86/telescope-windows.nvim', config = function() require('telescope').load_extension('windows') end }
   use { 'liuchengxu/vim-better-default', config = function() require('plugin-config.vim-better-default') end }
@@ -95,8 +97,7 @@ require('packer').startup(function(use)
   use { 'rrethy/vim-hexokinase', run = 'make hexokinase' }
   use 'simnalamburt/vim-mundo'
   use 'seudev/vscode-java-snippets'
-  use { 'stevearc/qf_helper.nvim', config = function() require'qf_helper'.setup() end }
-  use { 'tjisse/nvcode-color-schemes.vim', config = function() require('plugin-config.nvcode-color-schemes_vim') end }
+  use { 'stevearc/qf_helper.nvim', config = function() require('qf_helper').setup() end }
   use 'tpope/vim-commentary'
   use { 'tpope/vim-dadbod', config = function() require('plugin-config/vim-dadbod') end }
   use 'tpope/vim-dispatch'
