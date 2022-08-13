@@ -24,7 +24,6 @@ require('packer').startup(function(use)
   use 'farmergreg/vim-lastplace'
   use 'folke/lua-dev.nvim'
   use { 'folke/which-key.nvim', config = function() require('plugin-config.which-key_nvim') end }
-  use { 'guns/vim-sexp', config = function() require('plugin-config.vim-sexp') end }
   use 'hardikpthv/vscode-wc-snippets'
   use 'hrsh7th/cmp-nvim-lsp'
   use 'hrsh7th/cmp-nvim-lsp-document-symbol'
@@ -63,6 +62,7 @@ require('packer').startup(function(use)
   use { 'nvim-telescope/telescope-fzy-native.nvim', config = function() require('telescope').load_extension('fzy_native') end }
   use { 'nvim-telescope/telescope-ui-select.nvim', config = function() require('telescope').load_extension('ui-select') end }
   use 'kevinhwang91/nvim-hlslens'
+  use { 'kovisoft/paredit', config = function() require('plugin-config.paredit') end }
   use 'kristijanhusak/vim-dadbod-completion'
   use 'kristijanhusak/vim-dadbod-ui'
   use {
@@ -88,6 +88,7 @@ require('packer').startup(function(use)
     after = { 'tabout.nvim', 'mason-lspconfig.nvim' },
   }
   use { 'nvim-treesitter/nvim-treesitter', config = function() require('plugin-config.nvim-treesitter') end }
+  use 'nvim-treesitter/nvim-treesitter-textobjects'
   use 'onsails/lspkind.nvim'
   use { 'petertriho/nvim-scrollbar', config = function() require('plugin-config.nvim-scrollbar') end }
   use 'psliwka/vim-smoothie'
@@ -110,6 +111,7 @@ require('packer').startup(function(use)
   use 'williamboman/mason.nvim'
   use "williamboman/mason-lspconfig.nvim"
   use { 'windwp/nvim-autopairs', config = function() require('plugin-config.nvim-autopairs') end }
+  use 'windwp/nvim-ts-autotag'
   -- use { 'zbirenbaum/copilot.lua', event = { 'VimEnter' }, config = function() require('plugin-config.copilot') end }
   -- use { 'zbirenbaum/copilot-cmp', module = 'copilot_cmp' }
 end)

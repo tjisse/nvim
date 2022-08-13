@@ -13,6 +13,14 @@ local default_opts = { silent = true, noremap = true }
 map('v', '<S-l>', '$', default_opts)
 map('v', '<S-h>', '^', default_opts)
 
+-- Insert newline in normal mode
+map('n', '<S-CR>', 'O<Esc>', default_opts)
+map('n', '<CR>', 'o<Esc>', default_opts)
+
+-- Better nav for omnicomplete
+map('i', '<expr>', '<c-j> ("<C-n>")', default_opts)
+map('i', '<expr>', '<c-k> ("<C-p>")', default_opts)
+
 -- Move line / block of text in visual mode
 map('n', '<C-S-j>', ':move .+1<CR>==', default_opts)
 map('n', '<C-S-k>', ':move .-2<CR>==', default_opts)
@@ -83,8 +91,8 @@ wk.register({
     f = { ':lua require(\'telescope\').extensions.file_browser.file_browser({ cwd = vim.fn.expand(\'%:p:h\') })<CR>', 'file browser in current directory', unpack(default_opts) },
     h = { ':lua require(\'telescope.builtin\').find_files({ cwd = \'~\', hidden = true })<CR>' , 'files in home directory' },
     p = { ':lua require(\'telescope.builtin\').find_files({ cwd = \'' .. projects_path .. '\', hidden = true })<CR>' , 'files in project folder' },
-    s = 'save file',
-    r = {  ':Telescope oldfiles<CR>', 'recent files', unpack(default_opts) },
+    s = { ':w<CR>', 'save file', unpack(default_opts)},
+    r = { ':Telescope oldfiles<CR>', 'recent files', unpack(default_opts) },
   },
   h = {
     name = '+git hunk',

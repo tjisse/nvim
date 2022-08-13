@@ -59,10 +59,45 @@ cmp.setup({
   },
 })
 
+local cmdline_mapping = {
+  ['<C-j>'] = {
+    c = function(fallback)
+      if cmp.visible() then
+        cmp.select_next_item()
+      else
+        fallback()
+      end
+    end,
+  },
+  ['<C-k>'] = {
+    c = function(fallback)
+      if cmp.visible() then
+        cmp.select_prev_item()
+      else
+        fallback()
+      end
+    end,
+  },
+  ['<C-Space>'] = {
+    c = cmp.mapping.complete()
+  },
+  ['<Tab>'] = {
+    c = cmp.mapping.confirm({ behavior = cmp.ConfirmBehavior.Replace })
+  },
+}
+
 cmp.setup.cmdline(':', {
-  mapping = cmp.mapping.preset.cmdline(),
+  mapping = cmdline_mapping,
   sources = {
     { name = 'cmdline' },
+    { name = 'path' },
+    { name = 'buffer' },
+  }
+})
+
+cmp.setup.cmdline('/', {
+  mapping = cmdline_mapping,
+  sources = {
     { name = 'buffer' },
   }
 })

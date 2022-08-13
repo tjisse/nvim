@@ -13,6 +13,8 @@ vim.opt.undodir = vim.fn.stdpath('config') .. '/undo'
 vim.opt.showmode = false
 vim.opt.wrap = true
 vim.opt.breakindent = true
+vim.opt.cursorline = false
+vim.opt.relativenumber = false
 
 map('n', 'j', 'j', default_opts)
 map('n', 'k', 'k', default_opts)
