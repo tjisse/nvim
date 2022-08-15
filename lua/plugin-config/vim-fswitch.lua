@@ -22,3 +22,9 @@ vim.api.nvim_create_autocmd('BufEnter',
 vim.api.nvim_create_autocmd('BufEnter',
   { pattern = '*.test.js',
     command = "let b:fswitchdst = 'js' | let b:fswitchfnames = '/.test$//' | let b:fswitchlocs = 'reg:/test/src/'" })
+vim.api.nvim_create_autocmd('BufEnter',
+  { pattern = '*.java',
+    command = "let b:fswitchdst = 'java' | let b:fswitchfnames = '/$/Test/' | let b:fswitchlocs = 'reg:/main/test/'" })
+vim.api.nvim_create_autocmd('BufEnter',
+  { pattern = '*Test.java',
+    command = "let b:fswitchdst = 'java' | let b:fswitchfnames = '/Test$//' | let b:fswitchlocs = 'reg:/test/main/'" })
