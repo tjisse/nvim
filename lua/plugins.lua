@@ -96,6 +96,12 @@ require('packer').startup(function(use)
   use 'radenling/vim-dispatch-neovim'
   use { 'rmagatti/auto-session', config = function() require('plugin-config.auto-session') end }
   use { 'rrethy/vim-hexokinase', run = 'make hexokinase' }
+  use { 
+    'scalameta/nvim-metals', 
+    requires = { 'nvim-lua/plenary.nvim', 'mfussenegger/nvim-dap' },
+    config = function() require('plugin-config.nvim-metals') end,
+    after = { 'nvim-lspconfig' }
+  }
   use 'simnalamburt/vim-mundo'
   use 'seudev/vscode-java-snippets'
   use { 'stevearc/qf_helper.nvim', config = function() require('qf_helper').setup() end }
