@@ -15,6 +15,7 @@ require('packer').startup(function(use)
     after = { 'nvim-autopairs' }
   }
   use { 'ahmedkhalf/project.nvim', config = function() require('plugin-config.project_nvim') end }
+  use 'chaoren/vim-wordmotion'
   use { 'derekwyatt/vim-fswitch', config = function() require('plugin-config.vim-fswitch') end }
   use { 'gbprod/yanky.nvim', config = function() require('plugin-config.yanky_nvim') end }
   use { 'gbprod/substitute.nvim', config = function() require('plugin-config.substitute_nvim') end }
