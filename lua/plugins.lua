@@ -105,6 +105,7 @@ require('packer').startup(function(use)
   }
   use 'simnalamburt/vim-mundo'
   use 'seudev/vscode-java-snippets'
+  use 'stefandtw/quickfix-reflector.vim'
   use { 'stevearc/qf_helper.nvim', config = function() require('qf_helper').setup() end }
   use 'tpope/vim-commentary'
   use { 'tpope/vim-dadbod', config = function() require('plugin-config/vim-dadbod') end }
