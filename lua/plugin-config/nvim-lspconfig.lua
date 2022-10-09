@@ -36,8 +36,6 @@ require('mason-lspconfig').setup({
 })
 
 vim.opt.shortmess:append('c')
-vim.api.nvim_create_autocmd('CursorHold',
-  { pattern = '*', callback = function() vim.diagnostic.open_float({ focusable = false }) end })
 
 local cmp_nvim_lsp_capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
 
@@ -120,7 +118,14 @@ lspconfig.cucumber_language_server.setup({
 vim.lsp.handlers['textDocument/publishDiagnostics'] = vim.lsp.with(
   vim.lsp.diagnostic.on_publish_diagnostics, {
   virtual_text = false,
-  signs = false,
+  signs = true,
+  virtual_lines = { only_current_line = true },
 })
+
+local signs = { Error = " ", Warn = " ", Hint = " ", Info = " " }
+for type, icon in pairs(signs) do
+  local hl = "DiagnosticSign" .. type
+  vim.fn.sign_define(hl, { text = icon, texthl= hl, numhl = hl })
+end
 
 return { on_attach = on_attach }

@@ -19,7 +19,7 @@ local cmd = {
   '-Declipse.application=org.eclipse.jdt.ls.core.id1',
   '-Dosgi.bundles.defaultStartLevel=4',
   '-Declipse.product=org.eclipse.jdt.ls.core.product',
-  _.when(platform.is.win, '-DwatchParentProcess=false'), -- https://github.com/redhat-developer/vscode-java/pull/847
+  platform.is.win and '-DwatchParentProcess=false' or '-DwatchParentProcess=true', -- https://github.com/redhat-developer/vscode-java/pull/847
   '--add-modules=ALL-SYSTEM',
   '--add-opens',
   'java.base/java.util=ALL-UNNAMED',

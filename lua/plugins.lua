@@ -25,6 +25,13 @@ require('packer').startup(function(use)
   use 'farmergreg/vim-lastplace'
   use 'folke/lua-dev.nvim'
   use { 'folke/which-key.nvim', config = function() require('plugin-config.which-key_nvim') end }
+  use {
+    'goolord/alpha-nvim',
+    requires = { 'kyazdani42/nvim-web-devicons' },
+    config = function ()
+      require'alpha'.setup(require'alpha.themes.startify'.config)
+    end
+  }
   use 'hardikpthv/vscode-wc-snippets'
   use 'hrsh7th/cmp-nvim-lsp'
   use 'hrsh7th/cmp-nvim-lsp-document-symbol'
@@ -39,20 +46,23 @@ require('packer').startup(function(use)
   use 'idanarye/vim-merginal'
   use 'inkarkat/vim-ExtractMatches'
   use 'inkarkat/vim-ingo-library'
-  use { 'itchyny/lightline.vim', config = function() require('plugin-config.lightline_vim') end }
   use 'jbyuki/one-small-step-for-vimkind'
-  use 'josa42/nvim-lightline-lsp'
   use { 'kkoomen/vim-doge', config = function() require('plugin-config.vim-doge') end, run = 'doge#install()' }
   use {
     'nvim-neotest/neotest',
     requires = {
       'nvim-lua/plenary.nvim',
       'nvim-treesitter/nvim-treesitter',
-      'antoinemadec/FixCursorHold.nvim',
       'nvim-neotest/neotest-vim-test',
       'vim-test/vim-test'
     },
     config = function() require('plugin-config.nvim-neotest') end,
+  }
+  use {
+    'nvim-lualine/lualine.nvim',
+    requires = { 'kyazdani42/nvim-web-devicons', opt = true },
+    config = function() require('plugin-config.lualine_nvim') end,
+    after = { 'vscode.nvim' },
   }
   use {
     'nvim-telescope/telescope.nvim',
@@ -78,11 +88,15 @@ require('packer').startup(function(use)
     requires = { 'nvim-lua/plenary.nvim' },
     config = function() require('gitsigns').setup() end,
   }
+  use {
+    "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
+    config = function() require("lsp_lines").setup() end,
+    after = 'nvim-lspconfig',
+  }
   use { 'luukvbaal/stabilize.nvim', config = function() require('stabilize').setup() end }
   use { 'mfussenegger/nvim-dap', config = function() require('plugin-config.nvim-dap') end }
   use 'mfussenegger/nvim-jdtls'
   use { 'mfussenegger/nvim-lint', config = function() require('plugin-config.nvim-lint') end }
-  use 'mhinz/vim-startify'
   use {
     'neovim/nvim-lspconfig',
     config = function() require('plugin-config.nvim-lspconfig') end,
@@ -97,8 +111,8 @@ require('packer').startup(function(use)
   use 'radenling/vim-dispatch-neovim'
   use { 'rmagatti/auto-session', config = function() require('plugin-config.auto-session') end }
   use { 'rrethy/vim-hexokinase', run = 'make hexokinase' }
-  use { 
-    'scalameta/nvim-metals', 
+  use {
+    'scalameta/nvim-metals',
     requires = { 'nvim-lua/plenary.nvim', 'mfussenegger/nvim-dap' },
     config = function() require('plugin-config.nvim-metals') end,
     after = { 'nvim-lspconfig' }
@@ -117,7 +131,7 @@ require('packer').startup(function(use)
   use 'tpope/vim-surround'
   use 'wbthomason/packer.nvim'
   use 'williamboman/mason.nvim'
-  use "williamboman/mason-lspconfig.nvim"
+  use 'williamboman/mason-lspconfig.nvim'
   use { 'windwp/nvim-autopairs', config = function() require('plugin-config.nvim-autopairs') end }
   use 'windwp/nvim-ts-autotag'
   -- use { 'zbirenbaum/copilot.lua', event = { 'VimEnter' }, config = function() require('plugin-config.copilot') end }
