@@ -23,7 +23,7 @@ require('packer').startup(function(use)
   use 'ggandor/lightspeed.nvim'
   use { 'editorconfig/editorconfig-vim', config = function() require('plugin-config.editorconfig-vim') end }
   use 'farmergreg/vim-lastplace'
-  use 'folke/lua-dev.nvim'
+  use 'folke/neodev.nvim'
   use { 'folke/which-key.nvim', config = function() require('plugin-config.which-key_nvim') end }
   use {
     'goolord/alpha-nvim',

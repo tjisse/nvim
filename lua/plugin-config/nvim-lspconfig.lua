@@ -14,8 +14,8 @@ local on_attach = function(client, bufnr)
   map('n', 'gw', ':lua vim.lsp.buf.workspace_symbol("")<CR>', buffer_opts)
   map('n', 'gd', ':lua vim.lsp.buf.definition()<CR>', buffer_opts)
   map('n', '1gd', ':lua vim.lsp.buf.declaration()<CR>', buffer_opts)
-  map('n', 'dn', ':lua vim.diagnostic.goto_next()<CR>', buffer_opts)
-  map('n', 'dN', ':lua vim.diagnostic.goto_prev()<CR>', buffer_opts)
+  map('n', 'dn', ':lua vim.diagnostic.goto_next({ float = false })<CR>', buffer_opts)
+  map('n', 'dN', ':lua vim.diagnostic.goto_prev({ float = false })<CR>', buffer_opts)
   map('n', 'dq', ':lua vim.diagnostic.set_qflist()<CR>', buffer_opts)
   map('n', 'dl', ':lua vim.diagnostic.set_loclist()<CR>', buffer_opts)
   map('n', '<M-CR>', ':lua vim.lsp.buf.code_action()<CR>', buffer_opts)
@@ -37,7 +37,7 @@ require('mason-lspconfig').setup({
 
 vim.opt.shortmess:append('c')
 
-local cmp_nvim_lsp_capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
+local cmp_nvim_lsp_capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protocol.make_client_capabilities())
 
 lspconfig.angularls.setup({
   capabilities = cmp_nvim_lsp_capabilities,
@@ -99,11 +99,11 @@ lspconfig.sqlls.setup({
   on_attach = on_attach,
 })
 
-local luadev = require('lua-dev').setup({
+require('neodev').setup({})
+lspconfig.sumneko_lua.setup({
   capabilities = cmp_nvim_lsp_capabilities,
   on_attach = on_attach,
 })
-lspconfig.sumneko_lua.setup(luadev)
 
 lspconfig.tsserver.setup({
   capabilities = cmp_nvim_lsp_capabilities,
