@@ -113,6 +113,18 @@ lspconfig.tsserver.setup({
 lspconfig.cucumber_language_server.setup({
   capabilities = cmp_nvim_lsp_capabilities,
   on_attach = on_attach,
+  settings = {
+    features = {
+      'src/test/resources/features/*.feature',
+      'itest/src/test/resources/features/*.feature',
+    },
+    glue = {
+      'src/test/java/**/*.java',
+      'itest/src/test/java/**/*.java',
+    },
+    parameterTypes = {},
+    snippetTemplates = {},
+  }
 })
 
 vim.lsp.handlers['textDocument/publishDiagnostics'] = vim.lsp.with(
