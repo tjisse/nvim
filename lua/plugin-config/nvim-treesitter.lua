@@ -19,6 +19,7 @@ require('nvim-treesitter.configs').setup({
     'bash',
     'dockerfile',
     'http',
+    'markdown',
   },
   highlight = {
     enable = true,

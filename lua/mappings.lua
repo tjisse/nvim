@@ -49,8 +49,8 @@ map('n', '<C-Down>', ' :resize +2<CR>', default_opts)
 map('n', '<C-Left>', ' :vertical resize -2<CR>', default_opts)
 map('n', '<C-Right>', ':vertical resize +2<CR>', default_opts)
 
-map('n', 'f', '<Plug>Lightspeed_s', default_opts)
-map('n', 'F', '<Plug>Lightspeed_S', default_opts)
+map('n', 'f', '<Plug>(leap-forward-to)', default_opts)
+map('n', 'F', '<Plug>(leap-backward-to)', default_opts)
 
 map('n', '-', ':lua require(\'telescope\').extensions.file_browser.file_browser({ cwd = vim.fn.expand(\'%:p:h\') })<CR>', default_opts)
 
@@ -74,6 +74,10 @@ wk.register({
     n = { ':bnext<CR>', 'next buffer', unpack(default_opts) },
     N = { ':bprevious<CR>', 'previous buffer', unpack(default_opts) },
     b = { ':lua require(\'telescope.builtin\').buffers()<CR>', 'open buffers', unpack(default_opts) },
+  },
+  c = {
+    name = '+config',
+    r = { ':ReloadConfig<CR>', 'reload nvim config', unpack(default_opts) },
   },
   f = {
     name = '+files/fold',

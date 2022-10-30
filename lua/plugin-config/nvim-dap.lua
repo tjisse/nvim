@@ -1,5 +1,45 @@
 local dap = require('dap')
+local dapui = require("dapui")
 local wk = require('which-key')
+local path = require('mason-core.path')
+local node_debug_install_dir = require('mason-registry.node-debug2-adapter'):get_install_path()
+
+dapui.setup()
+
+dap.listeners.after.event_initialized['dapui_config'] = function()
+  dapui.open()
+end
+dap.listeners.before.event_terminated['dapui_config'] = function()
+  dapui.close()
+end
+dap.listeners.before.event_exited['dapui_config'] = function()
+  dapui.close()
+end
+
+local dap_breakpoint = {
+  error = {
+    text = '🔷',
+    texthl = 'LspDiagnosticsSignError',
+    linehl = '',
+    numhl = '',
+  },
+  rejected = {
+    text = '🔶',
+    texthl = 'LspDiagnosticsSignHint',
+    linehl = '',
+    numhl = '',
+  },
+  stopped = {
+    text = '💠',
+    texthl = 'LspDiagnosticsSignInformation',
+    linehl = 'DiagnosticUnderlineInfo',
+    numhl = 'LspDiagnosticsSignInformation',
+  },
+}
+
+vim.fn.sign_define('DapBreakpoint', dap_breakpoint.error)
+vim.fn.sign_define('DapStopped', dap_breakpoint.stopped)
+vim.fn.sign_define('DapBreakpointRejected', dap_breakpoint.rejected)
 
 dap.configurations.lua = {
   {
@@ -28,7 +68,7 @@ end
 dap.adapters.node2 = {
   type = 'executable',
   command = 'node',
-  args = {os.getenv('HOME') .. '/Projects/vscode-node-debug2/out/src/nodeDebug.js'},
+  args = { path.concat({ node_debug_install_dir, '/out/src/nodeDebug.js' }) },
 }
 
 dap.configurations.javascript = {
@@ -47,7 +87,8 @@ dap.configurations.javascript = {
     name = 'Attach to process',
     type = 'node2',
     request = 'attach',
-    processId = require'dap.utils'.pick_process,
+    port = 9229,
+    -- processId = require('dap.utils').pick_process,
   },
 }
 
