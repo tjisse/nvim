@@ -40,22 +40,30 @@ cmp.setup({
     end,
   },
   sources = {
-    { name = 'nvim_lsp' },
+    { name = 'nvim_lsp', max_item_count = 10 },
     { name = 'nvim_lsp_signature_help' },
-    { name = 'vsnip' },
-    -- { name = 'copilot' },
-    { name = 'buffer' },
-    { name = 'path' },
+    { name = 'vsnip', max_item_count = 5 },
+    { name = 'buffer', max_item_count = 5 },
+    { name = 'path', max_item_count = 5 },
   },
   formatting = {
     format = function(entry, vim_item)
-      if entry.source.name == 'copilot' then
-        vim_item.kind = ' Copilot'
-        vim_item.kind_hl_group = 'CmpItemKindCopilot'
-        return vim_item
-      end
-      return lspkind.cmp_format()(entry, vim_item)
+      return lspkind.cmp_format({
+        maxwidth = 30,
+        ellipsis_char = '...',
+      })(entry, vim_item)
     end
+  },
+  window = {
+    completion = cmp.config.window.bordered({
+      winhighlight = "Normal:Normal,FloatBorder:FloatBorder,CursorLine:Visual,Search:None",
+    }),
+    documentation = cmp.config.window.bordered({
+      winhighlight = "Normal:Normal,FloatBorder:FloatBorder,CursorLine:Visual,Search:None",
+    }),
+  },
+  experimental = {
+    ghost_text = true,
   },
 })
 
@@ -101,5 +109,3 @@ cmp.setup.cmdline('/', {
     { name = 'buffer' },
   }
 })
-
-vim.api.nvim_set_hl(0, 'CmpItemKindCopilot', { fg = '#6CC644' })

@@ -6,11 +6,12 @@ local bmap = vim.api.nvim_buf_set_keymap
 
 local default_opts = { noremap = true, silent = true }
 
-local install_dir = require('mason-registry.jdtls'):get_install_path()
+local jdtls_install_dir = require('mason-registry.jdtls'):get_install_path()
+local java_debug_install_dir = require('mason-registry.java-debug-adapter'):get_install_path()
 local executable = vim.env.JAVA_HOME and path.concat { vim.env.JAVA_HOME, 'bin', 'java' } or 'java'
-local jar = vim.fn.expand(path.concat { install_dir, 'plugins', 'org.eclipse.equinox.launcher_*.jar' })
-local lombok = vim.fn.expand(path.concat { install_dir, 'lombok.jar' })
-local debug_plugin = vim.fn.expand(path.concat { install_dir, 'com.microsoft.java.debug.plugin-*.jar' })
+local jar = vim.fn.expand(path.concat { jdtls_install_dir, 'plugins', 'org.eclipse.equinox.launcher_*.jar' })
+local lombok = vim.fn.expand(path.concat { jdtls_install_dir, 'lombok.jar' })
+local debug_plugin = vim.fn.expand(path.concat { java_debug_install_dir, 'com.microsoft.java.debug.plugin-*.jar' })
 local workspace_root = vim.env.WORKSPACE and vim.env.WORKSPACE or path.concat { vim.env.HOME, "workspace" }
 local workspace_dir = vim.fn.fnamemodify(vim.fn.getcwd(), ':p:h:t')
 
@@ -32,7 +33,7 @@ local cmd = {
   jar,
   '-configuration',
   path.concat {
-    install_dir,
+    jdtls_install_dir,
     _.coalesce(
       _.when(platform.is.mac, 'config_mac'),
       _.when(platform.is.linux, 'config_linux'),

@@ -8,6 +8,7 @@ local on_attach = function(client, bufnr)
   map('n', 'K', ':lua vim.lsp.buf.hover()<CR>', buffer_opts)
   map('n', 'gD', ':lua vim.lsp.buf.implementation()<CR>', buffer_opts)
   map('n', '<c-p>', ':lua vim.lsp.buf.signature_help()<CR>', buffer_opts)
+  map('i', '<c-p>', '<C-o>:lua vim.lsp.buf.signature_help()<CR>', buffer_opts)
   map('n', 'gt', ':lua vim.lsp.buf.type_definition()<CR>', buffer_opts)
   map('n', 'gr', ':lua vim.lsp.buf.references()<CR>', buffer_opts)
   map('n', 'gs', ':lua vim.lsp.buf.document_symbol()<CR>', buffer_opts)
@@ -113,18 +114,10 @@ lspconfig.tsserver.setup({
 lspconfig.cucumber_language_server.setup({
   capabilities = cmp_nvim_lsp_capabilities,
   on_attach = on_attach,
-  settings = {
-    features = {
-      'src/test/resources/features/*.feature',
-      'itest/src/test/resources/features/*.feature',
-    },
-    glue = {
-      'src/test/java/**/*.java',
-      'itest/src/test/java/**/*.java',
-    },
-    parameterTypes = {},
-    snippetTemplates = {},
-  }
+})
+
+vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
+  border = "rounded",
 })
 
 vim.lsp.handlers['textDocument/publishDiagnostics'] = vim.lsp.with(

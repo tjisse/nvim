@@ -20,7 +20,7 @@ require('packer').startup(function(use)
   use { 'gbprod/yanky.nvim', config = function() require('plugin-config.yanky_nvim') end }
   use { 'gbprod/substitute.nvim', config = function() require('plugin-config.substitute_nvim') end }
   use { 'gbrlsnchs/telescope-lsp-handlers.nvim', config = function() require('telescope').load_extension('lsp_handlers') end }
-  use 'ggandor/lightspeed.nvim'
+  use { 'ggandor/leap.nvim', config = function() require('leap').add_default_mappings() end }
   use { 'editorconfig/editorconfig-vim', config = function() require('plugin-config.editorconfig-vim') end }
   use 'farmergreg/vim-lastplace'
   use 'folke/neodev.nvim'
@@ -28,7 +28,7 @@ require('packer').startup(function(use)
   use {
     'goolord/alpha-nvim',
     requires = { 'kyazdani42/nvim-web-devicons' },
-    config = function ()
+    config = function()
       require'alpha'.setup(require'alpha.themes.startify'.config)
     end
   }
@@ -46,7 +46,6 @@ require('packer').startup(function(use)
   use 'idanarye/vim-merginal'
   use 'inkarkat/vim-ExtractMatches'
   use 'inkarkat/vim-ingo-library'
-  use 'jbyuki/one-small-step-for-vimkind'
   use { 'kkoomen/vim-doge', config = function() require('plugin-config.vim-doge') end, run = 'doge#install()' }
   use {
     'nvim-neotest/neotest',
@@ -94,7 +93,15 @@ require('packer').startup(function(use)
     after = 'nvim-lspconfig',
   }
   use { 'luukvbaal/stabilize.nvim', config = function() require('stabilize').setup() end }
-  use { 'mfussenegger/nvim-dap', config = function() require('plugin-config.nvim-dap') end }
+  use {
+    'mfussenegger/nvim-dap',
+    config = function() require('plugin-config.nvim-dap') end,
+    requires = {
+      'theHamsta/nvim-dap-virtual-text',
+      'rcarriga/nvim-dap-ui',
+      'jbyuki/one-small-step-for-vimkind'
+    }
+  }
   use 'mfussenegger/nvim-jdtls'
   use { 'mfussenegger/nvim-lint', config = function() require('plugin-config.nvim-lint') end }
   use {
@@ -134,8 +141,6 @@ require('packer').startup(function(use)
   use 'williamboman/mason-lspconfig.nvim'
   use { 'windwp/nvim-autopairs', config = function() require('plugin-config.nvim-autopairs') end }
   use 'windwp/nvim-ts-autotag'
-  -- use { 'zbirenbaum/copilot.lua', event = { 'VimEnter' }, config = function() require('plugin-config.copilot') end }
-  -- use { 'zbirenbaum/copilot-cmp', module = 'copilot_cmp' }
 end)
 
 local packerUserConfig = vim.api.nvim_create_augroup('packer_user_config', { clear = true })
