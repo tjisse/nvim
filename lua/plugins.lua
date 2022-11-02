@@ -87,8 +87,9 @@ require('packer').startup(function(use)
     requires = { 'nvim-lua/plenary.nvim' },
     config = function() require('gitsigns').setup() end,
   }
+  -- use 'lewis6991/impatient.nvim'
   use {
-    "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
+    "Maan2003/lsp_lines.nvim",
     config = function() require("lsp_lines").setup() end,
     after = 'nvim-lspconfig',
   }
@@ -137,6 +138,7 @@ require('packer').startup(function(use)
   use 'tpope/vim-sleuth'
   use 'tpope/vim-surround'
   use 'wbthomason/packer.nvim'
+  use 'wesleyegberto/vscode-java-tests'
   use 'williamboman/mason.nvim'
   use 'williamboman/mason-lspconfig.nvim'
   use { 'windwp/nvim-autopairs', config = function() require('plugin-config.nvim-autopairs') end }

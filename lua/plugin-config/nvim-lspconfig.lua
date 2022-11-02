@@ -17,8 +17,8 @@ local on_attach = function(client, bufnr)
   map('n', '1gd', ':lua vim.lsp.buf.declaration()<CR>', buffer_opts)
   map('n', 'dn', ':lua vim.diagnostic.goto_next({ float = false })<CR>', buffer_opts)
   map('n', 'dN', ':lua vim.diagnostic.goto_prev({ float = false })<CR>', buffer_opts)
-  map('n', 'dq', ':lua vim.diagnostic.set_qflist()<CR>', buffer_opts)
-  map('n', 'dl', ':lua vim.diagnostic.set_loclist()<CR>', buffer_opts)
+  map('n', 'dq', ':lua vim.diagnostic.setqflist()<CR>', buffer_opts)
+  map('n', 'dl', ':lua vim.diagnostic.setloclist()<CR>', buffer_opts)
   map('n', '<M-CR>', ':lua vim.lsp.buf.code_action()<CR>', buffer_opts)
   map('i', '<M-CR>', '<C-o>:lua vim.lsp.buf.code_action()<CR>', buffer_opts)
 
@@ -112,30 +112,22 @@ lspconfig.tsserver.setup({
 })
 
 lspconfig.cucumber_language_server.setup({
-  cmd = {'node', '--inspect=9229', '/Users/tjisse/.local/share/nvim/mason/packages/cucumber-language-server/node_modules/@cucumber/language-server/bin/cucumber-language-server.cjs', '--stdio'},
   capabilities = cmp_nvim_lsp_capabilities,
   on_attach = on_attach,
-  settings = {
-    features = {
-      'src/test/resources/features/*.feature',
-      'itest/src/test/resources/features/*.feature',
-    },
-    glue = {
-      'src/test/java/**/*.java',
-      'itest/src/test/java/**/*.java',
-    },
-    parameterTypes = {},
-    snippetTemplates = {},
-  }
 })
 
 vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
   border = "rounded",
 })
 
+vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
+  border = "rounded",
+})
+
+vim.diagnostic.config({ virtual_text = false })
+
 vim.lsp.handlers['textDocument/publishDiagnostics'] = vim.lsp.with(
   vim.lsp.diagnostic.on_publish_diagnostics, {
-  virtual_text = false,
   signs = true,
   virtual_lines = { only_current_line = true },
 })

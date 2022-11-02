@@ -4,6 +4,10 @@ local fb_actions = require('telescope').extensions.file_browser.actions
 require('telescope').setup({
   defaults = {
     mappings = {
+      n = {
+        ['<C-j>'] = actions.move_selection_next,
+        ['<C-k>'] = actions.move_selection_previous,
+      },
       i = {
         ['<C-j>'] = actions.move_selection_next,
         ['<C-k>'] = actions.move_selection_previous,

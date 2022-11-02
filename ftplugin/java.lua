@@ -71,7 +71,20 @@ local opts = {
           'org.junit.jupiter.api.Assertions.*',
           'java.util.Objects.requireNonNull',
           'java.util.Objects.requireNonNullElse',
-          'org.mockito.Mockito.*'
+          'org.mockito.Mockito.*',
+          'org.mockito.BDDMockito.*',
+        },
+        importOrder = {
+          '',
+          'javax',
+          'java',
+          '#',
+        }
+      },
+      sources = {
+        organizeImports = {
+          starThreshold = 5,
+          staticStarThreshold = 3,
         }
       }
     }

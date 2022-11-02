@@ -1,4 +1,5 @@
 local cmp = require('cmp')
+local compare = require('cmp.config.compare')
 local lspkind = require('lspkind')
 
 vim.opt.completeopt = 'menu,menuone,noinsert'
@@ -40,11 +41,27 @@ cmp.setup({
     end,
   },
   sources = {
-    { name = 'nvim_lsp', max_item_count = 10 },
     { name = 'nvim_lsp_signature_help' },
+    { name = 'nvim_lsp', max_item_count = 10, priority = 2 },
     { name = 'vsnip', max_item_count = 5 },
-    { name = 'buffer', max_item_count = 5 },
+    { name = 'buffer', max_item_count = 5, keyword_length = 3 },
     { name = 'path', max_item_count = 5 },
+  },
+  sorting = {
+    priority_weight = 1.0,
+    comparators = {
+      -- compare.score_offset,
+      compare.locality,
+      compare.recently_used,
+      compare.score,
+      compare.offset,
+      compare.order,
+      -- compare.scopes,
+      -- compare.sort_text,
+      -- compare.exact,
+      -- compare.kind,
+      -- compare.length,
+    }
   },
   formatting = {
     format = function(entry, vim_item)
