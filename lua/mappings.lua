@@ -98,6 +98,10 @@ wk.register({
     s = { ':w<CR>', 'save file', unpack(default_opts)},
     r = { ':Telescope oldfiles<CR>', 'recent files', unpack(default_opts) },
   },
+  g = {
+    name = '+git',
+    c = { ':lua require(\'telescope.builtin\').git_bcommits()<CR>', 'commits for current buffer', noremap = false, silent = true },
+  },
   h = {
     name = '+git hunk',
     p = { ':Gitsigns preview_hunk<CR>', 'preview hunk', unpack(default_opts) },
@@ -105,7 +109,7 @@ wk.register({
     u = { ':Gitsigns undo_stage_hunk<CR>', 'undo stage hunk', unpack(default_opts) },
     r = { ':Gitsigns reset_hunk<CR>', 'reset hunk', unpack(default_opts) },
   },
-  M = { ':MerginalToggle<CR>', 'merginal', unpack(default_opts) },
+  M = { ':Neogit<CR>', 'Neogit', unpack(default_opts) },
   p = {
     name = '+project',
     a = { ':FSHere<CR>', 'switch to test/implementation', unpack(default_opts) },

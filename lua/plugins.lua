@@ -9,12 +9,18 @@ require('packer').startup(function(use)
   use { 'Olical/conjure', config = function() require('plugin-config.conjure') end }
   use 'PeterRincker/vim-argumentative'
   use {
+    'TimUntersberger/neogit',
+    requires = { 'sindrets/diffview.nvim', 'nvim-lua/plenary.nvim' },
+    config = function () require('plugin-config.neogit') end
+  }
+  use {
     'abecodes/tabout.nvim',
     config = function() require('plugin-config.tabout_nvim') end,
     wants = { 'nvim-treesitter' },
     after = { 'nvim-autopairs' }
   }
   use { 'ahmedkhalf/project.nvim', config = function() require('plugin-config.project_nvim') end }
+  use { 'akinsho/git-conflict.nvim', tag = "*", config = function() require('git-conflict').setup() end }
   use 'chaoren/vim-wordmotion'
   use { 'derekwyatt/vim-fswitch', config = function() require('plugin-config.vim-fswitch') end }
   use { 'gbprod/yanky.nvim', config = function() require('plugin-config.yanky_nvim') end }
@@ -43,7 +49,6 @@ require('packer').startup(function(use)
   use 'hrsh7th/cmp-vsnip'
   use { 'hrsh7th/vim-vsnip', config = function() require('plugin-config.vim-vsnip') end }
   use 'hrsh7th/vim-vsnip-integ'
-  use 'idanarye/vim-merginal'
   use 'inkarkat/vim-ExtractMatches'
   use 'inkarkat/vim-ingo-library'
   use { 'kkoomen/vim-doge', config = function() require('plugin-config.vim-doge') end, run = 'doge#install()' }
@@ -133,7 +138,6 @@ require('packer').startup(function(use)
   use { 'tpope/vim-dadbod', config = function() require('plugin-config/vim-dadbod') end }
   use 'tpope/vim-dispatch'
   use 'tpope/vim-eunuch'
-  use { 'tpope/vim-fugitive', config = function() require('plugin-config.vim-fugitive') end }
   use 'tpope/vim-repeat'
   use 'tpope/vim-sleuth'
   use 'tpope/vim-surround'
