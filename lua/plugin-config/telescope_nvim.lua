@@ -16,7 +16,10 @@ require('telescope').setup({
     prompt_prefix = '  ',
     layout_config = {
       height = 0.5,
-    }
+    },
+    path_display = {
+      truncate = true,
+    },
   },
   pickers = {
     lsp_code_actions = {
@@ -31,7 +34,10 @@ require('telescope').setup({
         ['n'] = {
           ['-'] = fb_actions.goto_parent_dir
         }
-      }
+      },
+      path_display = {
+        tail = true,
+      },
     }
   }
 })
