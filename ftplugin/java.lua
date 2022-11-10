@@ -51,6 +51,8 @@ local cmd = {
   '-Xms100m',
 }
 
+local root = require('jdtls.setup').find_root({ '.git', 'mvnw', 'gradlew', 'pom.xml', 'build.gradle' })
+
 local opts = {
   cmd = cmd,
   on_attach = function(client, bufnr)
@@ -58,7 +60,7 @@ local opts = {
     lsp_pluginconfig.on_attach(client, bufnr)
   end,
   capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protocol.make_client_capabilities()),
-  root_dir = require('jdtls.setup').find_root({ '.git', 'mvnw', 'gradlew', 'pom.xml', 'build.gradle' }),
+  root_dir = root,
   settings = {
     java = {
       signatureHelp = { enabled = true };
@@ -111,3 +113,7 @@ vim.api.nvim_buf_create_user_command(0, 'JdtBytecode', 'lua require(\'jdtls\').j
 vim.api.nvim_buf_create_user_command(0, 'JdtJshell', 'lua require(\'jdtls\').jshell()', {})
 vim.api.nvim_create_autocmd('BufWritePost',
   { pattern = '<buffer>', callback = function() require('lint').try_lint() end })
+
+require('blanket').setup({ 
+  report_path = root .. '/target/site/jacoco/jacoco.xml'
+})

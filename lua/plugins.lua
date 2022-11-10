@@ -23,11 +23,11 @@ require('packer').startup(function(use)
   use { 'akinsho/git-conflict.nvim', tag = "*", config = function() require('git-conflict').setup() end }
   use 'chaoren/vim-wordmotion'
   use { 'derekwyatt/vim-fswitch', config = function() require('plugin-config.vim-fswitch') end }
+  use 'dsych/blanket.nvim'
   use { 'gbprod/yanky.nvim', config = function() require('plugin-config.yanky_nvim') end }
   use { 'gbprod/substitute.nvim', config = function() require('plugin-config.substitute_nvim') end }
   use { 'gbrlsnchs/telescope-lsp-handlers.nvim', config = function() require('telescope').load_extension('lsp_handlers') end }
   use { 'ggandor/leap.nvim', config = function() require('leap').add_default_mappings() end }
-  use { 'editorconfig/editorconfig-vim', config = function() require('plugin-config.editorconfig-vim') end }
   use 'farmergreg/vim-lastplace'
   use 'folke/neodev.nvim'
   use { 'folke/which-key.nvim', config = function() require('plugin-config.which-key_nvim') end }

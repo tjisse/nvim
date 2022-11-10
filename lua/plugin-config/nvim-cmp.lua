@@ -47,22 +47,6 @@ cmp.setup({
     { name = 'buffer', max_item_count = 5, keyword_length = 3 },
     { name = 'path', max_item_count = 5 },
   },
-  sorting = {
-    priority_weight = 1.0,
-    comparators = {
-      -- compare.score_offset,
-      compare.locality,
-      compare.recently_used,
-      compare.score,
-      compare.offset,
-      compare.order,
-      -- compare.scopes,
-      -- compare.sort_text,
-      -- compare.exact,
-      -- compare.kind,
-      -- compare.length,
-    }
-  },
   formatting = {
     format = function(entry, vim_item)
       return lspkind.cmp_format({
