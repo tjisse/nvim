@@ -21,6 +21,7 @@ local on_attach = function(client, bufnr)
   map('n', 'dl', ':lua vim.diagnostic.setloclist()<CR>', buffer_opts)
   map('n', '<M-CR>', ':lua vim.lsp.buf.code_action()<CR>', buffer_opts)
   map('i', '<M-CR>', '<C-o>:lua vim.lsp.buf.code_action()<CR>', buffer_opts)
+  map('v', '<M-CR>', ':lua vim.lsp.buf.code_action()<CR>', buffer_opts)
 
   wk.register({
     ['='] = { ':lua vim.lsp.buf.format()<CR>', 'format buffer', noremap = true, silent = true, buffer = bufnr },
