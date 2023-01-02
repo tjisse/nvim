@@ -9,6 +9,7 @@ vim.g.vim_better_default_buffer_key_mapping = 0
 vim.cmd[[runtime! plugin/default.vim]]
 
 vim.opt.listchars:append({eol = ' '})
+vim.opt.fillchars:append('diff:╱')
 vim.opt.undodir = vim.fn.stdpath('config') .. '/undo'
 vim.opt.showmode = false
 vim.opt.wrap = true

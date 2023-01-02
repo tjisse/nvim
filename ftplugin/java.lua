@@ -51,7 +51,7 @@ local cmd = {
   '-Xms100m',
 }
 
-local root = require('jdtls.setup').find_root({ '.git', 'mvnw', 'gradlew', 'pom.xml', 'build.gradle' })
+local root = require('jdtls.setup').find_root({ '.git', 'mvnw', 'gradlew', 'pom.xml', 'build.gradle' }) or vim.loop.cwd()
 
 local opts = {
   cmd = cmd,

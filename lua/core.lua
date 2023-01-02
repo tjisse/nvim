@@ -22,3 +22,6 @@ vim.opt.sessionoptions = 'blank,curdir,folds,help,tabpages,winsize'
 vim.opt.selection = 'inclusive'
 vim.opt.cmdheight = 0
 vim.opt.diffopt:append('vertical')
+vim.opt.diffopt:append('linematch:50')
+
+vim.api.nvim_create_autocmd('TermOpen', { command = 'setlocal nonumber | setfiletype terminal' })

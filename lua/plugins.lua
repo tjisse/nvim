@@ -10,7 +10,7 @@ require('packer').startup(function(use)
   use 'PeterRincker/vim-argumentative'
   use {
     'TimUntersberger/neogit',
-    requires = { 'sindrets/diffview.nvim', 'nvim-lua/plenary.nvim' },
+    requires = { 'nvim-lua/plenary.nvim' },
     config = function () require('plugin-config.neogit') end
   }
   use {
@@ -20,7 +20,6 @@ require('packer').startup(function(use)
     after = { 'nvim-autopairs' }
   }
   use { 'ahmedkhalf/project.nvim', config = function() require('plugin-config.project_nvim') end }
-  use { 'akinsho/git-conflict.nvim', tag = "*", config = function() require('git-conflict').setup() end }
   use 'chaoren/vim-wordmotion'
   use { 'derekwyatt/vim-fswitch', config = function() require('plugin-config.vim-fswitch') end }
   use 'dsych/blanket.nvim'
@@ -123,7 +122,7 @@ require('packer').startup(function(use)
   use { 'qpkorr/vim-bufkill', config = function() require('plugin-config.vim-bufkill') end }
   use 'radenling/vim-dispatch-neovim'
   use { 'rmagatti/auto-session', config = function() require('plugin-config.auto-session') end }
-  use { 'rrethy/vim-hexokinase', run = 'make hexokinase' }
+  use { 'rrethy/vim-hexokinase', run = 'make hexokinase', config = function() require('plugin-config.vim-hexokinase') end }
   use {
     'scalameta/nvim-metals',
     requires = { 'nvim-lua/plenary.nvim', 'mfussenegger/nvim-dap' },
@@ -131,6 +130,7 @@ require('packer').startup(function(use)
     after = { 'nvim-lspconfig' }
   }
   use 'simnalamburt/vim-mundo'
+  use { 'sindrets/diffview.nvim', config = function() require('plugin-config.diffview_nvim') end }
   use 'seudev/vscode-java-snippets'
   use 'stefandtw/quickfix-reflector.vim'
   use { 'stevearc/qf_helper.nvim', config = function() require('qf_helper').setup() end }
