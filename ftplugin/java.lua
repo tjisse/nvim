@@ -53,6 +53,9 @@ local cmd = {
 
 local root = require('jdtls.setup').find_root({ '.git', 'mvnw', 'gradlew', 'pom.xml', 'build.gradle' }) or vim.loop.cwd()
 
+local extendedCapabilities = require('jdtls').extendedClientCapabilities
+extendedCapabilities.classFileContentsSupport = false
+
 local opts = {
   cmd = cmd,
   on_attach = function(client, bufnr)
@@ -92,9 +95,10 @@ local opts = {
     }
   },
   init_options = {
+    extendedCapabilities = extendedCapabilities,
     bundles = {
       vim.fn.glob(debug_plugin)
-    }
+    },
   }
 }
 require('jdtls').start_or_attach(opts)
@@ -114,6 +118,6 @@ vim.api.nvim_buf_create_user_command(0, 'JdtJshell', 'lua require(\'jdtls\').jsh
 vim.api.nvim_create_autocmd('BufWritePost',
   { pattern = '<buffer>', callback = function() require('lint').try_lint() end })
 
-require('blanket').setup({ 
+require('blanket').setup({
   report_path = root .. '/target/site/jacoco/jacoco.xml'
 })
