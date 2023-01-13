@@ -1,3 +1,8 @@
+local function short_cwd()
+  local cwd = vim.fn.getcwd()
+  return cwd:gsub(vim.env.HOME, '~')
+end
+
 require('lualine').setup {
   options = {
     theme = 'vscode',
@@ -13,5 +18,8 @@ require('lualine').setup {
       }
     }
   },
-  extentions = { 'fugitive', 'quickfix', 'mundo', 'nvim-dap-ui' }
+  sections = {
+    lualine_y = { short_cwd },
+  },
+  extentions = { 'quickfix', 'mundo', 'nvim-dap-ui' }
 }
