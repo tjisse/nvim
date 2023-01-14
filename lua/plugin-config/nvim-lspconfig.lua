@@ -26,7 +26,6 @@ local on_attach = function(client, bufnr)
   wk.register({
     ['='] = { ':lua vim.lsp.buf.format()<CR>', 'format buffer', noremap = true, silent = true, buffer = bufnr },
     r = {
-      name = 'refactor',
       r = { ':lua vim.lsp.buf.rename()<CR>', 'rename', noremap = true, silent = true, buffer = bufnr },
     }
   }, { prefix = '<leader>' })

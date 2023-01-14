@@ -21,6 +21,11 @@ require('packer').startup(function(use)
   }
   use { 'ahmedkhalf/project.nvim', config = function() require('plugin-config.project_nvim') end }
   use 'chaoren/vim-wordmotion'
+  use {
+    "danymat/neogen",
+    config = function() require('plugin-config.neogen') end,
+    requires = "nvim-treesitter/nvim-treesitter",
+  }
   use { 'derekwyatt/vim-fswitch', config = function() require('plugin-config.vim-fswitch') end }
   use 'dsych/blanket.nvim'
   use { 'gbprod/yanky.nvim', config = function() require('plugin-config.yanky_nvim') end }
@@ -50,7 +55,6 @@ require('packer').startup(function(use)
   use 'hrsh7th/vim-vsnip-integ'
   use 'inkarkat/vim-ExtractMatches'
   use 'inkarkat/vim-ingo-library'
-  use { 'kkoomen/vim-doge', config = function() require('plugin-config.vim-doge') end, run = 'doge#install()' }
   use {
     'nvim-neotest/neotest',
     requires = {
@@ -97,7 +101,6 @@ require('packer').startup(function(use)
     config = function() require("lsp_lines").setup() end,
     after = 'nvim-lspconfig',
   }
-  use { 'luukvbaal/stabilize.nvim', config = function() require('stabilize').setup() end }
   use {
     'mfussenegger/nvim-dap',
     config = function() require('plugin-config.nvim-dap') end,
@@ -116,6 +119,7 @@ require('packer').startup(function(use)
   }
   use { 'nvim-treesitter/nvim-treesitter', config = function() require('plugin-config.nvim-treesitter') end }
   use 'nvim-treesitter/nvim-treesitter-textobjects'
+  use 'nvim-treesitter/playground'
   use 'onsails/lspkind.nvim'
   use { 'petertriho/nvim-scrollbar', config = function() require('plugin-config.nvim-scrollbar') end }
   use 'psliwka/vim-smoothie'
