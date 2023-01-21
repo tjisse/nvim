@@ -44,7 +44,7 @@ require('lazy').setup({
   },
   { 'ahmedkhalf/project.nvim', config = function() require('plugin-config.project_nvim') end },
   'chaoren/vim-wordmotion',
-  { 'chomosuke/term-edit.nvim', tag = 'v1.1.0' },
+  { 'chomosuke/term-edit.nvim', tag = 'v1.1.0', config = function() require('term-edit').setup({ prompt_end = '%$ ' }) end },
   {
     "danymat/neogen",
     config = function() require('plugin-config.neogen') end,
@@ -125,7 +125,6 @@ require('lazy').setup({
     dependencies = { 'Mofiqul/vscode.nvim' },
   },
   { 'kyoh86/telescope-windows.nvim', config = function() require('telescope').load_extension('windows') end },
-  { 'liuchengxu/vim-better-default', config = function() require('plugin-config.vim-better-default') end },
   {
     'lewis6991/gitsigns.nvim',
     dependencies = { 'nvim-lua/plenary.nvim' },

@@ -24,5 +24,17 @@ vim.opt.cmdheight = 0
 vim.opt.diffopt:append('vertical')
 vim.opt.diffopt:append('linematch:50')
 vim.opt.splitkeep = 'screen'
+vim.opt.listchars:append({eol = ' '})
+vim.opt.fillchars:append('diff:╱')
+vim.opt.showmode = false
+vim.opt.breakindent = true
+vim.opt.showcmd = false
+vim.opt.ignorecase = true
+vim.opt.smartcase = true
+vim.opt.fileformats = 'unix,dos'
+vim.opt.number = true
+vim.opt.clipboard = 'unnamedplus,unnamed'
+vim.opt.undofile = true
+vim.opt.undodir = vim.fn.stdpath('config') .. '/undo'
 
 vim.api.nvim_create_autocmd('TermOpen', { command = 'setlocal nonumber | setfiletype terminal' })

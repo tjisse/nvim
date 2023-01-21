@@ -1,5 +1,6 @@
-local map = vim.api.nvim_set_keymap
-local wk = require('which-key')
+local set_keymap = vim.api.nvim_set_keymap
+
+local default_opts = unpack({ silent = true, noremap = true })
 
 local projects_path
 if vim.fn.has('win32') then
@@ -8,154 +9,99 @@ else
   projects_path = '~/Projects'
 end
 
-local default_opts = { silent = true, noremap = true }
+set_keymap('n', '<Leader>fs', ':w<CR>', { default_opts, desc = 'save file' })
 
-map('v', '<S-l>', '$', default_opts)
-map('v', '<S-h>', '^', default_opts)
+-- Jump to start/end line
+set_keymap('n', 'L', '$', { default_opts })
+set_keymap('n', 'H', '^', { default_opts })
+set_keymap('v', 'L', '$', { default_opts })
+set_keymap('v', 'H', '^', { default_opts })
 
 -- Insert newline in normal mode
-map('n', '<S-CR>', 'O<Esc>', default_opts)
-map('n', '<CR>', 'o<Esc>', default_opts)
+set_keymap('n', '<S-CR>', 'O<Esc>', { default_opts })
+set_keymap('n', '<CR>', 'o<Esc>', { default_opts })
+vim.api.nvim_create_autocmd('BufReadPost', { pattern = 'quickfix', command = 'nnoremap <buffer> <CR> <CR>' })
 
 -- Better nav for omnicomplete
-map('i', '<expr>', '<c-j> ("<C-n>")', default_opts)
-map('i', '<expr>', '<c-k> ("<C-p>")', default_opts)
+set_keymap('i', '<expr>', '<c-j> ("<C-n>")', { default_opts })
+set_keymap('i', '<expr>', '<c-k> ("<C-p>")', { default_opts })
 
 -- Move line / block of text in visual mode
-map('n', '<C-S-j>', ':move .+1<CR>==', default_opts)
-map('n', '<C-S-k>', ':move .-2<CR>==', default_opts)
-map('x', '<C-S-j>', ':move \'<-2<CR>gv-gv', default_opts)
-map('x', '<C-S-k>', ':move \'>+1<CR>gv-gv', default_opts)
+set_keymap('n', '<C-S-j>', ':move .+1<CR>==', { default_opts })
+set_keymap('n', '<C-S-k>', ':move .-2<CR>==', { default_opts })
+set_keymap('x', '<C-S-j>', ':move \'<-2<CR>gv-gv', { default_opts })
+set_keymap('x', '<C-S-k>', ':move \'>+1<CR>gv-gv', { default_opts })
 
--- Better window navigation
-map('n', '<C-h>', '<C-w>h', default_opts)
-map('n', '<C-j>', '<C-w>j', default_opts)
-map('n', '<C-k>', '<C-w>k', default_opts)
-map('n', '<C-l>', '<C-w>l', default_opts)
+-- Visual shifting (does not exit Visual mode)
+set_keymap('v', '<', '<gv', { default_opts })
+set_keymap('v', '>', '>gv', { default_opts })
 
--- Terminal window navigation
-map('t', '<C-h>', '<C-\\><C-N><C-w>h', default_opts)
-map('t', '<C-j>', '<C-\\><C-N><C-w>j', default_opts)
-map('t', '<C-k>', '<C-\\><C-N><C-w>k', default_opts)
-map('t', '<C-l>', '<C-\\><C-N><C-w>l', default_opts)
-map('i', '<C-h>', '<C-\\><C-N><C-w>h', default_opts)
-map('i', '<C-j>', '<C-\\><C-N><C-w>j', default_opts)
-map('i', '<C-k>', '<C-\\><C-N><C-w>k', default_opts)
-map('i', '<C-l>', '<C-\\><C-N><C-w>l', default_opts)
-map('t', '<Esc>', '<C-\\><C-n>', default_opts)
+-- Buffer management
+set_keymap('n', '<Leader>bd', ':BD<CR>', { default_opts, desc = 'delete buffer' })
+set_keymap('n', '<Leader>bk', ':BD!<CR>', { default_opts, desc = 'kill buffer' })
+set_keymap('n', '<Leader>bf', ':bfirst<CR>', { default_opts, desc = 'first buffer' })
+set_keymap('n', '<Leader>bl', ':blast<CR>', { default_opts, desc = 'last buffer' })
+set_keymap('n', '<Leader>bn', ':bnext<CR>', { default_opts, desc = 'next buffer' })
+set_keymap('n', '<Leader>bN', ':bprevious<CR>', { default_opts, desc = 'previous buffer' })
 
-map('n', '<C-Up>', '   :resize -2<CR>', default_opts)
-map('n', '<C-Down>', ' :resize +2<CR>', default_opts)
-map('n', '<C-Left>', ' :vertical resize -2<CR>', default_opts)
-map('n', '<C-Right>', ':vertical resize +2<CR>', default_opts)
+-- Window management
+set_keymap('n', '<C-h>', '<C-w>h', { default_opts })
+set_keymap('n', '<C-j>', '<C-w>j', { default_opts })
+set_keymap('n', '<C-k>', '<C-w>k', { default_opts })
+set_keymap('n', '<C-l>', '<C-w>l', { default_opts })
+set_keymap('n', '<Leader>w-', '<C-W>s', { default_opts, desc = 'split window below' })
+set_keymap('n', '<Leader>w|', '<C-W>v', { default_opts, desc = 'split window right' })
+set_keymap('n', '<Leader>w=', '<C-W>=', { default_opts, desc = 'balance window' })
+set_keymap('n', '<Leader>wf', ':lua require(\'telescope\').extensions.windows.list()<CR>', { default_opts, desc = 'find window' })
+set_keymap('n', '<Leader>ww', '<C-W>w', { default_opts, desc = 'other window' })
+set_keymap('n', '<Leader>wd', '<C-W>c', { default_opts, desc = 'delete window' })
+set_keymap('n', '<Leader>wH', ':vertical resize -2<CR>', { default_opts, desc = 'expand window left' })
+set_keymap('n', '<Leader>wL', ':vertical resize +2<CR>', { default_opts, desc = 'expand window right' })
+set_keymap('n', '<Leader>wJ', ':resize +2<CR>', { default_opts, desc = 'expand window below' })
+set_keymap('n', '<Leader>wK', ':resize -2<CR>', { default_opts, desc = 'expand window up' })
+set_keymap('n', '<Leader>ws', '<C-W>s', { default_opts, desc = 'split window below' })
+set_keymap('n', '<Leader>wv', '<C-W>v', { default_opts, desc = 'split window right' })
 
-map('n', 'f', '<Plug>(leap-forward-to)', default_opts)
-map('n', 'F', '<Plug>(leap-backward-to)', default_opts)
+-- Terminal window management
+set_keymap('t', '<C-h>', '<C-\\><C-N><C-w>h', { default_opts })
+set_keymap('t', '<C-j>', '<C-\\><C-N><C-w>j', { default_opts })
+set_keymap('t', '<C-k>', '<C-\\><C-N><C-w>k', { default_opts })
+set_keymap('t', '<C-l>', '<C-\\><C-N><C-w>l', { default_opts })
+set_keymap('i', '<C-h>', '<C-\\><C-N><C-w>h', { default_opts })
+set_keymap('i', '<C-j>', '<C-\\><C-N><C-w>j', { default_opts })
+set_keymap('i', '<C-k>', '<C-\\><C-N><C-w>k', { default_opts })
+set_keymap('i', '<C-l>', '<C-\\><C-N><C-w>l', { default_opts })
+set_keymap('t', '<Esc>', '<C-\\><C-n>', { default_opts })
 
-map('n', '-', ':lua require(\'telescope\').extensions.file_browser.file_browser({ initial_mode = \'normal\', cwd = vim.fn.expand(\'%:p:h\') })<CR>', default_opts)
+-- Tab management
+set_keymap('n', '<Leader>td', ':tabclose<CR>', { default_opts, desc = 'delete tab' })
+set_keymap('n', '<Leader>tt', ':tabnew<CR>', { default_opts, desc = 'new tab' })
 
-wk.register({
-  ['1'] = { ':1tabnext<CR>', 'tab 1', default_opts },
-  ['2'] = { ':2tabnext<CR>', 'tab 2', default_opts },
-  ['3'] = { ':3tabnext<CR>', 'tab 3', default_opts },
-  ['4'] = { ':4tabnext<CR>', 'tab 4', default_opts },
-  ['5'] = { ':5tabnext<CR>', 'tab 5', default_opts },
-  ['6'] = { ':6tabnext<CR>', 'tab 6', default_opts },
-  ['7'] = { ':7tabnext<CR>', 'tab 7', default_opts },
-  ['8'] = { ':8tabnext<CR>', 'tab 8', default_opts },
-  ['9'] = { ':9tabnext<CR>', 'tab 9', default_opts },
-  ['<Tab>'] = { ':b#<CR>', 'previous buffer', default_opts },
-  b = {
-    name = 'buffer',
-    d = { ':BD<CR>', 'delete buffer', default_opts },
-    k = { ':BD!<CR>', 'kill buffer', default_opts },
-    f = { ':bfirst<CR>', 'first buffer', default_opts },
-    l = { ':blast<CR>', 'last buffer', default_opts },
-    n = { ':bnext<CR>', 'next buffer', default_opts },
-    N = { ':bprevious<CR>', 'previous buffer', default_opts },
-    b = { ':lua require(\'telescope.builtin\').buffers()<CR>', 'open buffers', default_opts },
-  },
-  c = {
-    name = 'config',
-    r = { ':ReloadConfig<CR>', 'reload nvim config', default_opts },
-  },
-  f = {
-    name = 'files/fold',
-    ['0'] = '0 fold level',
-    ['1'] = '1 fold level',
-    ['2'] = '2 fold level',
-    ['3'] = '3 fold level',
-    ['4'] = '4 fold level',
-    ['5'] = '5 fold level',
-    ['6'] = '6 fold level',
-    ['7'] = '7 fold level',
-    ['8'] = '8 fold level',
-    ['9'] = '9 fold level',
-    d = { ':lua require(\'telescope.builtin\').find_files({ cwd = vim.fn.expand(\'%:p:h\') })<CR>', 'files in current directory', default_opts },
-    f = { ':lua require(\'telescope\').extensions.file_browser.file_browser({ cwd = vim.fn.expand(\'%:p:h\') })<CR>', 'file browser in current directory', default_opts },
-    h = { ':lua require(\'telescope.builtin\').find_files({ cwd = \'~\', hidden = true })<CR>' , 'files in home directory' },
-    p = { ':lua require(\'telescope.builtin\').find_files({ cwd = \'' .. projects_path .. '\', hidden = true })<CR>' , 'files in project folder' },
-    s = { ':w<CR>', 'save file', default_opts},
-    r = { ':Telescope oldfiles<CR>', 'recent files', default_opts },
-  },
-  g = {
-    name = 'git',
-    c = { ':lua require(\'telescope.builtin\').git_bcommits()<CR>', 'commits for current buffer', noremap = false, silent = true },
-    g = { ':Neogit<CR>', 'open Neogit', default_opts },
-    d = { ':DiffviewOpen<CR>', 'open Diffview', default_opts },
-  },
-  h = {
-    name = 'git hunk',
-    p = { ':Gitsigns preview_hunk<CR>', 'preview hunk', default_opts },
-    s = { ':Gitsigns stage_hunk<CR>', 'stage hunk', default_opts },
-    u = { ':Gitsigns undo_stage_hunk<CR>', 'undo stage hunk', default_opts },
-    r = { ':Gitsigns reset_hunk<CR>', 'reset hunk', default_opts },
-  },
-  p = {
-    name = 'project',
-    a = { ':FSHere<CR>', 'switch to test/implementation', default_opts },
-    f = { ':lua require(\'telescope.builtin\').find_files()<CR>', 'find file in project', default_opts },
-    p = { ':lua require(\'telescope\').extensions.projects.projects()<CR>', 'find project', default_opts },
-    s = { ':lua require(\'telescope.builtin\').live_grep()<CR>', 'search in project', default_opts }
-  },
-  U = { ':MundoToggle<CR>', 'undo tree', default_opts },
-  q = { ':quitall<CR>', 'quit', default_opts },
-  Q = { ':quitall!<CR>', 'quit without saving', default_opts },
-  r = {
-    name = 'refactor/run',
-    d = { ':lua require(\'neogen\').generate()<CR>', 'generate docstring', default_opts },
-    t = { ':lua require(\'neotest\').run.run()<CR>', 'run nearest test', default_opts },
-    T = { ':lua require(\'neotest\').run.run(vim.fn.expand("%"))<CR>', 'run all tests in file', default_opts },
-  },
-  s = {
-    name = 'search',
-    b = 'search in buffer',
-    c = 'clear search highlight',
-  },
-  t = {
-    name = 'tab/toggle',
-    d = { ':tabclose<CR>', 'delete tab', default_opts },
-    t = { ':tabnew<CR>', 'new tab', default_opts },
-    p = 'set paste',
-  },
-  w = {
-    name = 'windows',
-    ['-'] = 'split window below',
-    ['|'] = 'split window right',
-    ['2'] = 'layout double columns',
-    ['='] = 'balance window',
-    f = { ':lua require(\'telescope\').extensions.windows.list()<CR>', 'find window' },
-    w = 'other window',
-    d = 'delete window',
-    h = 'window left',
-    j = 'window below',
-    l = 'window right',
-    k = 'window up',
-    H = 'expand window left',
-    J = 'expand window below',
-    L = 'expand window right',
-    K = 'expand window up',
-    s = 'split window below',
-    v = 'split window right',
-  }
-}, { prefix = '<leader>'})
+set_keymap('n', 'f', '<Plug>(leap-forward-to)', { default_opts })
+set_keymap('n', 'F', '<Plug>(leap-backward-to)', { default_opts })
+
+set_keymap('n', '<Leader>sc', ':nohlsearch<CR>', { default_opts, desc = 'clear search highlight' })
+
+set_keymap('n', '<Leader>\'', ':terminal<CR>', { default_opts })
+
+set_keymap('n', '<Leader>q', ':quitall<CR>', { default_opts, desc = 'quit' })
+set_keymap('n', '<Leader>Q', ':quitall!<CR>', { default_opts, desc = 'quit without saving' })
+set_keymap('n', '<Leader>U', ':MundoToggle<CR>', { default_opts, desc = 'undo tree' })
+
+-- Git signs hunk
+set_keymap('n', '<Leader>hp', ':Gitsigns preview_hunk<CR>', { default_opts, desc = 'preview hunk' })
+set_keymap('n', '<Leader>hs', ':Gitsigns stage_hunk<CR>', { default_opts, desc = 'stage hunk' })
+set_keymap('n', '<Leader>hu', ':Gitsigns undo_stage_hunk<CR>', { default_opts, desc = 'undo stage hunk' })
+set_keymap('n', '<Leader>hr', ':Gitsigns reset_hunk<CR>', { default_opts, desc = 'reset hunk' })
+
+set_keymap('n', '-', ':lua require(\'telescope\').extensions.file_browser.file_browser({ initial_mode = \'normal\', cwd = vim.fn.expand(\'%:p:h\') })<CR>', { default_opts })
+set_keymap('n', '<Leader>fd', ':lua require(\'telescope.builtin\').find_files({ cwd = vim.fn.expand(\'%:p:h\') })<CR>', { default_opts, desc = 'files in current directory' })
+set_keymap('n', '<Leader>fr', ':Telescope oldfiles<CR>', { default_opts, desc = 'recent files' })
+set_keymap('n', '<Leader>bb', ':lua require(\'telescope.builtin\').buffers()<CR>', { default_opts, desc = 'open buffers' })
+set_keymap('n', '<Leader>ff', ':lua require(\'telescope\').extensions.file_browser.file_browser({ cwd = vim.fn.expand(\'%:p:h\') })<CR>', { default_opts, desc = 'file browser in current directory' })
+set_keymap('n', '<Leader>fh', ':lua require(\'telescope.builtin\').find_files({ cwd = \'~\', hidden = true })<CR>', { default_opts, desc = 'files in home directory' })
+set_keymap('n', '<Leader>fp', ':lua require(\'telescope.builtin\').find_files({ cwd = \'' .. projects_path .. '\', hidden = true })<CR>' , { default_opts, desc = 'files in project folder' })
+set_keymap('n', '<Leader>gc', ':lua require(\'telescope.builtin\').git_bcommits()<CR>', { default_opts, desc = 'commits for current buffer' })
+set_keymap('n', '<Leader>pf', ':lua require(\'telescope.builtin\').find_files()<CR>', { default_opts, desc = 'find file in project' })
+set_keymap('n', '<Leader>pp', ':lua require(\'telescope\').extensions.projects.projects()<CR>', { default_opts, desc = 'find project' })
+set_keymap('n', '<Leader>ps', ':lua require(\'telescope.builtin\').live_grep()<CR>', { default_opts, desc = 'search in project' })
