@@ -24,7 +24,7 @@ vim.opt.cmdheight = 0
 vim.opt.diffopt:append('vertical')
 vim.opt.diffopt:append('linematch:50')
 vim.opt.splitkeep = 'screen'
-vim.opt.listchars:append({eol = ' '})
+vim.opt.listchars = 'tab:→ ,eol: ,trail:·,extends:↷,precedes:↶'
 vim.opt.fillchars:append('diff:╱')
 vim.opt.showmode = false
 vim.opt.breakindent = true
