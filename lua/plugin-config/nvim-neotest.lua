@@ -1,4 +1,4 @@
-local set_keymap = vim.api.nvim_set_keymap
+local set_keymap = vim.keymap.set
 
 vim.g['test#javascript#jest#options'] = "--color=always"
 vim.g['test#javascript#jest#file_pattern'] = '\\v(__tests__/.*|(spec|test))\\.(js|mjs|jsx|coffee|ts|tsx)$'

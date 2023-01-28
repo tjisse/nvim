@@ -1,4 +1,4 @@
-local set_keymap = vim.api.nvim_set_keymap
+local set_keymap = vim.keymap.set
 
 require('diffview').setup({
   enhanced_diff_hl = true,

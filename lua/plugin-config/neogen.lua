@@ -1,4 +1,4 @@
-local set_keymap = vim.api.nvim_set_keymap
+local set_keymap = vim.keymap.set
 
 require('neogen').setup({ snippet_engine = "vsnip" })
 

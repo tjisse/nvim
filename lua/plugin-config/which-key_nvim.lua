@@ -4,7 +4,7 @@ local default_opts = unpack({ silent = true, noremap = true })
 
 wk.setup({
   key_labels = {
-    ['<CR>'] = '↵', 
+    ['<CR>'] = '↵',
     ['<Tab>'] = '⇆',
     ['<space>'] = '⎵',
   }

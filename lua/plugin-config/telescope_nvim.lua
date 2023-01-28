@@ -1,5 +1,4 @@
 local actions = require('telescope.actions')
-local fb_actions = require('telescope').extensions.file_browser.actions
 
 require('telescope').setup({
   defaults = {
@@ -26,18 +25,4 @@ require('telescope').setup({
       theme = 'cursor',
     }
   },
-  extensions = {
-    file_browser = {
-      initial_mode = 'normal',
-      hujack_netrw = true,
-      mappings = {
-        ['n'] = {
-          ['-'] = fb_actions.goto_parent_dir
-        }
-      },
-      path_display = {
-        tail = true,
-      },
-    }
-  }
 })

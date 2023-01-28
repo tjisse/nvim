@@ -1,4 +1,4 @@
-local set_keymap = vim.api.nvim_set_keymap
+local set_keymap = vim.keymap.set
 local create_autocmd = vim.api.nvim_create_autocmd
 
 create_autocmd('BufEnter',
