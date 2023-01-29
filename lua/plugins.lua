@@ -13,12 +13,6 @@ vim.opt.rtp:prepend(lazypath)
 
 require('lazy').setup({
   {
-    'Mofiqul/vscode.nvim',
-    lazy = false,
-    priority = 1000,
-    config = function() require('plugin-config.vscode_nvim') end
-  },
-  {
     'NTBBloodbath/rest.nvim',
     dependencies = { 'nvim-lua/plenary.nvim' },
     config = function() require('rest-nvim').setup() end,
@@ -153,11 +147,18 @@ require('lazy').setup({
   'nvim-treesitter/playground',
   'onsails/lspkind.nvim',
   { 'petertriho/nvim-scrollbar', config = function() require('plugin-config.nvim-scrollbar') end },
-  'psliwka/vim-smoothie',
   { 'qpkorr/vim-bufkill', config = function() require('plugin-config.vim-bufkill') end },
   'radenling/vim-dispatch-neovim',
   { 'rbong/vim-flog', cmd = { 'Flog', 'Flogsplit' }, dependencies = { 'tpope/vim-fugitive' } },
   { 'rmagatti/auto-session', config = function() require('plugin-config.auto-session') end },
+  {
+    'rockyzhang24/arctic.nvim',
+    dependencies = { 'rktjmp/lush.nvim' },
+    lazy = false,
+    priority = 1000,
+    config = function() require('plugin-config.arctic') end
+  },
+  { 'rrethy/vim-illuminate', config = function () require('plugin-config.vim-illuminate') end },
   { 'rrethy/vim-hexokinase', run = 'make hexokinase', config = function() require('plugin-config.vim-hexokinase') end },
   {
     'scalameta/nvim-metals',

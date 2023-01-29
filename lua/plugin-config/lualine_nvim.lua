@@ -5,7 +5,7 @@ end
 
 require('lualine').setup {
   options = {
-    theme = 'vscode',
+    theme = 'arctic',
     component_separators = { left = '│', right = '│'},
     section_separators = { left = '', right = ''},
   },
