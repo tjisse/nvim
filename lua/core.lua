@@ -37,4 +37,13 @@ vim.opt.clipboard = 'unnamedplus,unnamed'
 vim.opt.undofile = true
 vim.opt.undodir = vim.fn.stdpath('config') .. '/undo'
 
+vim.opt.guifont = "Iosevka NF:l:h10"
+
 vim.api.nvim_create_autocmd('TermOpen', { command = 'setlocal nonumber | setfiletype terminal' })
+
+vim.cmd[[
+if exists('g:nvui')
+  NvuiCursorHideWhileTyping 1
+  NvuiCursorAnimationDuration 0.25
+endif
+]]
