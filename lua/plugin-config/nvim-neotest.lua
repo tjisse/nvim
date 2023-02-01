@@ -1,13 +1,13 @@
-local set_keymap = vim.keymap.set
+local neotest = require('neotest')
 
 vim.g['test#javascript#jest#options'] = "--color=always"
 vim.g['test#javascript#jest#file_pattern'] = '\\v(__tests__/.*|(spec|test))\\.(js|mjs|jsx|coffee|ts|tsx)$'
 
-require('neotest').setup({
+neotest.setup({
   adapters = {
     require('neotest-vim-test')({})
   }
 })
 
-set_keymap('n', '<Leader>rt', ':lua require(\'neotest\').run.run()<CR>', { silent = true, noremap = true, desc = 'run nearest test' })
-set_keymap('n', '<Leader>rT', ':lua require(\'neotest\').run.run(vim.fn.expand("%"))<CR>', { silent = true, noremap = true, desc = 'run all tests in file' })
+vim.keymap.set('n', '<Space>rt', neotest.run.run, { silent = true, desc = 'run nearest test' })
+vim.keymap.set('n', '<Space>rT', function() neotest.run.run(vim.fn.expand("%")) end, { silent = true, desc = 'run all tests in file' })

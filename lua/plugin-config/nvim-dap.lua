@@ -1,6 +1,5 @@
 local dap = require('dap')
 local dapui = require("dapui")
-local wk = require('which-key')
 local path = require('mason-core.path')
 local node_debug_install_dir = require('mason-registry.node-debug2-adapter'):get_install_path()
 
@@ -92,20 +91,12 @@ dap.configurations.javascript = {
   },
 }
 
-wk.register({
-  d = {
-    name = '+debug',
-    b = { ':lua require\'dap\'.toggle_breakpoint()<CR>', 'toggle breakpoint', noremap = false, silent = true },
-    B = { ':lua require\'dap\'.set_breakpoint(vim.fn.input(\'Breakpoint condition: \'))<CR>', 'set conditional breakpoint', noremap = false, silent = true },
-    c = { ':lua require\'dap\'.continue()<CR>', 'start/continue' , noremap = false, silent = true },
-    r = { ':lua require\'dap\'.repl.open()<CR>', 'open repl' , noremap = false, silent = true },
-    s = {
-      name = '+step',
-      i = { ':lua require\'dap\'.step_into()<CR>', 'step into', noremap = false, silent = true },
-      o = { ':lua require\'dap\'.step_out()<CR>', 'step out', noremap = false, silent = true },
-      s = { ':lua require\'dap\'.step_over()<CR>', 'step over', noremap = false, silent = true },
-    },
-  },
-}, { prefix = '<leader>' })
+vim.keymap.set('n', '<Space>db', dap.toggle_breakpoint, { silent = true, desc = 'toggle breakpoint' })
+vim.keymap.set('n', '<Space>dB', function() dap.set_breakpoint(vim.fn.input('Breakpoint condition: ')) end, { silent = true, desc = 'set conditional breakpoint' })
+vim.keymap.set('n', '<Space>dc', dap.continue, { silent = true, desc = 'start/continue' })
+vim.keymap.set('n', '<Space>dr', dap.repl.open, { silent = true, desc = 'open repl' })
+vim.keymap.set('n', '<Space>dsi', dap.step_into, { silent = true, desc = 'step into' })
+vim.keymap.set('n', '<Space>dso', dap.step_out, { silent = true, desc = 'step out' })
+vim.keymap.set('n', '<Space>dss', dap.step_over, { silent = true, desc = 'step over' })
 
 vim.api.nvim_create_autocmd('FileType', { pattern = 'dap-repl', callback = function() require('dap.ext.autocompl').attach() end })

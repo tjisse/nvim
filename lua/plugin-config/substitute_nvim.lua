@@ -1,12 +1,12 @@
-local set_keymap = vim.keymap.set
+local substitute = require("substitute")
 
-require("substitute").setup({
+substitute.setup({
   on_substitute = function(event)
     require("yanky").init_ring("p", event.register, event.count, event.vmode:match("[vV�]"))
   end,
 })
 
-set_keymap("n", "s", "<cmd>lua require('substitute').operator()<cr>", { noremap = true })
-set_keymap("n", "ss", "<cmd>lua require('substitute').line()<cr>", { noremap = true })
-set_keymap("n", "S", "<cmd>lua require('substitute').eol()<cr>", { noremap = true })
-set_keymap("x", "s", "<cmd>lua require('substitute').visual()<cr>", { noremap = true })
+vim.keymap.set("n", "s", substitute.operator, { silent = true, noremap = true })
+vim.keymap.set("n", "ss", substitute.line, { silent = true, noremap = true })
+vim.keymap.set("n", "S", substitute.eol, { silent = true, noremap = true })
+vim.keymap.set("x", "s", substitute.visual, { silent = true, noremap = true })

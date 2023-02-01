@@ -1,34 +1,27 @@
-local wk = require('which-key')
 local lspconfig = require('lspconfig')
-local map = vim.keymap.set
 
 local on_attach = function(client, bufnr)
-  local buffer_opts = { noremap = true, silent = true, buffer = bufnr }
-  map('i', '<c-space>', '<Plug>(completion_trigger)', buffer_opts)
-  map('n', 'K', ':lua vim.lsp.buf.hover()<CR>', buffer_opts)
-  map('n', 'gD', ':lua vim.lsp.buf.implementation()<CR>', buffer_opts)
-  map('n', '<c-p>', ':lua vim.lsp.buf.signature_help()<CR>', buffer_opts)
-  map('i', '<c-p>', '<C-o>:lua vim.lsp.buf.signature_help()<CR>', buffer_opts)
-  map('n', 'gt', ':lua vim.lsp.buf.type_definition()<CR>', buffer_opts)
-  map('n', 'gr', ':lua vim.lsp.buf.references()<CR>', buffer_opts)
-  map('n', 'gs', ':lua vim.lsp.buf.document_symbol()<CR>', buffer_opts)
-  map('n', 'gw', ':lua vim.lsp.buf.workspace_symbol("")<CR>', buffer_opts)
-  map('n', 'gd', ':lua vim.lsp.buf.definition()<CR>', buffer_opts)
-  map('n', '1gd', ':lua vim.lsp.buf.declaration()<CR>', buffer_opts)
-  map('n', 'dn', ':lua vim.diagnostic.goto_next({ float = false })<CR>', buffer_opts)
-  map('n', 'dN', ':lua vim.diagnostic.goto_prev({ float = false })<CR>', buffer_opts)
-  map('n', 'dq', ':lua vim.diagnostic.setqflist()<CR>', buffer_opts)
-  map('n', 'dl', ':lua vim.diagnostic.setloclist()<CR>', buffer_opts)
-  map('n', '<M-CR>', ':lua vim.lsp.buf.code_action()<CR>', buffer_opts)
-  map('i', '<M-CR>', '<C-o>:lua vim.lsp.buf.code_action()<CR>', buffer_opts)
-  map('v', '<M-CR>', ':lua vim.lsp.buf.code_action()<CR>', buffer_opts)
-
-  wk.register({
-    ['='] = { ':lua vim.lsp.buf.format()<CR>', 'format buffer', noremap = true, silent = true, buffer = bufnr },
-    r = {
-      r = { ':lua vim.lsp.buf.rename()<CR>', 'rename', noremap = true, silent = true, buffer = bufnr },
-    }
-  }, { prefix = '<leader>' })
+  local opts = unpack({ silent = true, buffer = bufnr })
+  vim.keymap.set('i', '<c-Space>', '<Plug>(completion_trigger)', { opts })
+  vim.keymap.set('n', 'K', vim.lsp.buf.hover, { opts })
+  vim.keymap.set('n', 'gD', vim.lsp.buf.implementation, { opts })
+  vim.keymap.set('n', '<c-p>', vim.lsp.buf.signature_help, { opts })
+  vim.keymap.set('i', '<c-p>', '<C-o>:lua vim.lsp.buf.signature_help()<CR>', { opts })
+  vim.keymap.set('n', 'gt', vim.lsp.buf.type_definition, { opts })
+  vim.keymap.set('n', 'gr', vim.lsp.buf.references, { opts })
+  vim.keymap.set('n', 'gs', vim.lsp.buf.document_symbol, { opts })
+  vim.keymap.set('n', 'gw', function() vim.lsp.buf.workspace_symbol("") end, { opts })
+  vim.keymap.set('n', 'gd', vim.lsp.buf.definition, { opts })
+  vim.keymap.set('n', '1gd', vim.lsp.buf.declaration, { opts })
+  vim.keymap.set('n', 'dn', function() vim.diagnostic.goto_next({ float = false }) end, { opts })
+  vim.keymap.set('n', 'dN', function() vim.diagnostic.goto_prev({ float = false }) end, { opts })
+  vim.keymap.set('n', 'dq', vim.diagnostic.setqflist, { opts })
+  vim.keymap.set('n', 'dl', vim.diagnostic.setloclist, { opts })
+  vim.keymap.set('n', '<M-CR>', vim.lsp.buf.code_action, { opts })
+  vim.keymap.set('i', '<M-CR>', '<C-o>:lua vim.lsp.buf.code_action()<CR>', { opts })
+  vim.keymap.set('v', '<M-CR>', vim.lsp.buf.code_action, { opts })
+  vim.keymap.set({ 'n', 'v' }, '=', vim.lsp.buf.format, { opts, desc = 'format buffer/selection' })
+  vim.keymap.set({ 'n', 'v' }, '<Space>rr', vim.lsp.buf.rename, { opts, desc = 'rename' })
 end
 
 require('mason').setup()

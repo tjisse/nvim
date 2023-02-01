@@ -1,18 +1,10 @@
-local set_keymap = vim.keymap.set
-
 require('yanky').setup()
 
-local default_opts = unpack({ silent = true, noremap = true })
+vim.keymap.set({ 'n', 'x' }, 'p', '<Plug>(YankyPutAfter)', { silent = true })
+vim.keymap.set({ 'n', 'x' }, 'P', '<Plug>(YankyPutBefore)', { silent = true })
+vim.keymap.set({ 'n', 'x' }, 'gp', '<Plug>(YankyGPutAfter)', { silent = true })
+vim.keymap.set({ 'n', 'x' }, 'gP', '<Plug>(YankyGPutBefore)', { silent = true })
+vim.keymap.set('n', '<C-n>', '<Plug>(YankyCycleForward)', { silent = true })
+vim.keymap.set('n', '<C-p>', '<Plug>(YankyCycleBackward)', { silent = true })
 
-set_keymap('n', 'p', '<Plug>(YankyPutAfter)', { default_opts })
-set_keymap('n', 'P', '<Plug>(YankyPutBefore)', { default_opts })
-set_keymap('x', 'p', '<Plug>(YankyPutAfter)', { default_opts })
-set_keymap('x', 'P', '<Plug>(YankyPutBefore)', { default_opts })
-set_keymap('n', 'gp', '<Plug>(YankyGPutAfter)', { default_opts })
-set_keymap('n', 'gP', '<Plug>(YankyGPutBefore)', { default_opts })
-set_keymap('x', 'gp', '<Plug>(YankyGPutAfter)', { default_opts })
-set_keymap('x', 'gP', '<Plug>(YankyGPutBefore)', { default_opts })
-set_keymap('n', '<c-n>', '<Plug>(YankyCycleForward)', { default_opts })
-set_keymap('n', '<c-p>', '<Plug>(YankyCycleBackward)', { default_opts })
-
-set_keymap('n', '<leader>p', require('telescope').extensions.yank_history.yank_history, { default_opts })
+vim.keymap.set('n', '<Space>y', require('telescope').extensions.yank_history.yank_history, { silent = true, desc = 'yank history' })

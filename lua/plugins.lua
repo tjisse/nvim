@@ -102,7 +102,7 @@ require('lazy').setup({
     'kristijanhusak/vim-dadbod-ui',
     cmd = { 'DBUI', 'DBUIToggle' },
     dependencies = {
-      { 'tpope/vim-dadbod', config = function() require('plugin-config/vim-dadbod') end },
+      { 'tpope/vim-dadbod', config = function() require('plugin-config.vim-dadbod') end },
     },
   },
   {
@@ -114,7 +114,7 @@ require('lazy').setup({
   {
     'lewis6991/gitsigns.nvim',
     dependencies = { 'nvim-lua/plenary.nvim' },
-    config = function() require('gitsigns').setup() end,
+    config = function() require('plugin-config.gitsigns_nvim') end,
   },
   {
     "Maan2003/lsp_lines.nvim",
