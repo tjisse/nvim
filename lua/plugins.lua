@@ -45,7 +45,7 @@ require('lazy').setup({
   { 'gbrlsnchs/telescope-lsp-handlers.nvim', config = function() require('telescope').load_extension('lsp_handlers') end },
   { 'ggandor/leap.nvim', config = function() require('leap').add_default_mappings() end },
   'farmergreg/vim-lastplace',
-  { 'folke/which-key.nvim', lazy = true, config = function() require('plugin-config.which-key_nvim') end },
+  { 'folke/which-key.nvim', config = function() require('plugin-config.which-key_nvim') end },
   {
     'goolord/alpha-nvim',
     dependencies = { 'kyazdani42/nvim-web-devicons' },
