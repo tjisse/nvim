@@ -107,6 +107,21 @@ lspconfig.tsserver.setup({
 lspconfig.cucumber_language_server.setup({
   capabilities = cmp_nvim_lsp_capabilities,
   on_attach = on_attach,
+  settings = {
+    cucumber = {
+      features = {
+        'src/test/resources/features/**/*.feature',
+        'itest/src/test/resources/features/**/*.feature',
+        'features/**/*.feature'
+      },
+      glue = {
+        'src/test/java/**/*.java',
+        'itest/src/test/java/**/*.java',
+        'features/**/*.ts',
+        'features/**/*.js'
+      },
+    },
+  },
 })
 
 vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
