@@ -4,16 +4,22 @@ local platform = require('mason-core.platform')
 local lsp_pluginconfig = require('plugin-config.nvim-lspconfig')
 local bmap = vim.api.nvim_buf_set_keymap
 
-local default_opts = { noremap = true, silent = true }
-
 local jdtls_install_dir = require('mason-registry.jdtls'):get_install_path()
+local java_test_install_dir = require('mason-registry.java-test'):get_install_path()
 local java_debug_install_dir = require('mason-registry.java-debug-adapter'):get_install_path()
-local executable = vim.env.JAVA_HOME and path.concat { vim.env.JAVA_HOME, 'bin', 'java' } or 'java'
-local jar = vim.fn.expand(path.concat { jdtls_install_dir, 'plugins', 'org.eclipse.equinox.launcher_*.jar' })
-local lombok = vim.fn.expand(path.concat { jdtls_install_dir, 'lombok.jar' })
-local debug_plugin = vim.fn.expand(path.concat { java_debug_install_dir, 'com.microsoft.java.debug.plugin-*.jar' })
+local executable = vim.env.JAVA_HOME and path.concat({ vim.env.JAVA_HOME, 'bin', 'java' }) or 'java'
+local jar = vim.fn.expand(path.concat({ jdtls_install_dir, 'plugins', 'org.eclipse.equinox.launcher_*.jar' }))
+local lombok = vim.fn.expand(path.concat({ jdtls_install_dir, 'lombok.jar' }))
 local workspace_root = vim.env.WORKSPACE and vim.env.WORKSPACE or path.concat { vim.env.HOME, "workspace" }
 local workspace_dir = vim.fn.fnamemodify(vim.fn.getcwd(), ':p:h:t')
+
+local function add_plugin_jars_to_bundles(bundles, plugin_install_dir)
+  local jar_path = vim.fn.expand(path.concat({ plugin_install_dir, 'extension', 'server', '*.jar' }))
+  local plugin_bundles = vim.split(jar_path, '\n')
+  for _, bundle in ipairs(plugin_bundles) do
+    table.insert(bundles, bundle)
+  end
+end
 
 local cmd = {
   platform.is_win and ('%s.exe'):format(executable) or executable,
@@ -56,6 +62,10 @@ local root = require('jdtls.setup').find_root({ '.git', 'mvnw', 'gradlew', 'pom.
 local extendedCapabilities = require('jdtls').extendedClientCapabilities
 extendedCapabilities.classFileContentsSupport = false
 
+local bundles = {}
+add_plugin_jars_to_bundles(bundles, java_test_install_dir)
+add_plugin_jars_to_bundles(bundles, java_debug_install_dir)
+
 local opts = {
   cmd = cmd,
   on_attach = function(client, bufnr)
@@ -91,24 +101,26 @@ local opts = {
           starThreshold = 5,
           staticStarThreshold = 3,
         }
+      },
+      maven = {
+        downloadSources = true,
+        updateSnapshots = true
       }
     }
   },
   init_options = {
     extendedCapabilities = extendedCapabilities,
-    bundles = {
-      vim.fn.glob(debug_plugin)
-    },
-  }
+    bundles = bundles,
+  },
 }
 require('jdtls').start_or_attach(opts)
 
-bmap(0, 'n', '<leader>ri', ':lua require(\'jdtls\').organize_imports()<CR>', default_opts)
-bmap(0, 'n', '<leader>rev', ':lua require(\'jdtls\').extract_variable()<CR>', default_opts)
-bmap(0, 'v', '<leader>rev', '<Esc>:lua require(\'jdtls\').extract_variable(true)<CR>', default_opts)
-bmap(0, 'n', '<leader>rec', ':lua require(\'jdtls\').extract_constant()<CR>', default_opts)
-bmap(0, 'v', '<leader>rec', '<Esc>:lua require(\'jdtls\').extract_constant(true)<CR>', default_opts)
-bmap(0, 'v', '<leader>rem', '<Esc>:lua require(\'jdtls\').extract_method(true)<CR>', default_opts)
+bmap(0, 'n', '<leader>ri', ':lua require(\'jdtls\').organize_imports()<CR>', { silent = true })
+bmap(0, 'n', '<leader>rev', ':lua require(\'jdtls\').extract_variable()<CR>', { silent = true })
+bmap(0, 'v', '<leader>rev', '<Esc>:lua require(\'jdtls\').extract_variable(true)<CR>', { silent = true })
+bmap(0, 'n', '<leader>rec', ':lua require(\'jdtls\').extract_constant()<CR>', { silent = true })
+bmap(0, 'v', '<leader>rec', '<Esc>:lua require(\'jdtls\').extract_constant(true)<CR>', { silent = true })
+bmap(0, 'v', '<leader>rem', '<Esc>:lua require(\'jdtls\').extract_method(true)<CR>', { silent = true })
 
 vim.api.nvim_buf_create_user_command(0, 'JdtCompile', 'lua require(\'jdtls\').compile()', {})
 vim.api.nvim_buf_create_user_command(0, 'JdtUpdateConfig', 'lua require(\'jdtls\').update_project_config()', {})
