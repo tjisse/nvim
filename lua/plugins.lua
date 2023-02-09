@@ -48,9 +48,10 @@ require('lazy').setup({
   { 'folke/which-key.nvim', config = function() require('plugin-config.which-key_nvim') end },
   {
     'goolord/alpha-nvim',
-    dependencies = { 'kyazdani42/nvim-web-devicons' },
+    commit = '21a0f25',
+    dependencies = { 'nvim-tree/nvim-web-devicons' },
     config = function()
-      require 'alpha'.setup(require 'alpha.themes.startify'.config)
+      require('alpha').setup(require('alpha.themes.startify').config)
     end
   },
   'hardikpthv/vscode-wc-snippets',
@@ -86,7 +87,7 @@ require('lazy').setup({
   },
   {
     'nvim-lualine/lualine.nvim',
-    dependencies = { 'kyazdani42/nvim-web-devicons' },
+    dependencies = { 'nvim-tree/nvim-web-devicons' },
     config = function() require('plugin-config.lualine_nvim') end,
   },
   {
@@ -106,7 +107,7 @@ require('lazy').setup({
     },
   },
   {
-    'kyazdani42/nvim-web-devicons',
+    'nvim-tree/nvim-web-devicons',
     config = function() require('nvim-web-devicons') end,
     dependencies = { 'Mofiqul/vscode.nvim' },
   },
