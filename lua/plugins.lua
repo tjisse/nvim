@@ -48,7 +48,6 @@ require('lazy').setup({
   { 'folke/which-key.nvim', config = function() require('plugin-config.which-key_nvim') end },
   {
     'goolord/alpha-nvim',
-    commit = '21a0f25',
     dependencies = { 'nvim-tree/nvim-web-devicons' },
     config = function()
       require('alpha').setup(require('alpha.themes.startify').config)
@@ -190,4 +189,5 @@ require('lazy').setup({
   'williamboman/mason-lspconfig.nvim',
   { 'windwp/nvim-autopairs', config = function() require('plugin-config.nvim-autopairs') end },
   'windwp/nvim-ts-autotag',
+  'xabikos/vscode-jasmine',
 })
