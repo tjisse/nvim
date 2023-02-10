@@ -1,9 +1,7 @@
 local substitute = require("substitute")
 
 substitute.setup({
-  on_substitute = function(event)
-    require("yanky").init_ring("p", event.register, event.count, event.vmode:match("[vV�]"))
-  end,
+  on_substitute = require("yanky.integration").substitute(),
 })
 
 vim.keymap.set("n", "s", substitute.operator, { silent = true, noremap = true })

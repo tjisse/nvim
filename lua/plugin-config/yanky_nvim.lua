@@ -1,5 +1,6 @@
 require('yanky').setup()
 
+vim.keymap.set({ "n","x" }, "y", "<Plug>(YankyYank)", { silent = true })
 vim.keymap.set({ 'n', 'x' }, 'p', '<Plug>(YankyPutAfter)', { silent = true })
 vim.keymap.set({ 'n', 'x' }, 'P', '<Plug>(YankyPutBefore)', { silent = true })
 vim.keymap.set({ 'n', 'x' }, 'gp', '<Plug>(YankyGPutAfter)', { silent = true })

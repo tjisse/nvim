@@ -185,6 +185,7 @@ require('lazy').setup({
   'tpope/vim-sleuth',
   'tpope/vim-surround',
   'wesleyegberto/vscode-java-tests',
+  { 'whiteinge/diffconflicts', cmd = { 'DiffConflicts', 'DiffConflictsWithHistory' } },
   'williamboman/mason.nvim',
   'williamboman/mason-lspconfig.nvim',
   { 'windwp/nvim-autopairs', config = function() require('plugin-config.nvim-autopairs') end },
