@@ -175,6 +175,7 @@ require('lazy').setup({
   'stefandtw/quickfix-reflector.vim',
   { 'stevearc/oil.nvim', config = function() require('plugin-config.oil_nvim') end },
   { 'stevearc/qf_helper.nvim', config = function() require('qf_helper').setup() end },
+  'stevearc/dressing.nvim',
   'tommcdo/vim-fubitive',
   'tpope/vim-commentary',
   'tpope/vim-dispatch',

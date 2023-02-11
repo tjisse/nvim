@@ -1,8 +1,8 @@
+local jdtls = require('jdtls')
 local path = require('mason-core.path')
 local _ = require('mason-core.functional')
 local platform = require('mason-core.platform')
 local lsp_pluginconfig = require('plugin-config.nvim-lspconfig')
-local bmap = vim.api.nvim_buf_set_keymap
 
 local jdtls_install_dir = require('mason-registry.jdtls'):get_install_path()
 local java_test_install_dir = require('mason-registry.java-test'):get_install_path()
@@ -59,7 +59,7 @@ local cmd = {
 
 local root = require('jdtls.setup').find_root({ '.git', 'mvnw', 'gradlew', 'pom.xml', 'build.gradle' }) or vim.loop.cwd()
 
-local extendedCapabilities = require('jdtls').extendedClientCapabilities
+local extendedCapabilities = jdtls.extendedClientCapabilities
 extendedCapabilities.classFileContentsSupport = false
 
 local bundles = {}
@@ -69,7 +69,7 @@ add_plugin_jars_to_bundles(bundles, java_debug_install_dir)
 local opts = {
   cmd = cmd,
   on_attach = function(client, bufnr)
-    require('jdtls').setup_dap({ hotcodereplace = 'auto' })
+    jdtls.setup_dap({ hotcodereplace = 'auto' })
     lsp_pluginconfig.on_attach(client, bufnr)
   end,
   capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protocol.make_client_capabilities()),
@@ -113,14 +113,14 @@ local opts = {
     bundles = bundles,
   },
 }
-require('jdtls').start_or_attach(opts)
+jdtls.start_or_attach(opts)
 
-bmap(0, 'n', '<leader>ri', ':lua require(\'jdtls\').organize_imports()<CR>', { silent = true })
-bmap(0, 'n', '<leader>rev', ':lua require(\'jdtls\').extract_variable()<CR>', { silent = true })
-bmap(0, 'v', '<leader>rev', '<Esc>:lua require(\'jdtls\').extract_variable(true)<CR>', { silent = true })
-bmap(0, 'n', '<leader>rec', ':lua require(\'jdtls\').extract_constant()<CR>', { silent = true })
-bmap(0, 'v', '<leader>rec', '<Esc>:lua require(\'jdtls\').extract_constant(true)<CR>', { silent = true })
-bmap(0, 'v', '<leader>rem', '<Esc>:lua require(\'jdtls\').extract_method(true)<CR>', { silent = true })
+vim.keymap.set('n', '<Space>ri', jdtls.organize_imports, { silent = true, desc = 'organize imports' })
+vim.keymap.set('n', '<Space>rev', jdtls.extract_variable, { silent = true, desc = 'extract variable' })
+vim.keymap.set('v', '<Space>rev', function() jdtls.extract_variable(true) end, { silent = true, desc = 'extract variable' })
+vim.keymap.set('n', '<Space>rec', jdtls.extract_constant, { silent = true, desc = 'extract constant' })
+vim.keymap.set('v', '<Space>rec', function() jdtls.extract_constant(true) end, { silent = true, desc = 'extract constant' })
+vim.keymap.set('v', '<Space>rem', function() jdtls.extract_method(true) end, { silent = true, desc = 'extract method' })
 
 vim.api.nvim_buf_create_user_command(0, 'JdtCompile', 'lua require(\'jdtls\').compile()', {})
 vim.api.nvim_buf_create_user_command(0, 'JdtUpdateConfig', 'lua require(\'jdtls\').update_project_config()', {})
