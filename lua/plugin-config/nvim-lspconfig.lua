@@ -20,7 +20,7 @@ local on_attach = function(client, bufnr)
   vim.keymap.set('n', '<M-CR>', vim.lsp.buf.code_action, { opts })
   vim.keymap.set('i', '<M-CR>', '<C-o>:lua vim.lsp.buf.code_action()<CR>', { opts })
   vim.keymap.set('v', '<M-CR>', vim.lsp.buf.code_action, { opts })
-  vim.keymap.set({ 'n', 'v' }, '=', vim.lsp.buf.format, { opts, desc = 'format buffer/selection' })
+  vim.keymap.set({ 'n', 'v' }, '<Space>=', vim.lsp.buf.format, { opts, desc = 'format buffer/selection' })
   vim.keymap.set({ 'n', 'v' }, '<Space>rr', vim.lsp.buf.rename, { opts, desc = 'rename' })
 end
 

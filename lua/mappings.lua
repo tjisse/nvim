@@ -65,7 +65,12 @@ vim.keymap.set('t', '<Esc>', '<C-\\><C-n>', { opts })
 
 -- Tab management
 vim.keymap.set('n', '<Space>td', ':tabclose<CR>', { opts, desc = 'delete tab' })
-vim.keymap.set('n', '<Space>tt', ':tabnew<CR>', { opts, desc = 'new tab' })
+vim.keymap.set('n', '<Space>tt', ':$tabnew<CR>', { opts, desc = 'new tab' })
+
+for i = 1, 9, 1 do
+  vim.keymap.set('n', '<Space>' .. i, ':' .. i .. 'tabnext<CR>', { opts, desc = 'tab ' .. i })
+  vim.keymap.set('n', '<Space>t' .. i, ':' .. i - 1 .. 'tabmove<CR>', { opts, desc = 'move tab to ' .. i })
+end
 
 vim.keymap.set('n', 'f', '<Plug>(leap-forward-to)', { opts })
 vim.keymap.set('n', 'F', '<Plug>(leap-backward-to)', { opts })
