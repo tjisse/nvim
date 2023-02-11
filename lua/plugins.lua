@@ -43,6 +43,7 @@ require('lazy').setup({
   { 'gbprod/yanky.nvim', config = function() require('plugin-config.yanky_nvim') end },
   { 'gbprod/substitute.nvim', config = function() require('plugin-config.substitute_nvim') end },
   { 'gbrlsnchs/telescope-lsp-handlers.nvim', config = function() require('telescope').load_extension('lsp_handlers') end },
+  { 'ggandor/flit.nvim', config = function() require('flit').setup() end },
   { 'ggandor/leap.nvim', config = function() require('leap').add_default_mappings() end },
   'farmergreg/vim-lastplace',
   { 'folke/which-key.nvim', config = function() require('plugin-config.which-key_nvim') end },

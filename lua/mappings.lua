@@ -5,8 +5,8 @@ vim.keymap.set('n', '<Space>fs', ':w<CR>', { opts, desc = 'save file' })
 -- Jump to start/end line
 vim.keymap.set('n', 'L', '$', { opts })
 vim.keymap.set('n', 'H', '^', { opts })
-vim.keymap.set('v', 'L', '$', { opts })
-vim.keymap.set('v', 'H', '^', { opts })
+vim.keymap.set('x', 'L', '$', { opts })
+vim.keymap.set('x', 'H', '^', { opts })
 
 -- Insert newline in normal mode
 vim.keymap.set('n', '<S-CR>', 'O<Esc>', { opts })
@@ -24,8 +24,8 @@ vim.keymap.set('x', '<C-S-j>', ':move \'>+1<CR>gv-gv', { opts })
 vim.keymap.set('x', '<C-S-k>', ':move \'<-2<CR>gv-gv', { opts })
 
 -- Visual shifting (does not exit Visual mode)
-vim.keymap.set('v', '<', '<gv', { opts })
-vim.keymap.set('v', '>', '>gv', { opts })
+vim.keymap.set('x', '<', '<gv', { opts })
+vim.keymap.set('x', '>', '>gv', { opts })
 
 -- Buffer management
 vim.keymap.set('n', '<Space>bd', ':BD<CR>', { opts, desc = 'delete buffer' })
@@ -71,9 +71,6 @@ for i = 1, 9, 1 do
   vim.keymap.set('n', '<Space>' .. i, ':' .. i .. 'tabnext<CR>', { opts, desc = 'tab ' .. i })
   vim.keymap.set('n', '<Space>t' .. i, ':' .. i - 1 .. 'tabmove<CR>', { opts, desc = 'move tab to ' .. i })
 end
-
-vim.keymap.set('n', 'f', '<Plug>(leap-forward-to)', { opts })
-vim.keymap.set('n', 'F', '<Plug>(leap-backward-to)', { opts })
 
 vim.keymap.set('n', '<Space>sc', ':nohlsearch<CR>', { opts, desc = 'clear search highlight' })
 
