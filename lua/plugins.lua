@@ -25,6 +25,7 @@ require('lazy').setup({
     config = function() require('plugin-config.conjure') end
   },
   'PeterRincker/vim-argumentative',
+  { 'RaafatTurki/hex.nvim', config = function() require('hex').setup() end },
   {
     'abecodes/tabout.nvim',
     config = function() require('plugin-config.tabout_nvim') end,
