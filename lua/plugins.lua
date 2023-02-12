@@ -32,7 +32,7 @@ require('lazy').setup({
     dependencies = { 'windwp/nvim-autopairs' },
   },
   { 'ahmedkhalf/project.nvim', config = function() require('plugin-config.project_nvim') end },
-  'chaoren/vim-wordmotion',
+  { 'chaoren/vim-wordmotion', config = function() require('plugin-config.vim-wordmotion') end },
   { 'chomosuke/term-edit.nvim', tag = 'v1.1.0', config = function() require('term-edit').setup({ prompt_end = '%$ ' }) end },
   {
     "danymat/neogen",
