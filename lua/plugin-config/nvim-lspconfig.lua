@@ -94,7 +94,7 @@ lspconfig.sqlls.setup({
 })
 
 require('neodev').setup({})
-lspconfig.sumneko_lua.setup({
+lspconfig.lua_ls.setup({
   capabilities = cmp_nvim_lsp_capabilities,
   on_attach = on_attach,
 })
