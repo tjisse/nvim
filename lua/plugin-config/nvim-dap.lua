@@ -5,16 +5,6 @@ local node_debug_install_dir = require('mason-registry.node-debug2-adapter'):get
 
 dapui.setup()
 
-dap.listeners.after.event_initialized['dapui_config'] = function()
-  dapui.open()
-end
-dap.listeners.before.event_terminated['dapui_config'] = function()
-  dapui.close()
-end
-dap.listeners.before.event_exited['dapui_config'] = function()
-  dapui.close()
-end
-
 local dap_breakpoint = {
   error = {
     text = '🔷',
@@ -91,6 +81,7 @@ dap.configurations.javascript = {
   },
 }
 
+vim.keymap.set('n', '<Space>dd', dapui.toggle, { silent = true, desc = 'open dap-ui' })
 vim.keymap.set('n', '<Space>db', dap.toggle_breakpoint, { silent = true, desc = 'toggle breakpoint' })
 vim.keymap.set('n', '<Space>dB', function() dap.set_breakpoint(vim.fn.input('Breakpoint condition: ')) end, { silent = true, desc = 'set conditional breakpoint' })
 vim.keymap.set('n', '<Space>dc', dap.continue, { silent = true, desc = 'start/continue' })

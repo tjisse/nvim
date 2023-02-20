@@ -83,6 +83,7 @@ local opts = {
           'org.hamcrest.MatcherAssert.assertThat',
           'org.hamcrest.Matchers.*',
           'org.hamcrest.CoreMatchers.*',
+          'org.assertj.core.api.Assertions.*',
           'org.junit.jupiter.api.Assertions.*',
           'java.util.Objects.requireNonNull',
           'java.util.Objects.requireNonNullElse',
@@ -115,12 +116,12 @@ local opts = {
 }
 jdtls.start_or_attach(opts)
 
-vim.keymap.set('n', '<Space>ri', jdtls.organize_imports, { silent = true, desc = 'organize imports' })
-vim.keymap.set('n', '<Space>rev', jdtls.extract_variable, { silent = true, desc = 'extract variable' })
-vim.keymap.set('v', '<Space>rev', function() jdtls.extract_variable(true) end, { silent = true, desc = 'extract variable' })
-vim.keymap.set('n', '<Space>rec', jdtls.extract_constant, { silent = true, desc = 'extract constant' })
-vim.keymap.set('v', '<Space>rec', function() jdtls.extract_constant(true) end, { silent = true, desc = 'extract constant' })
-vim.keymap.set('v', '<Space>rem', function() jdtls.extract_method(true) end, { silent = true, desc = 'extract method' })
+vim.keymap.set('n', '<Space>ri', jdtls.organize_imports, { silent = true, buffer = true, desc = 'organize imports' })
+vim.keymap.set('n', '<Space>rev', jdtls.extract_variable, { silent = true, buffer = true, desc = 'extract variable' })
+vim.keymap.set('v', '<Space>rev', function() jdtls.extract_variable(true) end, { silent = true, buffer = true, desc = 'extract variable' })
+vim.keymap.set('n', '<Space>rec', jdtls.extract_constant, { silent = true, buffer = true, desc = 'extract constant' })
+vim.keymap.set('v', '<Space>rec', function() jdtls.extract_constant(true) end, { silent = true, buffer = true, desc = 'extract constant' })
+vim.keymap.set('v', '<Space>rem', function() jdtls.extract_method(true) end, { silent = true, buffer = true, desc = 'extract method' })
 
 vim.api.nvim_buf_create_user_command(0, 'JdtCompile', 'lua require(\'jdtls\').compile()', {})
 vim.api.nvim_buf_create_user_command(0, 'JdtUpdateConfig', 'lua require(\'jdtls\').update_project_config()', {})
@@ -129,6 +130,9 @@ vim.api.nvim_buf_create_user_command(0, 'JdtBytecode', 'lua require(\'jdtls\').j
 vim.api.nvim_buf_create_user_command(0, 'JdtJshell', 'lua require(\'jdtls\').jshell()', {})
 vim.api.nvim_create_autocmd('BufWritePost',
   { pattern = '<buffer>', callback = function() require('lint').try_lint() end })
+
+vim.keymap.set('n', '<Space>rt', jdtls.test_nearest_method, { silent = true, buffer = true, desc = 'run nearest test' })
+vim.keymap.set('n', '<Space>rT', jdtls.test_class, { silent = true, buffer = true, desc = 'run all tests in file' })
 
 require('blanket').setup({
   report_path = root .. '/target/site/jacoco/jacoco.xml'
