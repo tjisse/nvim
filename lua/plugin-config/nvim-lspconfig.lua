@@ -22,6 +22,7 @@ local on_attach = function(client, bufnr)
   vim.keymap.set('x', '<M-CR>', vim.lsp.buf.code_action, { opts })
   vim.keymap.set({ 'n', 'x' }, '<Space>=', vim.lsp.buf.format, { opts, desc = 'format buffer/selection' })
   vim.keymap.set({ 'n', 'x' }, '<Space>rr', vim.lsp.buf.rename, { opts, desc = 'rename' })
+  vim.keymap.set( '', '<Space><Space>', require('lsp_lines').toggle, { desc = 'toggle diagnostics' })
 end
 
 require('mason').setup()
@@ -128,17 +129,7 @@ vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
   border = "rounded",
 })
 
-vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
-  border = "rounded",
-})
-
-vim.diagnostic.config({ virtual_text = false })
-
-vim.lsp.handlers['textDocument/publishDiagnostics'] = vim.lsp.with(
-  vim.lsp.diagnostic.on_publish_diagnostics, {
-  signs = true,
-  virtual_lines = { only_current_line = true },
-})
+vim.diagnostic.config({ virtual_text = false, virtual_lines = true, signs = true})
 
 local signs = { Error = " ", Warn = " ", Hint = " ", Info = " " }
 for type, icon in pairs(signs) do

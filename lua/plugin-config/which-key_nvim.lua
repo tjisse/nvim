@@ -4,7 +4,7 @@ wk.setup({
   key_labels = {
     ['<CR>'] = '↵',
     ['<Tab>'] = '⇆',
-    ['<Space>'] = '⎵',
+    ['<space>'] = '⎵',
   }
 })
 
