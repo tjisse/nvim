@@ -4,9 +4,9 @@ local _ = require('mason-core.functional')
 local platform = require('mason-core.platform')
 local lsp_pluginconfig = require('plugin-config.nvim-lspconfig')
 
-local jdtls_install_dir = require('mason-registry.jdtls'):get_install_path()
-local java_test_install_dir = require('mason-registry.java-test'):get_install_path()
-local java_debug_install_dir = require('mason-registry.java-debug-adapter'):get_install_path()
+local jdtls_install_dir = require('mason-registry').get_package('jdtls'):get_install_path()
+local java_test_install_dir = require('mason-registry').get_package('java-test'):get_install_path()
+local java_debug_install_dir = require('mason-registry').get_package('java-debug-adapter'):get_install_path()
 local executable = vim.env.JAVA_HOME and path.concat({ vim.env.JAVA_HOME, 'bin', 'java' }) or 'java'
 local jar = vim.fn.expand(path.concat({ jdtls_install_dir, 'plugins', 'org.eclipse.equinox.launcher_*.jar' }))
 local lombok = vim.fn.expand(path.concat({ jdtls_install_dir, 'lombok.jar' }))

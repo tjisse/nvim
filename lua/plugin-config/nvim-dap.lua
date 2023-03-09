@@ -1,7 +1,7 @@
 local dap = require('dap')
 local dapui = require("dapui")
 local path = require('mason-core.path')
-local node_debug_install_dir = require('mason-registry.node-debug2-adapter'):get_install_path()
+local node_debug_install_dir = require('mason-registry').get_package('node-debug2-adapter'):get_install_path()
 
 dapui.setup()
 
