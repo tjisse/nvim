@@ -90,4 +90,10 @@ vim.keymap.set('n', '<Space>dsi', dap.step_into, { silent = true, desc = 'step i
 vim.keymap.set('n', '<Space>dso', dap.step_out, { silent = true, desc = 'step out' })
 vim.keymap.set('n', '<Space>dss', dap.step_over, { silent = true, desc = 'step over' })
 
-vim.api.nvim_create_autocmd('FileType', { pattern = 'dap-repl', callback = function() require('dap.ext.autocompl').attach() end })
+vim.api.nvim_create_autocmd('FileType', {
+  pattern = 'dap-repl',
+  callback = function()
+    vim.opt_local.number = false
+    require('dap.ext.autocompl').attach()
+  end
+})
