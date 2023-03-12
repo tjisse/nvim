@@ -1,5 +1,4 @@
 local cmp = require('cmp')
-local compare = require('cmp.config.compare')
 local lspkind = require('lspkind')
 
 vim.opt.completeopt = 'menu,menuone,noinsert'
@@ -44,6 +43,7 @@ cmp.setup({
   sources = {
     { name = 'nvim_lsp_signature_help' },
     { name = 'nvim_lsp', priority = 5 },
+    { name = 'codeium', max_item_count = 3 },
     { name = 'vsnip', max_item_count = 5 },
     { name = 'buffer', max_item_count = 5, keyword_length = 3 },
     { name = 'path' },
@@ -53,6 +53,7 @@ cmp.setup({
       return lspkind.cmp_format({
         maxwidth = 30,
         ellipsis_char = '...',
+        symbol_map = { Codeium = '', }
       })(entry, vim_item)
     end
   },

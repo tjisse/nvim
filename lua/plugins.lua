@@ -112,6 +112,14 @@ require('lazy').setup({
     config = function() require('nvim-web-devicons') end,
     dependencies = { 'Mofiqul/vscode.nvim' },
   },
+  {
+    'jcdickinson/codeium.nvim',
+    dependencies = {
+      'nvim-lua/plenary.nvim',
+      'hrsh7th/nvim-cmp',
+    },
+    config = function() require('codeium').setup({}) end
+  },
   { 'johmsalas/text-case.nvim', config = function() require('textcase').setup({}) end },
   { 'kyoh86/telescope-windows.nvim', config = function() require('telescope').load_extension('windows') end },
   {
