@@ -21,5 +21,5 @@ require('lualine').setup {
   sections = {
     lualine_y = { short_cwd },
   },
-  extentions = { 'quickfix', 'mundo', 'nvim-dap-ui' }
+  extensions = { 'fugitive', 'quickfix', 'mundo', 'nvim-dap-ui' }
 }
