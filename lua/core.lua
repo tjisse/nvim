@@ -37,7 +37,6 @@ vim.opt.fileformats = 'unix,dos'
 vim.opt.number = true
 vim.opt.clipboard = 'unnamedplus,unnamed'
 vim.opt.undofile = true
-vim.opt.undodir = vim.fn.stdpath('config') .. '/undo'
 
 vim.opt.guifont = "Iosevka NF:l:h10"
 
