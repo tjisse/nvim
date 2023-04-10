@@ -128,8 +128,6 @@ vim.api.nvim_buf_create_user_command(0, 'JdtUpdateConfig', 'lua require(\'jdtls\
 vim.api.nvim_buf_create_user_command(0, 'JdtJol', 'lua require(\'jdtls\').jol()', {})
 vim.api.nvim_buf_create_user_command(0, 'JdtBytecode', 'lua require(\'jdtls\').javap()', {})
 vim.api.nvim_buf_create_user_command(0, 'JdtJshell', 'lua require(\'jdtls\').jshell()', {})
-vim.api.nvim_create_autocmd('BufWritePost',
-  { pattern = '<buffer>', callback = function() require('lint').try_lint() end })
 
 vim.keymap.set('n', '<Space>rt', jdtls.test_nearest_method, { silent = true, buffer = true, desc = 'run nearest test' })
 vim.keymap.set('n', '<Space>rT', jdtls.test_class, { silent = true, buffer = true, desc = 'run all tests in file' })

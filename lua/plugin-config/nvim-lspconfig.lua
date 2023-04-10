@@ -129,6 +129,11 @@ lspconfig.cucumber_language_server.setup({
   },
 })
 
+lspconfig.fennel_language_server.setup({
+  capabilities = cmp_nvim_lsp_capabilities,
+  on_attach = on_attach,
+})
+
 vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
   border = "rounded",
 })
