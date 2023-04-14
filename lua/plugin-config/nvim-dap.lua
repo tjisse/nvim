@@ -85,7 +85,7 @@ vim.keymap.set('n', '<Space>dd', dapui.toggle, { silent = true, desc = 'open dap
 vim.keymap.set('n', '<Space>db', dap.toggle_breakpoint, { silent = true, desc = 'toggle breakpoint' })
 vim.keymap.set('n', '<Space>dB', function() dap.set_breakpoint(vim.fn.input('Breakpoint condition: ')) end, { silent = true, desc = 'set conditional breakpoint' })
 vim.keymap.set('n', '<Space>dc', dap.continue, { silent = true, desc = 'start/continue' })
-vim.keymap.set('n', '<Space>dr', dap.repl.open, { silent = true, desc = 'open repl' })
+vim.keymap.set('n', '<Space>dr', dap.repl.toggle, { silent = true, desc = 'toggle repl' })
 vim.keymap.set('n', '<Space>dsi', dap.step_into, { silent = true, desc = 'step into' })
 vim.keymap.set('n', '<Space>dso', dap.step_out, { silent = true, desc = 'step out' })
 vim.keymap.set('n', '<Space>dss', dap.step_over, { silent = true, desc = 'step over' })
