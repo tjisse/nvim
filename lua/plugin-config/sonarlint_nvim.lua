@@ -1,5 +1,5 @@
 local path = require('mason-core.path')
-local sonarlint_path = path.concat({ vim.fn.stdpath('data'), 'sonarlint/' })
+local sonarlint_path = path.concat({ vim.fn.stdpath('data'), 'sonarlint' })
 
 require('sonarlint').setup({
    server = {
