@@ -152,9 +152,6 @@ require('lazy').setup({
       'williamboman/mason-lspconfig.nvim'
     },
   },
-  { 'nvim-treesitter/nvim-treesitter', config = function() require('plugin-config.nvim-treesitter') end },
-  'nvim-treesitter/nvim-treesitter-textobjects',
-  'nvim-treesitter/playground',
   'onsails/lspkind.nvim',
   { 'petertriho/nvim-scrollbar', config = function() require('plugin-config.nvim-scrollbar') end },
   { 'qpkorr/vim-bufkill', config = function() require('plugin-config.vim-bufkill') end },
@@ -187,6 +184,11 @@ require('lazy').setup({
   { 'stevearc/oil.nvim', config = function() require('plugin-config.oil_nvim') end },
   { 'stevearc/qf_helper.nvim', config = function() require('qf_helper').setup() end },
   'stevearc/dressing.nvim',
+  {
+    'theHamsta/crazy-node-movement',
+    dependencies = { 'nvim-treesitter/nvim-treesitter-textobjects', 'nvim-treesitter/nvim-treesitter' },
+    config = function() require('plugin-config.nvim-treesitter') end,
+  },
   'tommcdo/vim-fubitive',
   'tpope/vim-commentary',
   'tpope/vim-dispatch',
