@@ -59,9 +59,6 @@ local cmd = {
 
 local root = require('jdtls.setup').find_root({ '.git', 'mvnw', 'gradlew', 'pom.xml', 'build.gradle' }) or vim.loop.cwd()
 
-local extendedCapabilities = jdtls.extendedClientCapabilities
-extendedCapabilities.classFileContentsSupport = false
-
 local bundles = {}
 add_plugin_jars_to_bundles(bundles, java_test_install_dir)
 add_plugin_jars_to_bundles(bundles, java_debug_install_dir)
@@ -110,7 +107,7 @@ local opts = {
     }
   },
   init_options = {
-    extendedCapabilities = extendedCapabilities,
+    extendedCapabilities = jdtls.extendedClientCapabilities,
     bundles = bundles,
   },
 }
