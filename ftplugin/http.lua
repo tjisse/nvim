@@ -1,4 +1,4 @@
-local opts = { buffer = true, noremap = true, silent = true }
+local opts = { buffer = true, silent = true }
 
 vim.keymap.set('n', '<localleader>e', '<Plug>RestNvim', opts)
 vim.keymap.set('n', '<localleader>p', '<Plug>RestNvimPreview', opts)
