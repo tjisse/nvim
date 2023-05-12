@@ -1,9 +1,32 @@
 local metals_config = require("metals").bare_config()
 local lsp_pluginconfig = require("plugin-config.nvim-lspconfig")
 
-metals_config.settings = {
-  showImplicitArguments = true,
-  excludedPackages = { "akka.actor.typed.javadsl", "com.github.swagger.akka.javadsl" },
+local function metals_status_handler(err, status, ctx)
+  local val = {}
+  -- trim and remove spinner
+  local text = status.text:gsub('[⠇⠋⠙⠸⠴⠦]', ''):gsub("^%s*(.-)%s*$", "%1")
+  if status.hide then
+    val = {kind = 'end'}
+  elseif status.show then
+    val = {kind = 'begin', title = text}
+  elseif status.text then
+    val = {kind = 'report', message = text}
+  else
+    return
+  end
+  local msg = {token = "metals", value = val}
+  vim.lsp.handlers["$/progress"](err, msg, ctx)
+end
+
+metals_config = {
+  init_options = {
+    statusBarProvider = 'on',
+  },
+  handlers = {['metals/status'] = metals_status_handler},
+  settings = {
+    showImplicitArguments = true,
+    excludedPackages = { 'akka.actor.typed.javadsl', 'com.github.swagger.akka.javadsl' },
+  },
 }
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
