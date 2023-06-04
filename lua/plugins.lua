@@ -49,11 +49,27 @@ require('lazy').setup({
   'farmergreg/vim-lastplace',
   { 'folke/which-key.nvim', config = function() require('plugin-config.which-key_nvim') end },
   {
-    'goolord/alpha-nvim',
-    dependencies = { 'nvim-tree/nvim-web-devicons' },
+    'glepnir/dashboard-nvim',
+    event = 'VimEnter',
     config = function()
-      require('alpha').setup(require('alpha.themes.startify').config)
-    end
+      require('dashboard').setup({
+        config = {
+          header = {
+            [[                                                                       ]],
+            [[                                                                     ]],
+            [[       ████ ██████           █████      ██                     ]],
+            [[      ███████████             █████                             ]],
+            [[      █████████ ███████████████████ ███   ███████████   ]],
+            [[     █████████  ███    █████████████ █████ ██████████████   ]],
+            [[    █████████ ██████████ █████████ █████ █████ ████ █████   ]],
+            [[  ███████████ ███    ███ █████████ █████ █████ ████ █████  ]],
+            [[ ██████  █████████████████████ ████ █████ █████ ████ ██████ ]],
+            [[                                                                       ]],
+          },
+        },
+      })
+    end,
+    dependencies = { 'nvim-tree/nvim-web-devicons' },
   },
   'hardikpthv/vscode-wc-snippets',
   {
