@@ -35,9 +35,9 @@ require('lazy').setup({
   { 'chaoren/vim-wordmotion', config = function() require('plugin-config.vim-wordmotion') end },
   { 'chomosuke/term-edit.nvim', tag = 'v1.1.0', config = function() require('term-edit').setup({ prompt_end = '%$ ' }) end },
   {
-    "danymat/neogen",
+    'danymat/neogen',
     config = function() require('plugin-config.neogen') end,
-    dependencies = "nvim-treesitter/nvim-treesitter",
+    dependencies = 'nvim-treesitter/nvim-treesitter',
   },
   { 'derekwyatt/vim-fswitch', config = function() require('plugin-config.vim-fswitch') end },
   'dsych/blanket.nvim',
@@ -46,6 +46,11 @@ require('lazy').setup({
   { 'gbrlsnchs/telescope-lsp-handlers.nvim', config = function() require('telescope').load_extension('lsp_handlers') end },
   { 'ggandor/flit.nvim', config = function() require('flit').setup() end },
   { 'ggandor/leap.nvim', config = function() require('leap').add_default_mappings() end },
+  {
+    'grierson/formedit',
+    config = function() require('plugin-config.formedit') end,
+    ft = { 'clojure', 'fennel', 'janet', 'racket', 'hy', 'scheme', 'guile', 'commonlisp' },
+  },
   'farmergreg/vim-lastplace',
   { 'folke/which-key.nvim', config = function() require('plugin-config.which-key_nvim') end },
   {
@@ -116,7 +121,6 @@ require('lazy').setup({
   { 'nvim-telescope/telescope-fzy-native.nvim', config = function() require('telescope').load_extension('fzy_native') end },
   { 'nvim-telescope/telescope-ui-select.nvim', config = function() require('telescope').load_extension('ui-select') end },
   'kevinhwang91/nvim-hlslens',
-  { 'kovisoft/paredit', config = function() require('plugin-config.paredit') end },
   {
     'kristijanhusak/vim-dadbod-ui',
     cmd = { 'DBUI', 'DBUIToggle' },
