@@ -41,6 +41,24 @@ require('lazy').setup({
   },
   { 'derekwyatt/vim-fswitch', config = function() require('plugin-config.vim-fswitch') end },
   'dsych/blanket.nvim',
+  {
+    'epwalsh/obsidian.nvim',
+    version = '*',
+    lazy = true,
+    event = {
+      "BufReadPre /home/tjisse/OneDrive/Apps/Remotely Secure/Notes/**.md",
+      "BufNewFile /home/tjisse/OneDrive/Apps/Remotely Secure/Notes/**.md",
+    },
+    dependencies = { 'nvim-lua/plenary.nvim' },
+    opts = {
+      workspaces = {
+        {
+          name = 'Notes',
+          path = '~/OneDrive/Apps/Remotely Secure/Notes',
+        },
+      },
+    },
+  },
   { 'gbprod/yanky.nvim', config = function() require('plugin-config.yanky_nvim') end },
   { 'gbprod/substitute.nvim', config = function() require('plugin-config.substitute_nvim') end },
   { 'gbrlsnchs/telescope-lsp-handlers.nvim', config = function() require('telescope').load_extension('lsp_handlers') end },
