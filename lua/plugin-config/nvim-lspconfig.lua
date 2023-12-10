@@ -21,7 +21,7 @@ local on_attach = function(client, bufnr)
   vim.keymap.set('n', '<Space>rc', vim.lsp.codelens.run, { opts, desc = 'code lens' })
   vim.keymap.set('i', '<M-CR>', '<C-o>:lua vim.lsp.buf.code_action()<CR>', { opts })
   vim.keymap.set('x', '<M-CR>', vim.lsp.buf.code_action, { opts })
-  vim.keymap.set({ 'n', 'x' }, '<Space>=', vim.lsp.buf.format, { opts, desc = 'format buffer/selection' })
+  vim.keymap.set({ 'n', 'x' }, '<Space>=', function() require('conform').format({ async = true, lsp_fallback = true }) end, { opts, desc = 'format buffer/selection' })
   vim.keymap.set({ 'n', 'x' }, '<Space>rr', vim.lsp.buf.rename, { opts, desc = 'rename' })
   vim.keymap.set( '', '<Space><Space>', require('lsp_lines').toggle, { desc = 'toggle diagnostics' })
 end

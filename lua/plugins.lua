@@ -41,6 +41,7 @@ require('lazy').setup({
   },
   { 'derekwyatt/vim-fswitch', config = function() require('plugin-config.vim-fswitch') end },
   'dsych/blanket.nvim',
+  { 'echasnovski/mini.files', config = function() require('plugin-config.mini_files') end },
   {
     'epwalsh/obsidian.nvim',
     version = '*',
@@ -220,9 +221,9 @@ require('lazy').setup({
   { 'simnalamburt/vim-mundo', cmd = 'MundoToggle' },
   'seudev/vscode-java-snippets',
   'stefandtw/quickfix-reflector.vim',
-  { 'stevearc/oil.nvim', config = function() require('plugin-config.oil_nvim') end },
-  { 'stevearc/qf_helper.nvim', config = function() require('qf_helper').setup() end },
+  {'stevearc/conform.nvim', config = function() require('plugin-config.conform_nvim') end },
   'stevearc/dressing.nvim',
+  { 'stevearc/qf_helper.nvim', config = function() require('qf_helper').setup() end },
   {
     'theHamsta/crazy-node-movement',
     dependencies = { 'nvim-treesitter/nvim-treesitter-textobjects', 'nvim-treesitter/nvim-treesitter' },
