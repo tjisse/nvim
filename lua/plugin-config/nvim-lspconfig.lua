@@ -138,7 +138,7 @@ vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
   border = "rounded",
 })
 
-vim.diagnostic.config({ virtual_text = false, virtual_lines = true, signs = true})
+vim.diagnostic.config({ virtual_text = false, virtual_lines = false, signs = true})
 
 local signs = { Error = " ", Warn = " ", Hint = " ", Info = " " }
 for type, icon in pairs(signs) do
