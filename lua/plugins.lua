@@ -116,7 +116,7 @@ require('lazy').setup({
   },
   'inkarkat/vim-ExtractMatches',
   'inkarkat/vim-ingo-library',
-  { 'j-hui/fidget.nvim', config = function() require('fidget').setup() end },
+  { 'j-hui/fidget.nvim', config = function() require('plugin-config.fidget_nvim') end },
   {
     'nvim-neotest/neotest',
     dependencies = {
