@@ -217,7 +217,11 @@ require('lazy').setup({
     },
     config = function() require('plugin-config.nvim-metals') end,
   },
-  { 'https://gitlab.com/schrieveslaach/sonarlint.nvim', config = function() require('plugin-config.sonarlint_nvim') end },
+  {
+    'https://gitlab.com/schrieveslaach/sonarlint.nvim',
+    config = function() require('plugin-config.sonarlint_nvim') end,
+    dependencies = { 'neovim/nvim-lspconfig' },
+  },
   { 'simnalamburt/vim-mundo', cmd = 'MundoToggle' },
   'seudev/vscode-java-snippets',
   'stefandtw/quickfix-reflector.vim',
