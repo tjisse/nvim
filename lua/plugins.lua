@@ -31,6 +31,12 @@ require('lazy').setup({
     config = function() require('plugin-config.tabout_nvim') end,
     dependencies = { 'windwp/nvim-autopairs' },
   },
+  {
+    'altermo/ultimate-autopair.nvim',
+    event = { 'InsertEnter', 'CmdlineEnter' },
+    branch = 'v0.6',
+    config = function() require('ultimate-autopair').setup() end,
+  },
   { 'ahmedkhalf/project.nvim', config = function() require('plugin-config.project_nvim') end },
   { 'chaoren/vim-wordmotion', config = function() require('plugin-config.vim-wordmotion') end },
   { 'chomosuke/term-edit.nvim', tag = 'v1.1.0', config = function() require('term-edit').setup({ prompt_end = '%$ ' }) end },
@@ -245,7 +251,6 @@ require('lazy').setup({
   { 'whiteinge/diffconflicts', cmd = { 'DiffConflicts', 'DiffConflictsWithHistory' } },
   'williamboman/mason.nvim',
   'williamboman/mason-lspconfig.nvim',
-  { 'windwp/nvim-autopairs', config = function() require('plugin-config.nvim-autopairs') end },
   'windwp/nvim-ts-autotag',
   'xabikos/vscode-jasmine',
 })
