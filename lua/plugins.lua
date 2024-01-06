@@ -24,6 +24,16 @@ require('lazy').setup({
       'python' },
     config = function() require('plugin-config.conjure') end
   },
+  {
+    "NeogitOrg/neogit",
+    cmd = 'Neogit',
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      "sindrets/diffview.nvim",
+      "nvim-telescope/telescope.nvim",
+    },
+    config = true
+  },
   'PeterRincker/vim-argumentative',
   { 'RaafatTurki/hex.nvim', config = function() require('hex').setup() end },
   {
@@ -51,7 +61,6 @@ require('lazy').setup({
   {
     'epwalsh/obsidian.nvim',
     version = '*',
-    lazy = true,
     event = {
       "BufReadPre /home/tjisse/OneDrive/Apps/Remotely Secure/Notes/**.md",
       "BufNewFile /home/tjisse/OneDrive/Apps/Remotely Secure/Notes/**.md",
@@ -79,7 +88,7 @@ require('lazy').setup({
   'farmergreg/vim-lastplace',
   { 'folke/which-key.nvim', config = function() require('plugin-config.which-key_nvim') end },
   {
-    'glepnir/dashboard-nvim',
+    'nvimdev/dashboard-nvim',
     event = 'VimEnter',
     config = function()
       require('dashboard').setup({
@@ -153,6 +162,7 @@ require('lazy').setup({
       { 'tpope/vim-dadbod', config = function() require('plugin-config.vim-dadbod') end },
     },
   },
+  { 'numToStr/Comment.nvim', opts = {}, lazy = false },
   {
     'nvim-tree/nvim-web-devicons',
     config = function() require('nvim-web-devicons') end,
@@ -167,6 +177,11 @@ require('lazy').setup({
     config = function() require('codeium').setup({}) end
   },
   { 'johmsalas/text-case.nvim', config = function() require('textcase').setup({}) end },
+  {
+      'kylechui/nvim-surround',
+      event = 'VeryLazy',
+      config = function() require('nvim-surround').setup() end
+  },
   { 'kyoh86/telescope-windows.nvim', config = function() require('telescope').load_extension('windows') end },
   {
     'lewis6991/gitsigns.nvim',
@@ -201,13 +216,10 @@ require('lazy').setup({
   'onsails/lspkind.nvim',
   { 'petertriho/nvim-scrollbar', config = function() require('plugin-config.nvim-scrollbar') end },
   { 'qpkorr/vim-bufkill', config = function() require('plugin-config.vim-bufkill') end },
-  'radenling/vim-dispatch-neovim',
-  { 'rbong/vim-flog', cmd = { 'Flog', 'Flogsplit' }, dependencies = { 'tpope/vim-fugitive' } },
   { 'rmagatti/auto-session', config = function() require('plugin-config.auto-session') end },
   {
     'rockyzhang24/arctic.nvim',
     dependencies = { 'rktjmp/lush.nvim' },
-    lazy = false,
     priority = 1000,
     config = function() require('plugin-config.arctic') end
   },
@@ -239,16 +251,8 @@ require('lazy').setup({
     dependencies = { 'nvim-treesitter/nvim-treesitter-textobjects', 'nvim-treesitter/nvim-treesitter' },
     config = function() require('plugin-config.nvim-treesitter') end,
   },
-  'tommcdo/vim-fubitive',
-  'tpope/vim-commentary',
-  'tpope/vim-dispatch',
-  { 'tpope/vim-fugitive', cmd = "Git" },
-  'tpope/vim-eunuch',
-  'tpope/vim-repeat',
   'tpope/vim-sleuth',
-  'tpope/vim-surround',
   'wesleyegberto/vscode-java-tests',
-  { 'whiteinge/diffconflicts', cmd = { 'DiffConflicts', 'DiffConflictsWithHistory' } },
   'williamboman/mason.nvim',
   'williamboman/mason-lspconfig.nvim',
   'windwp/nvim-ts-autotag',
