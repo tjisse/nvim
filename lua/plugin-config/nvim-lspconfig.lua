@@ -2,7 +2,7 @@ local lspconfig = require('lspconfig')
 
 local on_attach = function(client, bufnr)
   local opts = unpack({ silent = true, buffer = bufnr })
-  vim.keymap.set('i', '<c-Space>', '<Plug>(completion_trigger)', { opts })
+  vim.keymap.set('i', '<c-Space>', '<Esc><Plug>(completion_trigger)', { opts, noremap = true })
   vim.keymap.set('n', 'K', vim.lsp.buf.hover, { opts })
   vim.keymap.set('n', 'gD', vim.lsp.buf.implementation, { opts })
   vim.keymap.set('n', '<c-p>', vim.lsp.buf.signature_help, { opts })
