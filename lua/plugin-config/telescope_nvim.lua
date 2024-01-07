@@ -3,6 +3,11 @@ local actions = require('telescope.actions')
 local builtin = require('telescope.builtin')
 local mini_files = require('mini.files')
 
+telescope.load_extension('lsp_handlers')
+telescope.load_extension('fzy_native')
+telescope.load_extension('ui-select')
+telescope.load_extension('windows')
+
 local projects_path
 if vim.fn.has('win32') then
   projects_path = 'D:/work/Projects'
