@@ -13,10 +13,10 @@ vim.opt.rtp:prepend(lazypath)
 
 require('lazy').setup({
   {
-    'NTBBloodbath/rest.nvim',
+    'rest-nvim/rest.nvim',
     ft = 'http',
     dependencies = { 'nvim-lua/plenary.nvim' },
-    config = true
+    config = function() require('rest-nvim').setup({result_split_horizontal = true}) end
   },
   { 'Olical/aniseed', lazy = true },
   {
