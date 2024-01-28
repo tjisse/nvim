@@ -27,18 +27,27 @@ telescope.setup({
         ['<C-k>'] = actions.move_selection_previous,
       },
     },
-    prompt_prefix = '  ',
+    prompt_prefix = '   ',
     layout_config = {
       height = 0.5,
     },
     path_display = {
       truncate = true,
     },
+    file_ignore_patterns = {
+      ".git/",
+      ".cpcache/",
+      ".clj%-kondo/",
+      ".lsp/",
+      "node_modules/",
+      "target/",
+      "package%-lock.json",
+    },
   },
   pickers = {
     lsp_code_actions = {
       theme = 'cursor',
-    }
+    },
   },
 })
 
@@ -50,7 +59,7 @@ vim.keymap.set('n', '<Space>ff', mini_files.open, { desc = 'open parent director
 vim.keymap.set('n', '<Space>fh', function() builtin.find_files({ cwd = '~', hidden = true }) end, { silent = true, desc = 'files in home directory' })
 vim.keymap.set('n', '<Space>fp', function() builtin.find_files({ cwd = projects_path, hidden = true }) end, { silent = true, desc = 'files in project folder' })
 vim.keymap.set('n', '<Space>gc', builtin.git_bcommits, { silent = true, desc = 'commits for current buffer' })
-vim.keymap.set('n', '<Space>pf', builtin.find_files, { silent = true, desc = 'find file in project' })
+vim.keymap.set('n', '<Space>pf', function() builtin.find_files({ hidden = true }) end, { silent = true, desc = 'find file in project' })
 vim.keymap.set('n', '<Space>pp', telescope.extensions.projects.projects, { silent = true, desc = 'find project' })
 vim.keymap.set('n', '<Space>ps', builtin.live_grep, { silent = true, desc = 'search in project' })
 vim.keymap.set('n', '<Space>wf', telescope.extensions.windows.list, { silent = true, desc = 'find window' })
