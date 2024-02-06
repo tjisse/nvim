@@ -129,6 +129,25 @@ lspconfig.cucumber_language_server.setup({
   },
 })
 
+lspconfig.tailwindcss.setup({
+  capabilities = cmp_nvim_lsp_capabilities,
+  on_attach = on_attach,
+  filetypes = { "aspnetcorerazor", "astro", "astro-markdown", "blade", "django-html", "edge", "eelixir", "ejs", "erb", "eruby", "gohtml", "haml", "handlebars", "hbs", "html", "html-eex", "jade", "leaf", "liquid", "markdown", "mdx", "mustache", "njk", "nunjucks", "php", "razor", "slim", "twig", "css", "less", "postcss", "sass", "scss", "stylus", "sugarss", "javascript", "javascriptreact", "reason", "rescript", "typescript", "typescriptreact", "vue", "svelte", "clojure" },
+  settings = {
+    tailwindCSS = {
+      experimental = {
+        classRegex = {
+          ":class\\s+\"([^\"]*)\"",
+          ":[\\w-.#>]+\\.([\\w-]*)"
+        },
+      },
+      includeLanguages = {
+        clojure = "html"
+      },
+    },
+  },
+})
+
 lspconfig.fennel_language_server.setup({
   capabilities = cmp_nvim_lsp_capabilities,
   on_attach = on_attach,
