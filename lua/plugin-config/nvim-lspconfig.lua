@@ -125,7 +125,23 @@ lspconfig.cucumber_language_server.setup({
         'cypress/support/**/*.ts',
         'cypress/support/**/*.js',
       },
+      parameterTypes = {},
     },
+    features = {
+      'src/test/resources/features/**/*.feature',
+      'itest/src/test/resources/features/**/*.feature',
+      'features/**/*.feature',
+      'cypress/e2e/**/*.feature',
+    },
+    glue = {
+      'src/test/java/**/*.java',
+      'itest/src/test/java/**/*.java',
+      'features/**/*.ts',
+      'features/**/*.js',
+      'cypress/support/**/*.ts',
+      'cypress/support/**/*.js',
+    },
+    parameterTypes = {},
   },
 })
 
