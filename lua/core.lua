@@ -8,7 +8,6 @@ if vim.fn.has('win32') then
   vim.opt.shellxescape = ''
   vim.opt.shellredir = '>'
   vim.opt.shellpipe = '2>&1| tee'
-  vim.opt.shellslash = true
 end
 
 vim.g.mapleader = ' '
