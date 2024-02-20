@@ -164,6 +164,7 @@ require('lazy').setup({
       'kristijanhusak/vim-dadbod-completion',
       { 'hrsh7th/vim-vsnip', config = function() require('plugin-config.vim-vsnip') end },
       'hrsh7th/vim-vsnip-integ',
+      'jcdickinson/codeium.nvim'
     },
     run = ':TSUpdate',
   },
