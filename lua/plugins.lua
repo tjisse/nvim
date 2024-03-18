@@ -61,6 +61,11 @@ require('lazy').setup({
     opts = { prompt_end = '%$ ' }
   },
   {
+    "chrisgrieser/nvim-early-retirement",
+    event = "VeryLazy",
+    config = true,
+  },
+  {
     'danymat/neogen',
     event = { 'InsertEnter' },
     config = function() require('plugin-config.neogen') end,
