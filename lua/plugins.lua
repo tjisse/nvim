@@ -15,8 +15,8 @@ require('lazy').setup({
   {
     'rest-nvim/rest.nvim',
     ft = 'http',
-    dependencies = { 'nvim-lua/plenary.nvim' },
-    config = function() require('rest-nvim').setup({result_split_horizontal = true}) end
+    dependencies = { 'nvim-lua/plenary.nvim', 'luarocks.nvim' },
+    config = function() require('rest-nvim').setup({ result = { split = { horizontal = true }}}) end
   },
   { 'Olical/aniseed', lazy = true },
   {
@@ -112,7 +112,8 @@ require('lazy').setup({
   {
     'ggandor/flit.nvim',
     event = { 'BufReadPre', 'BufNewFile' },
-    dependencies = { 'ggandor/leap.nvim', 'tpope/vim-repeat' }
+    dependencies = { 'ggandor/leap.nvim', 'tpope/vim-repeat' },
+    config = true,
   },
   {
     'ggandor/leap.nvim',
@@ -120,7 +121,7 @@ require('lazy').setup({
     config = function() require('leap').add_default_mappings() end
   },
   {
-    'grierson/formedit',
+    'tjisse/formedit',
     ft = { 'clojure', 'fennel', 'janet', 'racket', 'hy', 'scheme', 'guile', 'commonlisp' },
     config = function() require('plugin-config.formedit') end,
   },
@@ -188,6 +189,7 @@ require('lazy').setup({
     event = { 'BufReadPre', 'BufNewFile' },
     dependencies = {
       'nvim-lua/plenary.nvim',
+      'nvim-neotest/nvim-nio',
       'nvim-treesitter/nvim-treesitter',
       'nvim-neotest/neotest-vim-test',
       'vim-test/vim-test'
@@ -212,7 +214,12 @@ require('lazy').setup({
     },
     config = function() require('plugin-config.telescope_nvim') end,
   },
-  { 'kevinhwang91/nvim-hlslens', event = { 'BufReadPre', 'BufNewFile' } },
+  { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' },
+  {
+    'kevinhwang91/nvim-hlslens',
+    event = { 'BufReadPre', 'BufNewFile' },
+    config = function() require('scrollbar.handlers.search').setup() end,
+  },
   {
     'kristijanhusak/vim-dadbod-ui',
     cmd = { 'DBUI', 'DBUIToggle' },
@@ -283,33 +290,33 @@ require('lazy').setup({
   {
     'petertriho/nvim-scrollbar',
     event = 'VeryLazy',
-    config = function() require('plugin-config.nvim-scrollbar') end
+    config = function() require('scrollbar').setup() end,
   },
   {
     'qpkorr/vim-bufkill',
     event = { 'BufReadPre', 'BufNewFile' },
-    config = function() require('plugin-config.vim-bufkill') end
+    config = function() require('plugin-config.vim-bufkill') end,
   },
   {
     'rmagatti/auto-session',
     event = 'VeryLazy',
-    config = function() require('plugin-config.auto-session') end
+    config = function() require('plugin-config.auto-session') end,
   },
   {
     'rockyzhang24/arctic.nvim',
     dependencies = { 'rktjmp/lush.nvim' },
     priority = 1000,
-    config = function() require('plugin-config.arctic') end
+    config = function() require('plugin-config.arctic') end,
   },
   {
     'rrethy/vim-illuminate',
     event = { 'BufReadPre', 'BufNewFile' },
-    config = function () require('plugin-config.vim-illuminate') end
+    config = function () require('plugin-config.vim-illuminate') end,
   },
   {
     'rrethy/vim-hexokinase',
     ft = { 'css', 'sass', 'scss', 'html' },
-    run = 'make hexokinase', config = function() require('plugin-config.vim-hexokinase') end
+    run = 'make hexokinase', config = function() require('plugin-config.vim-hexokinase') end,
   },
   {
     'scalameta/nvim-metals',
@@ -348,6 +355,11 @@ require('lazy').setup({
     config = function() require('plugin-config.nvim-treesitter') end,
   },
   { 'tpope/vim-sleuth', event = { 'BufReadPre', 'BufNewFile' } },
+  {
+    'vhyrro/luarocks.nvim',
+    priority = 1000,
+    config = true,
+  },
   { 'wesleyegberto/vscode-java-tests', ft = 'java' },
   { 'williamboman/mason.nvim', cmd = 'Mason' },
   { 'windwp/nvim-ts-autotag', event = { 'InsertEnter' } },
