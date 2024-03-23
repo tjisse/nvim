@@ -48,6 +48,11 @@ telescope.setup({
     lsp_code_actions = {
       theme = 'cursor',
     },
+    buffers = {
+      initial_mode = 'normal',
+      ignore_current_buffer = true,
+      sort_mru = true,
+    },
   },
 })
 
