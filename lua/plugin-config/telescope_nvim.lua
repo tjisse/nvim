@@ -65,7 +65,7 @@ vim.keymap.set('n', '<Space>fh', function() builtin.find_files({ cwd = '~', hidd
 vim.keymap.set('n', '<Space>fp', function() builtin.find_files({ cwd = projects_path, hidden = true }) end, { silent = true, desc = 'files in project folder' })
 vim.keymap.set('n', '<Space>gc', builtin.git_bcommits, { silent = true, desc = 'commits for current buffer' })
 vim.keymap.set('n', '<Space>pd', builtin.diagnostics, { silent = true, desc = 'show diagnostics in project' })
-vim.keymap.set('n', '<Space>pf', function() builtin.find_files({ hidden = true }) end, { silent = true, desc = 'find file in project' })
+vim.keymap.set('n', '<Space>pf', function() telescope.extensions['recent-files'].recent_files({ hidden = true, include_current_file = false }) end, { silent = true, desc = 'find file in project' })
 vim.keymap.set('n', '<Space>pp', telescope.extensions.projects.projects, { silent = true, desc = 'find project' })
 vim.keymap.set('n', '<Space>pl', builtin.lsp_dynamic_workspace_symbols, { silent = true, desc = 'search lsp symbol in project' })
 vim.keymap.set('n', '<Space>ps', builtin.live_grep, { silent = true, desc = 'search in project' })

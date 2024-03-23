@@ -210,7 +210,8 @@ require('lazy').setup({
       'gbrlsnchs/telescope-lsp-handlers.nvim',
       'nvim-telescope/telescope-fzy-native.nvim',
       'nvim-telescope/telescope-ui-select.nvim',
-      'kyoh86/telescope-windows.nvim'
+      'kyoh86/telescope-windows.nvim',
+      'mollerhoj/telescope-recent-files.nvim',
     },
     config = function() require('plugin-config.telescope_nvim') end,
   },
