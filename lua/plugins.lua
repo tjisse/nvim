@@ -167,7 +167,6 @@ require('lazy').setup({
       'hrsh7th/cmp-cmdline',
       'hrsh7th/cmp-path',
       'hrsh7th/cmp-vsnip',
-      'kristijanhusak/vim-dadbod-completion',
       { 'hrsh7th/vim-vsnip', config = function() require('plugin-config.vim-vsnip') end },
       'hrsh7th/vim-vsnip-integ',
       'jcdickinson/codeium.nvim'
@@ -222,11 +221,12 @@ require('lazy').setup({
     config = function() require('scrollbar.handlers.search').setup() end,
   },
   {
-    'kristijanhusak/vim-dadbod-ui',
-    cmd = { 'DBUI', 'DBUIToggle' },
+    "kndndrj/nvim-dbee",
     dependencies = {
-      { 'tpope/vim-dadbod', config = function() require('plugin-config.vim-dadbod') end },
+      "MunifTanjim/nui.nvim",
     },
+    build = function() require("dbee").install() end,
+    config = function() require("dbee").setup() end,
   },
   { 'numToStr/Comment.nvim', config = true },
   {
