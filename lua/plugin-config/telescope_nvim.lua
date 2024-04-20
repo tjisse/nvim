@@ -32,7 +32,7 @@ telescope.setup({
       height = 0.5,
     },
     path_display = {
-      truncate = true,
+      filename_first = true,
     },
     file_ignore_patterns = {
       ".git/",
