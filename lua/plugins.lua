@@ -51,6 +51,21 @@ require('lazy').setup({
     config = function() require('plugin-config.project_nvim') end
   },
   {
+    'brenton-leighton/multiple-cursors.nvim',
+    version = '*',
+    opts = {},
+    keys = {
+      { '<M-j>', '<Cmd>MultipleCursorsAddDown<CR>' },
+      { '<M-S-j>', '<Cmd>MultipleCursorsAddJumpNextMatch<CR>' },
+      { '<M-Down>', '<Cmd>MultipleCursorsAddDown<CR>', mode = { 'n', 'i' } },
+      { '<M-k>', '<Cmd>MultipleCursorsAddUp<CR>' },
+      { '<M-Up>', '<Cmd>MultipleCursorsAddUp<CR>', mode = { 'n', 'i' } },
+      { '<M-LeftMouse>', '<Cmd>MultipleCursorsMouseAddDelete<CR>', mode = { 'n', 'i' } },
+      { '<C-S-M-j>', '<Cmd>MultipleCursorsAddMatches<CR>', mode = { 'n', 'x' } },
+      { '<C-S-M-j>', '<Cmd>MultipleCursorsAddMatchesV<CR>', mode = { 'v' } },
+    },
+  },
+  {
     'chaoren/vim-wordmotion',
     event = { 'InsertEnter' },
     config = function() require('plugin-config.vim-wordmotion') end
@@ -184,6 +199,11 @@ require('lazy').setup({
     config = function() require('plugin-config.fidget_nvim') end
   },
   {
+    'nmac427/guess-indent.nvim',
+    config = function() require('guess-indent').setup() end,
+    event = { 'BufReadPre', 'BufNewFile' },
+  },
+  {
     'nvim-neotest/neotest',
     event = { 'BufReadPre', 'BufNewFile' },
     dependencies = {
@@ -215,6 +235,12 @@ require('lazy').setup({
     config = function() require('plugin-config.telescope_nvim') end,
   },
   { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' },
+  {
+    'nvim-treesitter/nvim-treesitter-textobjects',
+    event = { 'BufReadPre', 'BufNewFile' },
+    dependencies = { 'nvim-treesitter/nvim-treesitter' },
+    config = function() require('plugin-config.nvim-treesitter') end,
+  },
   {
     'kevinhwang91/nvim-hlslens',
     event = { 'BufReadPre', 'BufNewFile' },
@@ -349,13 +375,6 @@ require('lazy').setup({
     event = 'VeryLazy',
     config = true
   },
-  {
-    'theHamsta/crazy-node-movement',
-    event = { 'BufReadPre', 'BufNewFile' },
-    dependencies = { 'nvim-treesitter/nvim-treesitter-textobjects', 'nvim-treesitter/nvim-treesitter' },
-    config = function() require('plugin-config.nvim-treesitter') end,
-  },
-  { 'tpope/vim-sleuth', event = { 'BufReadPre', 'BufNewFile' } },
   {
     'vhyrro/luarocks.nvim',
     priority = 1000,

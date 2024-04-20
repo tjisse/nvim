@@ -41,23 +41,16 @@ require('nvim-treesitter.configs').setup({
         ["ip"] = "@parameter.inner",
       },
     },
-  },
-  node_movement = {
-    enable = true,
-    keymaps = {
-      move_up = '<M-k>',
-      move_down = '<M-j>',
-      move_left = '<M-h>',
-      move_right = '<M-l>',
-      swap_left = '<M-S-h>',
-      swap_right = '<M-S-l>',
-      select_current_node = '<leader><CR>',
+    swap = {
+      enable = true,
+      swap_next = {
+        ["<M-S-l>"] = "@parameter.inner",
+      },
+      swap_previous = {
+        ["<M-S-h>"] = "@parameter.inner",
+      },
     },
-    swappable_textobjects = {'@parameter.inner', '@parameter.outer'},
-    allow_switch_parents = false,
-    allow_next_parent = true,
   },
 })
 
-vim.api.nvim_set_hl(0, "CrazyNodeMovementCurrent", require('lush_theme.arctic').SelectionHighlightBackground)
-vim.treesitter.language.register("xml", {"xml", "html"})
+vim.treesitter.language.register("xml", { "xml", "html" })
