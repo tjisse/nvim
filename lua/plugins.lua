@@ -25,6 +25,23 @@ require('lazy').setup({
     config = function() require('plugin-config.conjure') end
   },
   {
+    'JoseConseco/cmp-ai',
+    lazy = true,
+    dependencies = 'nvim-lua/plenary.nvim',
+    config = function() require('plugin-config.cmp-ai') end,
+    init = function ()
+      local llama_cpp_executable = '/home/tjisse/Projects/llama.cpp/build/bin/server'
+      local model_path = '/home/tjisse/Downloads/codegemma-7b.Q5_K_M.gguf'
+      local command = llama_cpp_executable .. ' -ngl 64 -c 2048 --log-disable -m ' .. model_path
+
+      vim.fn.jobstart(command, {
+        on_stdout = function(jobid, data) end,
+        on_stderr = function(jobid, data) end,
+      })
+      print('llama.cpp server started!')
+    end
+  },
+  {
     'NeogitOrg/neogit',
     cmd = 'Neogit',
     dependencies = {
@@ -175,6 +192,7 @@ require('lazy').setup({
     event = { 'InsertEnter', 'CmdlineEnter' },
     config = function() require('plugin-config.nvim-cmp') end,
     dependencies = {
+      { 'MattiasMTS/cmp-dbee', ft = 'sql' },
       'hrsh7th/cmp-nvim-lsp',
       'hrsh7th/cmp-nvim-lsp-document-symbol',
       'hrsh7th/cmp-nvim-lsp-signature-help',
@@ -184,7 +202,7 @@ require('lazy').setup({
       'hrsh7th/cmp-vsnip',
       { 'hrsh7th/vim-vsnip', config = function() require('plugin-config.vim-vsnip') end },
       'hrsh7th/vim-vsnip-integ',
-      'jcdickinson/codeium.nvim'
+      'JoseConseco/cmp-ai',
     },
     run = ':TSUpdate',
   },
@@ -258,15 +276,6 @@ require('lazy').setup({
   {
     'nvim-tree/nvim-web-devicons',
     event = 'VeryLazy',
-    config = true
-  },
-  {
-    'jcdickinson/codeium.nvim',
-    lazy = true,
-    dependencies = {
-      'nvim-lua/plenary.nvim',
-      'hrsh7th/nvim-cmp',
-    },
     config = true
   },
   {
