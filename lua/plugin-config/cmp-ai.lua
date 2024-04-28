@@ -12,6 +12,7 @@ cmp_ai:setup({
     },
     prompt = function(lines_before, lines_after)
       -- return "<｜fim▁begin｜>" .. lines_before .. "<｜fim▁hole｜>" .. lines_after .. "<｜fim▁end｜>" -- for deepseek coder
+      -- return "<fim_prefix>" .. lines_before .. "<fim_suffix>" .. lines_after .. "<fim_middle>" -- for codeqwen
       return "<|fim_prefix|>" .. lines_before .. "<|fim_suffix|>" .. lines_after .. "<|fim_middle|>" -- for codegemma
     end,
   },
