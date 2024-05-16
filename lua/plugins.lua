@@ -272,7 +272,6 @@ require('lazy').setup({
     build = function() require("dbee").install() end,
     config = function() require("dbee").setup() end,
   },
-  { 'numToStr/Comment.nvim', config = true },
   {
     'nvim-tree/nvim-web-devicons',
     event = 'VeryLazy',
@@ -295,7 +294,7 @@ require('lazy').setup({
     config = function() require('plugin-config.gitsigns_nvim') end,
   },
   {
-    'Maan2003/lsp_lines.nvim',
+    'https://git.sr.ht/~whynothugo/lsp_lines.nvim',
     event = { 'BufReadPre', 'BufNewFile' },
     config = function() require('lsp_lines').setup() end,
     dependencies = { 'neovim/nvim-lspconfig' },

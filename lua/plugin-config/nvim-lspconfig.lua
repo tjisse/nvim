@@ -3,7 +3,6 @@ local lspconfig = require('lspconfig')
 local on_attach = function(client, bufnr)
   local opts = unpack({ silent = true, buffer = bufnr })
   vim.keymap.set('i', '<c-Space>', '<Esc><Plug>(completion_trigger)', { opts, noremap = true })
-  vim.keymap.set('n', 'K', vim.lsp.buf.hover, { opts })
   vim.keymap.set('n', 'gD', vim.lsp.buf.implementation, { opts })
   vim.keymap.set('n', '<c-p>', vim.lsp.buf.signature_help, { opts })
   vim.keymap.set('i', '<c-p>', '<C-o>:lua vim.lsp.buf.signature_help()<CR>', { opts })
@@ -168,6 +167,11 @@ lspconfig.fennel_language_server.setup({
   capabilities = cmp_nvim_lsp_capabilities,
   on_attach = on_attach,
 })
+
+-- lspconfig.groovyls.setup({
+--   capabilities = cmp_nvim_lsp_capabilities,
+--   on_attach = on_attach,
+-- })
 
 vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
   border = "rounded",
