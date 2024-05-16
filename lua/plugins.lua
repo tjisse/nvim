@@ -152,11 +152,6 @@ require('lazy').setup({
     lazy = true,
     config = function() require('leap').add_default_mappings() end
   },
-  {
-    'tjisse/formedit',
-    ft = { 'clojure', 'fennel', 'janet', 'racket', 'hy', 'scheme', 'guile', 'commonlisp' },
-    config = function() require('plugin-config.formedit') end,
-  },
   'farmergreg/vim-lastplace',
   {
     'folke/which-key.nvim',
@@ -216,6 +211,7 @@ require('lazy').setup({
     event = 'VeryLazy',
     config = function() require('plugin-config.fidget_nvim') end
   },
+  { 'kovisoft/paredit', config = function() require('plugin-config.paredit') end },
   {
     'nmac427/guess-indent.nvim',
     config = function() require('guess-indent').setup() end,
