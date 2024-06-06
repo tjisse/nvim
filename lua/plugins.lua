@@ -41,17 +41,23 @@ require('lazy').setup({
       print('llama.cpp server started!')
     end
   },
-  {
-    'NeogitOrg/neogit',
-    cmd = 'Neogit',
-    dependencies = {
-      'nvim-lua/plenary.nvim',
-      'sindrets/diffview.nvim',
-      'nvim-telescope/telescope.nvim',
-    },
-    config = true
-  },
   { 'RaafatTurki/hex.nvim', event = 'VeryLazy', config = true },
+  {
+    'SuperBo/fugit2.nvim',
+    opts = {
+      libgit2_path = 'libgit2.so.1.7',
+      width = 90,
+    },
+    dependencies = {
+      'MunifTanjim/nui.nvim',
+      'nvim-tree/nvim-web-devicons',
+      'nvim-lua/plenary.nvim',
+    },
+    cmd = { 'Fugit2', 'Fugit2Diff', 'Fugit2Graph' },
+    keys = {
+      { '<Space>gg', mode = 'n', '<Cmd>Fugit2<CR>' },
+    }
+  },
   {
     'abecodes/tabout.nvim',
     event = { 'InsertEnter' },
