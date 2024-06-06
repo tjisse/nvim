@@ -32,7 +32,7 @@ require('lazy').setup({
     init = function ()
       local llama_cpp_executable = '/home/tjisse/Projects/llama.cpp/build/bin/server'
       local model_path = '/home/tjisse/Downloads/codegemma-7b.Q5_K_M.gguf'
-      local command = llama_cpp_executable .. ' -ngl 64 -c 2048 --log-disable -m ' .. model_path
+      local command = llama_cpp_executable .. ' -ngl 64 -c 2048 --port 11434 --log-disable -m ' .. model_path
 
       vim.fn.jobstart(command, {
         on_stdout = function(jobid, data) end,
