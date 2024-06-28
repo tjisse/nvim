@@ -168,6 +168,11 @@ lspconfig.fennel_language_server.setup({
   on_attach = on_attach,
 })
 
+lspconfig.fsautocomplete.setup({
+  capabilities = cmp_nvim_lsp_capabilities,
+  on_attach = on_attach,
+})
+
 -- lspconfig.groovyls.setup({
 --   capabilities = cmp_nvim_lsp_capabilities,
 --   on_attach = on_attach,

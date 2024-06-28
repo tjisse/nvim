@@ -24,23 +24,6 @@ require('lazy').setup({
     ft = { 'clojure', 'fennel', 'janet', 'racket', 'hy', 'scheme', 'guile', 'commonlisp', 'julia', 'rust', 'lua', 'python' },
     config = function() require('plugin-config.conjure') end
   },
-  {
-    'JoseConseco/cmp-ai',
-    lazy = true,
-    dependencies = 'nvim-lua/plenary.nvim',
-    config = function() require('plugin-config.cmp-ai') end,
-    init = function ()
-      local llama_cpp_executable = '/home/tjisse/Projects/llama.cpp/build/bin/server'
-      local model_path = '/home/tjisse/Downloads/codegemma-7b.Q5_K_M.gguf'
-      local command = llama_cpp_executable .. ' -ngl 64 -c 2048 --port 11434 --log-disable -m ' .. model_path
-
-      vim.fn.jobstart(command, {
-        on_stdout = function(jobid, data) end,
-        on_stderr = function(jobid, data) end,
-      })
-      print('llama.cpp server started!')
-    end
-  },
   { 'RaafatTurki/hex.nvim', event = 'VeryLazy', config = true },
   {
     'SuperBo/fugit2.nvim',
@@ -203,7 +186,6 @@ require('lazy').setup({
       'hrsh7th/cmp-vsnip',
       { 'hrsh7th/vim-vsnip', config = function() require('plugin-config.vim-vsnip') end },
       'hrsh7th/vim-vsnip-integ',
-      'JoseConseco/cmp-ai',
     },
     run = ':TSUpdate',
   },
@@ -384,11 +366,6 @@ require('lazy').setup({
     'stevearc/qf_helper.nvim',
     event = 'VeryLazy',
     config = true
-  },
-  {
-    'vhyrro/luarocks.nvim',
-    priority = 1000,
-    config = true,
   },
   { 'wesleyegberto/vscode-java-tests', ft = 'java' },
   { 'williamboman/mason.nvim', cmd = 'Mason' },

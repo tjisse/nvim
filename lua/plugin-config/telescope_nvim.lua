@@ -7,6 +7,7 @@ telescope.load_extension('lsp_handlers')
 telescope.load_extension('fzy_native')
 telescope.load_extension('ui-select')
 telescope.load_extension('windows')
+telescope.load_extension('recent-files')
 
 local projects_path
 if vim.fn.has('win32') then
