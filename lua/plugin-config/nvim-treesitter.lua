@@ -1,7 +1,4 @@
 require('nvim-treesitter.configs').setup({
-  autotag = {
-    enable = true,
-  },
   ensure_installed = {
     'java',
     'scala',
@@ -17,6 +14,7 @@ require('nvim-treesitter.configs').setup({
     'scss',
     'json',
     'yaml',
+    'xml',
     'bash',
     'dockerfile',
     'http',
@@ -62,5 +60,3 @@ parser_config.fsharp = {
   },
   filetype = "fsharp",
 }
-
-vim.treesitter.language.register("xml", { "xml", "html" })

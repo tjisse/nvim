@@ -369,6 +369,6 @@ require('lazy').setup({
   },
   { 'wesleyegberto/vscode-java-tests', ft = 'java' },
   { 'williamboman/mason.nvim', cmd = 'Mason' },
-  { 'windwp/nvim-ts-autotag', event = { 'InsertEnter' } },
+  { 'windwp/nvim-ts-autotag', config = true },
   { 'xabikos/vscode-jasmine', ft = { 'javascript', 'javascriptreact', 'typescript', 'typescriptreact' } },
 })
