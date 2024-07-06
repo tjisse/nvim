@@ -49,6 +49,14 @@ require('nvim-treesitter.configs').setup({
       },
     },
   },
+  incremental_selection = {
+    enable = true,
+    keymaps = {
+      init_selection = '<C-S-k>',
+      node_incremental = '<C-S-k>',
+      node_decremental = '<C-S-j>',
+    },
+  },
 })
 
 local parser_config = require('nvim-treesitter.parsers').get_parser_configs()
@@ -56,7 +64,7 @@ parser_config.fsharp = {
   install_info = {
     url = "https://github.com/ionide/tree-sitter-fsharp",
     branch = "main",
-    files = {"src/scanner.c", "src/parser.c" },
+    files = { "src/scanner.c", "src/parser.c" },
   },
   filetype = "fsharp",
 }

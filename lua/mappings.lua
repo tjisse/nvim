@@ -18,10 +18,10 @@ vim.keymap.set('i', '<expr>', '<c-j> ("<C-n>")', { opts })
 vim.keymap.set('i', '<expr>', '<c-k> ("<C-p>")', { opts })
 
 -- Move line / block of text in visual mode
-vim.keymap.set('n', '<C-S-j>', ':move .+1<CR>==', { opts })
-vim.keymap.set('n', '<C-S-k>', ':move .-2<CR>==', { opts })
-vim.keymap.set('x', '<C-S-j>', ':move \'>+1<CR>gv-gv', { opts })
-vim.keymap.set('x', '<C-S-k>', ':move \'<-2<CR>gv-gv', { opts })
+-- vim.keymap.set('n', '<C-S-j>', ':move .+1<CR>==', { opts })
+-- vim.keymap.set('n', '<C-S-k>', ':move .-2<CR>==', { opts })
+-- vim.keymap.set('x', '<C-S-j>', ':move \'>+1<CR>gv-gv', { opts })
+-- vim.keymap.set('x', '<C-S-k>', ':move \'<-2<CR>gv-gv', { opts })
 
 -- Visual shifting (does not exit Visual mode)
 vim.keymap.set('x', '<', '<gv', { opts })
