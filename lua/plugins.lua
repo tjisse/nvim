@@ -179,7 +179,6 @@ require('lazy').setup({
       { 'MattiasMTS/cmp-dbee', ft = 'sql' },
       'hrsh7th/cmp-nvim-lsp',
       'hrsh7th/cmp-nvim-lsp-document-symbol',
-      'hrsh7th/cmp-nvim-lsp-signature-help',
       'hrsh7th/cmp-buffer',
       'hrsh7th/cmp-cmdline',
       'hrsh7th/cmp-path',
@@ -315,6 +314,11 @@ require('lazy').setup({
     'qpkorr/vim-bufkill',
     event = { 'BufReadPre', 'BufNewFile' },
     config = function() require('plugin-config.vim-bufkill') end,
+  },
+  {
+    "ray-x/lsp_signature.nvim",
+    event = "VeryLazy",
+    config = function() require('plugin-config.lsp_signature_nvim') end
   },
   {
     'rmagatti/auto-session',

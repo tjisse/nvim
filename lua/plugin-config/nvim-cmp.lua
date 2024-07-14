@@ -63,7 +63,6 @@ cmp.setup({
     end,
   },
   sources = {
-    { name = 'nvim_lsp_signature_help' },
     { name = 'nvim_lsp', priority = 10 },
     { name = 'vsnip', max_item_count = 5 },
     { name = 'buffer', max_item_count = 5, keyword_length = 3 },
