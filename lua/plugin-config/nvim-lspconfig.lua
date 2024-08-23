@@ -34,6 +34,42 @@ vim.opt.shortmess:append('c')
 
 local cmp_nvim_lsp_capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protocol.make_client_capabilities())
 
+lspconfig.jdtls.setup({
+  capabilities = cmp_nvim_lsp_capabilities,
+  on_attach = on_attach,
+  settings = {
+    java = {
+      signatureHelp = { enabled = true };
+      contentProvider = { preferred = 'fernflower' };
+      completion = {
+        favoriteStaticMembers = {
+          'org.hamcrest.MatcherAssert.assertThat',
+          'org.hamcrest.Matchers.*',
+          'org.hamcrest.CoreMatchers.*',
+          'org.assertj.core.api.Assertions.*',
+          'org.junit.jupiter.api.Assertions.*',
+          'java.util.Objects.requireNonNull',
+          'java.util.Objects.requireNonNullElse',
+          'org.mockito.Mockito.*',
+          'org.mockito.BDDMockito.*',
+        },
+        importOrder = {
+          '',
+          'javax',
+          'java',
+          '#',
+        }
+      },
+      sources = {
+        organizeImports = {
+          starThreshold = 5,
+          staticStarThreshold = 3,
+        },
+      },
+    },
+  },
+})
+
 lspconfig.angularls.setup({
   capabilities = cmp_nvim_lsp_capabilities,
   on_attach = on_attach,

@@ -292,7 +292,6 @@ require('lazy').setup({
       'jbyuki/one-small-step-for-vimkind'
     },
   },
-  { 'mfussenegger/nvim-jdtls', lazy = true },
   {
     'neovim/nvim-lspconfig',
     cmd = 'LspInfo',
@@ -301,8 +300,14 @@ require('lazy').setup({
     dependencies = {
       'abecodes/tabout.nvim',
       'folke/neodev.nvim',
+      'nvim-java/nvim-java',
       'williamboman/mason-lspconfig.nvim'
     },
+  },
+  {
+    'nvim-java/nvim-java',
+    lazy = true,
+    config = function() require('java').setup() end,
   },
   'onsails/lspkind.nvim',
   {
