@@ -1,25 +1,25 @@
 local wk = require('which-key')
 
 wk.setup({
-  key_labels = {
+  replace = {
     ['<CR>'] = '↵',
     ['<Tab>'] = '⇆',
     ['<space>'] = '⎵',
   }
 })
 
-wk.register({
-  ['<Tab>'] = { ':b#<CR>', 'previous buffer', { silent = true } },
-  b = { name = 'buffer' },
-  d = { name = 'debug' },
-  f = { name = 'files' },
-  g = { name = 'git' },
-  h = { name = 'git hunk' },
-  p = { name = 'project' },
-  r = { name = 'refactor/run' },
-  s = { name = 'search' },
-  t = { name = 'tabs' },
-  w = { name = 'windows' }
-}, { prefix = '<Space>'})
+wk.add({
+  { "<Space><Tab>", ":b#<CR>",             desc = "previous buffer" },
+  { "<Space>b",     group = "buffer" },
+  { "<Space>d",     group = "debug" },
+  { "<Space>f",     group = "files" },
+  { "<Space>g",     group = "git" },
+  { "<Space>h",     group = "git hunk" },
+  { "<Space>p",     group = "project" },
+  { "<Space>r",     group = "refactor/run" },
+  { "<Space>s",     group = "search" },
+  { "<Space>t",     group = "tabs" },
+  { "<Space>w",     group = "windows" },
+})
 
 vim.opt.timeoutlen = 500

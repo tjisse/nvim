@@ -15,7 +15,7 @@ require('lazy').setup({
   {
     'rest-nvim/rest.nvim',
     ft = 'http',
-    dependencies = { 'nvim-lua/plenary.nvim', 'luarocks.nvim' },
+    dependencies = { 'nvim-lua/plenary.nvim' },
     config = function() require('rest-nvim').setup({ result = { split = { horizontal = true }}}) end
   },
   { 'Olical/aniseed', lazy = true },
@@ -228,7 +228,7 @@ require('lazy').setup({
     dependencies = {
       'nvim-lua/plenary.nvim',
       'gbrlsnchs/telescope-lsp-handlers.nvim',
-      'nvim-telescope/telescope-fzy-native.nvim',
+      'nvim-telescope/telescope-fzf-native.nvim',
       'nvim-telescope/telescope-ui-select.nvim',
       'kyoh86/telescope-windows.nvim',
       'mollerhoj/telescope-recent-files.nvim',
