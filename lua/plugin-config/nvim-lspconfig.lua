@@ -1,4 +1,5 @@
 local lspconfig = require('lspconfig')
+local util = require('lspconfig.util')
 
 local on_attach = function(client, bufnr)
   local opts = unpack({ silent = true, buffer = bufnr })
@@ -225,6 +226,24 @@ lspconfig.fennel_language_server.setup({
 })
 
 lspconfig.fsautocomplete.setup({
+  capabilities = cmp_nvim_lsp_capabilities,
+  on_attach = on_attach,
+})
+
+lspconfig.sourcekit.setup({
+  cmd = { 'sourcekit-lsp', '--experimental-feature', 'background-indexing' },
+  root_dir = function(filename, _)
+    return util.root_pattern 'buildServer.json'(filename)
+      or util.root_pattern('*.xcodeproj', '*.xcworkspace')(filename)
+      -- better to keep it at the end, because some modularized apps contain multiple Package.swift files
+      or util.root_pattern('compile_commands.json', 'sdkconfig', 'Package.swift')(filename)
+      or util.find_git_ancestor(filename)
+  end,
+  capabilities = cmp_nvim_lsp_capabilities,
+  on_attach = on_attach,
+})
+
+lspconfig.clangd.setup({
   capabilities = cmp_nvim_lsp_capabilities,
   on_attach = on_attach,
 })
