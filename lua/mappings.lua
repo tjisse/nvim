@@ -14,8 +14,8 @@ vim.keymap.set('n', '<CR>', 'o<Esc>', { opts })
 vim.api.nvim_create_autocmd('BufReadPost', { pattern = 'quickfix', command = 'nnoremap <buffer> <CR> <CR>' })
 
 -- Better nav for omnicomplete
-vim.keymap.set('i', '<expr>', '<c-j> ("<C-n>")', { opts })
-vim.keymap.set('i', '<expr>', '<c-k> ("<C-p>")', { opts })
+vim.keymap.set('i', '<expr>', '<C-j> ("<C-n>")', { opts })
+vim.keymap.set('i', '<expr>', '<C-k> ("<C-p>")', { opts })
 
 -- Move line / block of text in visual mode
 -- vim.keymap.set('n', '<C-S-j>', ':move .+1<CR>==', { opts })
