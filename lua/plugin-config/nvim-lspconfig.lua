@@ -39,9 +39,28 @@ lspconfig.jdtls.setup({
   on_attach = on_attach,
   settings = {
     java = {
-      signatureHelp = { enabled = true };
-      contentProvider = { preferred = 'fernflower' };
+      signatureHelp = {
+        enabled = true,
+      },
+      references = {
+        includeAccessors = true,
+        includeDecompiledSources = true,
+      },
+      referencesCodeLens = {
+        enabled = true,
+      },
+      symbols = {
+        includeSourceMethodDeclarations = true,
+      },
+      inlayHints = {
+        parameterNames = {
+          enabled = 'all', -- literals, all, none
+        },
+      },
       completion = {
+        postfix = {
+          enable = true,
+        },
         favoriteStaticMembers = {
           'org.hamcrest.MatcherAssert.assertThat',
           'org.hamcrest.Matchers.*',
@@ -52,6 +71,8 @@ lspconfig.jdtls.setup({
           'java.util.Objects.requireNonNullElse',
           'org.mockito.Mockito.*',
           'org.mockito.BDDMockito.*',
+          'org.mockito.ArgumentMatchers.*',
+          'org.mockito.Answers.*',
         },
         importOrder = {
           '',
