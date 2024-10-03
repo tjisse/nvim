@@ -38,7 +38,7 @@ require('lazy').setup({
     },
     cmd = { 'Fugit2', 'Fugit2Diff', 'Fugit2Graph' },
     keys = {
-      { '<Space>gg', mode = 'n', '<Cmd>Fugit2<CR>' },
+      { '<leader>gg', mode = 'n', '<Cmd>Fugit2<CR>' },
     }
   },
   {
@@ -380,4 +380,66 @@ require('lazy').setup({
   { 'williamboman/mason.nvim', cmd = 'Mason' },
   { 'windwp/nvim-ts-autotag', config = true },
   { 'xabikos/vscode-jasmine', ft = { 'javascript', 'javascriptreact', 'typescript', 'typescriptreact' } },
+  {
+    'yetone/avante.nvim',
+    event = 'VeryLazy',
+    lazy = false,
+    version = false,
+    opts = {
+      provider = 'openrouter',
+      vendors =  {
+        openrouter = {
+          endpoint = 'https://openrouter.ai/api/v1',
+          api_key_name = 'cmd:rbw get openrouter-key',
+          model = 'anthropic/claude-3.5-sonnet:beta',
+          parse_curl_args = function(provider, code_opts)
+            return {
+              url = provider.endpoint .. '/chat/completions',
+              headers = {
+                ['Authorization'] = 'Bearer ' .. provider.parse_api_key(),
+                ['Accept'] = 'application/json',
+                ['Content-Type'] = 'application/json',
+              },
+              body = {
+                model = provider.model,
+                messages = require('avante.providers').openai.parse_message(code_opts),
+                max_tokens = 4096,
+                stream = true,
+              },
+            }
+          end,
+          parse_response_data = function(data_stream, event_state, opts)
+            require('avante.providers').openai.parse_response(data_stream, event_state, opts)
+          end,
+        },
+      },
+    },
+    build = 'make',
+    dependencies = {
+      'stevearc/dressing.nvim',
+      'nvim-lua/plenary.nvim',
+      'MunifTanjim/nui.nvim',
+      'nvim-tree/nvim-web-devicons',
+      {
+        'HakonHarnes/img-clip.nvim',
+        event = 'VeryLazy',
+        opts = {
+          default = {
+            embed_image_as_base64 = false,
+            prompt_for_file_name = false,
+            drag_and_drop = {
+              insert_mode = true,
+            },
+          },
+        },
+      },
+      {
+        'MeanderingProgrammer/render-markdown.nvim',
+        opts = {
+          file_types = { "markdown", "Avante" },
+        },
+        ft = { "markdown", "Avante" },
+      },
+    },
+  }
 })

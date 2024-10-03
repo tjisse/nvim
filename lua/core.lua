@@ -10,8 +10,6 @@ if vim.fn.has('win32') then
   vim.opt.shellpipe = '2>&1| tee'
 end
 
-vim.g.mapleader = ' '
-vim.g.maplocalleader = ','
 vim.g.auto_session_enabled = false
 
 vim.opt.mouse = 'a'

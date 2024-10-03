@@ -81,14 +81,14 @@ dap.configurations.javascript = {
   },
 }
 
-vim.keymap.set('n', '<Space>dd', dapui.toggle, { silent = true, desc = 'open dap-ui' })
-vim.keymap.set('n', '<Space>db', dap.toggle_breakpoint, { silent = true, desc = 'toggle breakpoint' })
-vim.keymap.set('n', '<Space>dB', function() dap.set_breakpoint(vim.fn.input('Breakpoint condition: ')) end, { silent = true, desc = 'set conditional breakpoint' })
-vim.keymap.set('n', '<Space>dc', dap.continue, { silent = true, desc = 'start/continue' })
-vim.keymap.set('n', '<Space>dr', dap.repl.toggle, { silent = true, desc = 'toggle repl' })
-vim.keymap.set('n', '<Space>dsi', dap.step_into, { silent = true, desc = 'step into' })
-vim.keymap.set('n', '<Space>dso', dap.step_out, { silent = true, desc = 'step out' })
-vim.keymap.set('n', '<Space>dss', dap.step_over, { silent = true, desc = 'step over' })
+vim.keymap.set('n', '<leader>dd', dapui.toggle, { silent = true, desc = 'open dap-ui' })
+vim.keymap.set('n', '<leader>db', dap.toggle_breakpoint, { silent = true, desc = 'toggle breakpoint' })
+vim.keymap.set('n', '<leader>dB', function() dap.set_breakpoint(vim.fn.input('Breakpoint condition: ')) end, { silent = true, desc = 'set conditional breakpoint' })
+vim.keymap.set('n', '<leader>dc', dap.continue, { silent = true, desc = 'start/continue' })
+vim.keymap.set('n', '<leader>dr', dap.repl.toggle, { silent = true, desc = 'toggle repl' })
+vim.keymap.set('n', '<leader>dsi', dap.step_into, { silent = true, desc = 'step into' })
+vim.keymap.set('n', '<leader>dso', dap.step_out, { silent = true, desc = 'step out' })
+vim.keymap.set('n', '<leader>dss', dap.step_over, { silent = true, desc = 'step over' })
 
 vim.api.nvim_create_autocmd('FileType', {
   pattern = 'dap-repl',

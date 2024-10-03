@@ -31,4 +31,4 @@ create_autocmd('BufEnter',
   { pattern = '*Test.java',
     command = "let b:fswitchdst = 'java' | let b:fswitchfnames = '/Test$//' | let b:fswitchlocs = 'reg:/test/main/'" })
 
-vim.keymap.set('n', '<Space>pa', ':FSHere<CR>', { silent = true, desc = 'switch to test/implementation' })
+vim.keymap.set('n', '<leader>pa', ':FSHere<CR>', { silent = true, desc = 'switch to test/implementation' })

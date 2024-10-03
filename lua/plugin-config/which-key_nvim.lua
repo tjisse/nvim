@@ -4,22 +4,23 @@ wk.setup({
   replace = {
     ['<CR>'] = '↵',
     ['<Tab>'] = '⇆',
-    ['<space>'] = '⎵',
+    ['<leader>'] = '⎵',
   }
 })
 
 wk.add({
-  { "<Space><Tab>", ":b#<CR>",             desc = "previous buffer" },
-  { "<Space>b",     group = "buffer" },
-  { "<Space>d",     group = "debug" },
-  { "<Space>f",     group = "files" },
-  { "<Space>g",     group = "git" },
-  { "<Space>h",     group = "git hunk" },
-  { "<Space>p",     group = "project" },
-  { "<Space>r",     group = "refactor/run" },
-  { "<Space>s",     group = "search" },
-  { "<Space>t",     group = "tabs" },
-  { "<Space>w",     group = "windows" },
+  { "<leader><Tab>", ":b#<CR>",             desc = "previous buffer" },
+  { "<leader>a",     group = "avante" },
+  { "<leader>b",     group = "buffer" },
+  { "<leader>d",     group = "debug" },
+  { "<leader>f",     group = "files" },
+  { "<leader>g",     group = "git" },
+  { "<leader>h",     group = "git hunk" },
+  { "<leader>p",     group = "project" },
+  { "<leader>r",     group = "refactor/run" },
+  { "<leader>s",     group = "search" },
+  { "<leader>t",     group = "tabs" },
+  { "<leader>w",     group = "windows" },
 })
 
 vim.opt.timeoutlen = 500
