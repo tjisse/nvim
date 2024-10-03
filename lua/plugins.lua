@@ -387,6 +387,10 @@ require('lazy').setup({
     version = false,
     opts = {
       provider = 'openrouter',
+      auto_suggestions_provider = 'copilot',
+      behaviour = {
+        auto_suggestions = true,
+      },
       vendors =  {
         openrouter = {
           endpoint = 'https://openrouter.ai/api/v1',
@@ -441,5 +445,13 @@ require('lazy').setup({
         ft = { "markdown", "Avante" },
       },
     },
+  },
+  {
+    'zbirenbaum/copilot.lua',
+    cmd = { 'Copilot' },
+    opts = {
+      suggestion = { enabled = false },
+      panel = { enabled = false },
+    }
   }
 })
