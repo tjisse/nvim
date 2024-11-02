@@ -412,8 +412,22 @@ require('lazy').setup({
               },
             }
           end,
-          parse_response_data = function(data_stream, event_state, opts)
-            require('avante.providers').openai.parse_response(data_stream, event_state, opts)
+          parse_response_data = function(data_stream, _, opts)
+           if data_stream:match('"%[DONE%]":') then
+              opts.on_complete(nil)
+              return
+            end
+            if data_stream:match('"delta":') then
+              local json = vim.json.decode(data_stream)
+              if json.choices and json.choices[1] then
+                local choice = json.choices[1]
+                if vim.tbl_contains({ "stop", "eos_token", "stop_sequence", "end_turn", "max_tokens" }, choice.finish_reason) then
+                  opts.on_complete(nil)
+                elseif choice.delta.content then
+                  if choice.delta.content ~= vim.NIL then opts.on_chunk(choice.delta.content) end
+                end
+              end
+            end
           end,
         },
       },
