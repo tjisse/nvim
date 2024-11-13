@@ -386,10 +386,13 @@ require('lazy').setup({
     lazy = false,
     version = false,
     opts = {
-      provider = 'openrouter',
+      provider = 'copilot',
       auto_suggestions_provider = 'copilot',
       behaviour = {
         auto_suggestions = true,
+      },
+      copilot = {
+        model = 'claude-3.5-sonnet',
       },
       vendors =  {
         openrouter = {
