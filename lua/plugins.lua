@@ -28,7 +28,6 @@ require('lazy').setup({
   {
     'SuperBo/fugit2.nvim',
     opts = {
-      libgit2_path = 'libgit2.so.1.7',
       width = 90,
     },
     dependencies = {
@@ -91,11 +90,6 @@ require('lazy').setup({
     event = { 'InsertEnter' },
     config = function() require('plugin-config.neogen') end,
     dependencies = 'nvim-treesitter/nvim-treesitter',
-  },
-  {
-    'derekwyatt/vim-fswitch',
-    event = { 'BufReadPre', 'BufNewFile' },
-    config = function() require('plugin-config.vim-fswitch') end
   },
   'dsych/blanket.nvim',
   {
@@ -324,6 +318,11 @@ require('lazy').setup({
     "ray-x/lsp_signature.nvim",
     event = "VeryLazy",
     config = function() require('plugin-config.lsp_signature_nvim') end
+  },
+  {
+    'rgroli/other.nvim',
+    event = { 'BufReadPre', 'BufNewFile' },
+    config = function() require('plugin-config.other_nvim') end
   },
   {
     'rmagatti/auto-session',
