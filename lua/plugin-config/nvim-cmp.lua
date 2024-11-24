@@ -4,26 +4,6 @@ local lspkind = require('lspkind')
 vim.opt.completeopt = 'menu,menuone,noinsert'
 vim.opt.pumheight = 15
 
-local function ai_top_comparator(entry1, entry2)
-  local comp_item = entry1:get_completion_item()
-  if comp_item ~= nil then
-    if string.sub(comp_item.label, 1, 4) == "ai -" then
-      return true
-    end
-  end
-  comp_item = entry2:get_completion_item()
-  if comp_item ~= nil then
-    if string.sub(comp_item.label, 1, 4) == "ai -" then
-      return false
-    end
-  end
-  return nil
-end
-
-local default_sorting = require('cmp.config.default')().sorting
-local my_sorting = vim.tbl_extend("force", {}, default_sorting)
-table.insert(my_sorting.comparators, 1, ai_top_comparator)
-
 cmp.setup({
   completion = {
     completeopt = 'menu,menuone,noinsert',
@@ -63,18 +43,35 @@ cmp.setup({
     end,
   },
   sources = {
-    { name = 'nvim_lsp', priority = 10 },
+    { name = 'copilot' },
+    { name = 'nvim_lsp' },
     { name = 'vsnip', max_item_count = 5 },
     { name = 'buffer', max_item_count = 5, keyword_length = 3 },
     { name = 'path' },
     { name = "cmp-dbee" },
   },
-  sorting = my_sorting,
+  sorting = {
+    priority_weight = 2,
+    comparators = {
+      require("copilot_cmp.comparators").prioritize,
+      cmp.config.compare.offset,
+      -- cmp.config.compare.scopes, --this is commented in nvim-cmp too
+      cmp.config.compare.exact,
+      cmp.config.compare.score,
+      cmp.config.compare.recently_used,
+      cmp.config.compare.locality,
+      cmp.config.compare.kind,
+      cmp.config.compare.sort_text,
+      cmp.config.compare.length,
+      cmp.config.compare.order,
+    },
+  },
   formatting = {
     format = function(entry, vim_item)
       return lspkind.cmp_format({
         maxwidth = 30,
         ellipsis_char = '...',
+        symbol_map = { Copilot = " " },
       })(entry, vim_item)
     end,
   },

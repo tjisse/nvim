@@ -388,7 +388,7 @@ require('lazy').setup({
       provider = 'copilot',
       auto_suggestions_provider = 'copilot',
       behaviour = {
-        auto_suggestions = true,
+        auto_suggestions = false,
       },
       copilot = {
         model = 'claude-3.5-sonnet',
@@ -465,9 +465,11 @@ require('lazy').setup({
   {
     'zbirenbaum/copilot.lua',
     cmd = { 'Copilot' },
+    event = 'InsertEnter',
     opts = {
       suggestion = { enabled = false },
       panel = { enabled = false },
     }
-  }
+  },
+  { 'zbirenbaum/copilot-cmp', config = function() require('copilot_cmp').setup() end }
 })
