@@ -91,6 +91,17 @@ require('lazy').setup({
     config = function() require('plugin-config.neogen') end,
     dependencies = 'nvim-treesitter/nvim-treesitter',
   },
+  {
+    'declancm/cinnamon.nvim',
+    version = '*',
+    opts = {
+      keymaps = {
+        basic = true,
+        extra = true,
+      },
+      options = { mode = 'window' },
+    },
+  },
   'dsych/blanket.nvim',
   {
     'echasnovski/mini.files',
