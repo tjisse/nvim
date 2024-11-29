@@ -35,12 +35,6 @@ vim.opt.number = true
 vim.opt.clipboard = 'unnamedplus,unnamed'
 vim.opt.undofile = true
 
-vim.opt.guifont = "Iosevka NF:l:h11"
+vim.opt.guifont = "Iosevka NF:l:h8"
 
 vim.api.nvim_create_autocmd('TermOpen', { command = 'setlocal nonumber | setfiletype terminal' })
-
-vim.cmd[[
-if exists('g:goneovim')
-  GonvimSmoothScroll
-endif
-]]
