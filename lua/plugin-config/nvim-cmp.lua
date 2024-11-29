@@ -23,7 +23,7 @@ cmp.setup({
     ['<C-Space>'] = cmp.mapping.complete(),
     ['<C-e>'] = cmp.mapping.close(),
     ['<CR>'] = cmp.mapping.confirm({ select = true }),
-    ['<Tab>'] = function(fallback)
+    ['<Tab>'] = function()
       if cmp.visible() then
         cmp.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = true })
       elseif vim.fn['vsnip#available'](1) ~= 0 then
@@ -32,13 +32,22 @@ cmp.setup({
         vim.fn.feedkeys(vim.api.nvim_replace_termcodes('<Plug>(Tabout)', true, true, true), '')
       end
     end,
-    ['<S-Tab>'] = function(fallback)
+    ['<S-Tab>'] = function()
       if cmp.visible() then
         cmp.select_prev_item()
       elseif vim.fn['vsnip#available'](1) ~= 0 then
         vim.fn.feedkeys(vim.api.nvim_replace_termcodes('<Plug>(vsnip-jump-prev)', true, true, true), '')
       else
         vim.fn.feedkeys(vim.api.nvim_replace_termcodes('<Plug>(Tabout)', true, true, true), '')
+      end
+    end,
+    ['K'] = function(fallback)
+      if cmp.visible_docs() then
+        cmp.close_docs()
+      elseif cmp.visible() then
+        cmp.open_docs()
+      else
+        fallback()
       end
     end,
   },
@@ -74,6 +83,11 @@ cmp.setup({
         symbol_map = { Copilot = " " },
       })(entry, vim_item)
     end,
+  },
+  view = {
+    docs = {
+      auto_open = false,
+    },
   },
   window = {
     completion = cmp.config.window.bordered({
