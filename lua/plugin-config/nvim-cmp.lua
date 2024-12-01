@@ -2,7 +2,7 @@ local cmp = require('cmp')
 local lspkind = require('lspkind')
 
 vim.opt.completeopt = 'menu,menuone,noinsert'
-vim.opt.pumheight = 15
+vim.opt.pumheight = 10
 
 cmp.setup({
   completion = {
