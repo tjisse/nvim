@@ -71,7 +71,7 @@ telescope.load_extension('windows')
 telescope.load_extension('recent-files')
 
 vim.keymap.set('n', '-', function() mini_files.open(vim.api.nvim_buf_get_name(0)) end, { silent = true, desc = 'open directory of current file' })
-vim.keymap.set('n', 'gw', function() builtin.lsp_dynamic_workspace_symbols() end, { silent = true, desc = 'find workspace symbols' })
+vim.keymap.set('n', 'gw', function() builtin.lsp_dynamic_workspace_symbols({symbols = {'module', 'class', 'method', 'function'}}) end, { silent = true, desc = 'find workspace symbols' })
 vim.keymap.set('n', '<leader>fd', function() builtin.find_files({ cwd = vim.fn.expand('%:p:h') }) end, { silent = true, desc = 'files in current directory' })
 vim.keymap.set('n', '<leader>fr', ':Telescope oldfiles<CR>', { silent = true, desc = 'recent files' })
 vim.keymap.set('n', '<leader>bb', builtin.buffers, { silent = true, desc = 'open buffers' })
