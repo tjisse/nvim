@@ -54,8 +54,8 @@ cmp.setup({
   sources = {
     { name = 'copilot' },
     { name = 'nvim_lsp' },
-    { name = 'vsnip', max_item_count = 5 },
-    { name = 'buffer', max_item_count = 5, keyword_length = 3 },
+    { name = 'vsnip', max_item_count = 3, priority = -100 },
+    { name = 'buffer', max_item_count = 3, keyword_length = 3 },
     { name = 'path' },
     { name = "cmp-dbee" },
   },
