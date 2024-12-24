@@ -157,7 +157,7 @@ lspconfig.lua_ls.setup({
   on_attach = on_attach,
 })
 
-lspconfig.tsserver.setup({
+lspconfig.ts_ls.setup({
   capabilities = cmp_nvim_lsp_capabilities,
   on_attach = on_attach,
 })
