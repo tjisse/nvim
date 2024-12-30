@@ -26,19 +26,14 @@ require('lazy').setup({
   },
   { 'RaafatTurki/hex.nvim', event = 'VeryLazy', config = true },
   {
-    'SuperBo/fugit2.nvim',
-    opts = {
-      width = 90,
-    },
+    'NeogitOrg/neogit',
+    cmd = 'Neogit',
     dependencies = {
-      'MunifTanjim/nui.nvim',
-      'nvim-tree/nvim-web-devicons',
       'nvim-lua/plenary.nvim',
+      'sindrets/diffview.nvim',
+      'nvim-telescope/telescope.nvim',
     },
-    cmd = { 'Fugit2', 'Fugit2Diff', 'Fugit2Graph' },
-    keys = {
-      { '<leader>gg', mode = 'n', '<Cmd>Fugit2<CR>' },
-    }
+    config = true,
   },
   {
     'abecodes/tabout.nvim',
@@ -254,6 +249,7 @@ require('lazy').setup({
   },
   {
     "kndndrj/nvim-dbee",
+    cmd = 'Dbee',
     dependencies = {
       "MunifTanjim/nui.nvim",
     },
@@ -373,6 +369,10 @@ require('lazy').setup({
     dependencies = { 'neovim/nvim-lspconfig' },
   },
   { 'simnalamburt/vim-mundo', cmd = 'MundoToggle' },
+  {
+    'sindrets/diffview.nvim',
+    cmd = { 'DiffviewOpen', 'DiffviewClose', 'DiffviewToggleFiles', 'DiffviewFocusFiles' },
+  },
   { 'seudev/vscode-java-snippets', ft = 'java' },
   { 'stefandtw/quickfix-reflector.vim', event = 'VeryLazy' },
   {
