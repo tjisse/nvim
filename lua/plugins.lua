@@ -130,22 +130,22 @@ require('lazy').setup({
     event = { 'BufReadPre', 'BufNewFile' },
     config = function() require('plugin-config.substitute_nvim') end
   },
-  {
-    'ggandor/flit.nvim',
-    event = { 'BufReadPre', 'BufNewFile' },
-    dependencies = { 'ggandor/leap.nvim', 'tpope/vim-repeat' },
-    config = true,
-  },
-  {
-    'ggandor/leap.nvim',
-    lazy = true,
-    config = function() require('leap').add_default_mappings() end
-  },
   'farmergreg/vim-lastplace',
   {
     'folke/which-key.nvim',
     event = 'VeryLazy',
     config = function() require('plugin-config.which-key_nvim') end
+  },
+  {
+    "folke/flash.nvim",
+    event = "VeryLazy",
+    opts = {
+      modes = {
+        char = {
+          jump_labels = true,
+        },
+      },
+    },
   },
   {
     'nvimdev/dashboard-nvim',
@@ -198,6 +198,7 @@ require('lazy').setup({
     event = 'VeryLazy',
     config = function() require('plugin-config.fidget_nvim') end
   },
+  { 'jonatan-branting/nvim-better-n', event = { 'BufReadPre', 'BufNewFile' }, opts = {} },
   { 'kovisoft/paredit', config = function() require('plugin-config.paredit') end },
   {
     'nmac427/guess-indent.nvim',

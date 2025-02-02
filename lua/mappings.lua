@@ -1,3 +1,5 @@
+local better_n = require('better-n')
+
 local opts = unpack({ silent = true, noremap = true })
 
 vim.keymap.set('n', '<leader>fs', '<Cmd>w<CR>', { opts, desc = 'save file' })
@@ -12,6 +14,12 @@ vim.keymap.set('x', 'H', '^', { opts })
 vim.keymap.set('n', '<S-CR>', 'O<Esc>', { opts })
 vim.keymap.set('n', '<CR>', 'o<Esc>', { opts })
 vim.api.nvim_create_autocmd('BufReadPost', { pattern = 'quickfix', command = 'nnoremap <buffer> <CR> <CR>' })
+vim.api.nvim_create_autocmd('FileType', {
+    pattern = { 'quickfix' },
+    callback = function()
+        vim.keymap.set('n', 'q', '<Cmd>bd<CR>', { opts, buffer = true })
+    end,
+})
 
 -- Better nav for omnicomplete
 vim.keymap.set('i', '<expr>', '<C-j> ("<C-n>")', { opts })
@@ -81,3 +89,19 @@ vim.keymap.set('n', '<leader>Q', '<Cmd>quitall!<CR>', { opts, desc = 'quit witho
 vim.keymap.set('n', '<leader>U', '<Cmd>MundoToggle<CR>', { opts, desc = 'undo tree' })
 vim.keymap.set('n', '<Space>gg', '<Cmd>Neogit kind=floating<CR>', { opts, desc = 'Neogit' })
 vim.keymap.set('n', '<Space>gb', '<Cmd>Gitsigns blame<CR>', { opts, desc = 'blame' })
+
+-- Navigation mappings
+local hunk_navigation = better_n.create({
+  next = function() require("gitsigns").nav_hunk('next') end,
+  prev = function() require("gitsigns").nav_hunk('prev') end,
+})
+vim.keymap.set({ "n", "x" }, "]h", hunk_navigation.next_key, { opts, desc = 'next hunk' })
+vim.keymap.set({ "n", "x" }, "[h", hunk_navigation.previous_key, { opts, desc = 'previous hunk' })
+
+
+local diagnostic_navigation = better_n.create({
+  next = function() vim.diagnostic.goto_next({ float = false }) end,
+  prev = function() vim.diagnostic.goto_prev({ float = false }) end,
+});
+vim.keymap.set({ "n", "x" }, "]d", diagnostic_navigation.next_key, { opts, desc = 'next diagnostic' })
+vim.keymap.set({ "n", "x" }, "[d", diagnostic_navigation.previous_key, { opts, desc = 'previous diagnostic' })
