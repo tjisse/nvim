@@ -1,0 +1,179 @@
+return {
+  'xzbdmw/nvim-cmp',
+  branch = 'dynamic',
+  event = { 'InsertEnter', 'CmdlineEnter' },
+  config = function()
+    local cmp = require('cmp')
+    local lspkind = require('lspkind')
+
+    vim.opt.completeopt = 'menu,menuone,noinsert'
+    vim.opt.pumheight = 10
+
+    cmp.setup({
+      completion = {
+        completeopt = 'menu,menuone,noinsert',
+      },
+      snippet = {
+        expand = function(args)
+          vim.fn['vsnip#anonymous'](args.body)
+        end,
+      },
+      mapping = {
+        ['<Down>'] = cmp.mapping.select_next_item(),
+        ['<Up>'] = cmp.mapping.select_prev_item(),
+        ['<C-j>'] = cmp.mapping.select_next_item(),
+        ['<C-k>'] = cmp.mapping.select_prev_item(),
+        ['<C-d>'] = cmp.mapping.scroll_docs(-4),
+        ['<C-f>'] = cmp.mapping.scroll_docs(4),
+        ['<C-Space>'] = cmp.mapping.complete(),
+        ['<C-e>'] = cmp.mapping.close(),
+        ['<CR>'] = cmp.mapping.confirm({ select = true }),
+        ['<Tab>'] = function()
+          if cmp.visible() then
+            cmp.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = true })
+          elseif vim.fn['vsnip#available'](1) ~= 0 then
+            vim.fn.feedkeys(vim.api.nvim_replace_termcodes('<Plug>(vsnip-expand-or-jump)', true, true, true), '')
+          else
+            vim.fn.feedkeys(vim.api.nvim_replace_termcodes('<Plug>(Tabout)', true, true, true), '')
+          end
+        end,
+        ['<S-Tab>'] = function()
+          if cmp.visible() then
+            cmp.select_prev_item()
+          elseif vim.fn['vsnip#available'](1) ~= 0 then
+            vim.fn.feedkeys(vim.api.nvim_replace_termcodes('<Plug>(vsnip-jump-prev)', true, true, true), '')
+          else
+            vim.fn.feedkeys(vim.api.nvim_replace_termcodes('<Plug>(Tabout)', true, true, true), '')
+          end
+        end,
+        ['K'] = function(fallback)
+          if cmp.visible_docs() then
+            cmp.close_docs()
+          elseif cmp.visible() then
+            cmp.open_docs()
+          else
+            fallback()
+          end
+        end,
+      },
+      sources = {
+        { name = 'copilot' },
+        { name = 'nvim_lsp' },
+        { name = 'vsnip',   max_item_count = 3, priority = -100 },
+        { name = 'buffer',  max_item_count = 3, keyword_length = 3 },
+        { name = 'path' },
+        { name = "cmp-dbee" },
+      },
+      sorting = {
+        priority_weight = 2,
+        comparators = {
+          require("copilot_cmp.comparators").prioritize,
+          cmp.config.compare.offset,
+          -- cmp.config.compare.scopes, --this is commented in nvim-cmp too
+          cmp.config.compare.exact,
+          cmp.config.compare.score,
+          cmp.config.compare.recently_used,
+          cmp.config.compare.locality,
+          cmp.config.compare.kind,
+          cmp.config.compare.sort_text,
+          cmp.config.compare.length,
+          cmp.config.compare.order,
+        },
+      },
+      formatting = {
+        fields = { "kind", "abbr", "menu" },
+        format = function(entry, vim_item)
+          local kind = lspkind.cmp_format({
+            mode = "symbol_text",
+            maxwidth = 30,
+            ellipsis_char = '...',
+            symbol_map = { Copilot = " " },
+          })(entry, vim.deepcopy(vim_item))
+          local highlights_info = require("colorful-menu").cmp_highlights(entry)
+          if highlights_info ~= nil then
+            vim_item.abbr_hl_group = highlights_info.highlights
+            vim_item.abbr = highlights_info.text
+          end
+          local strings = vim.split(kind.kind, "%s", { trimempty = true })
+          vim_item.kind = " " .. (strings[1] or "") .. " "
+          vim_item.menu = ""
+          return vim_item
+        end,
+      },
+      view = {
+        entries = { name = 'custom', selection_order = 'near_cursor' },
+        docs = {
+          auto_open = false,
+        },
+      },
+      window = {
+        documentation = cmp.config.window.bordered({
+          winhighlight = "Normal:Normal,FloatBorder:FloatBorder,CursorLine:Visual,Search:None",
+        }),
+      },
+      experimental = {
+        ghost_text = true,
+      },
+    })
+
+    local cmdline_mapping = {
+      ['<C-k>'] = {
+        c = function(fallback)
+          if cmp.visible() then
+            cmp.select_next_item()
+          else
+            fallback()
+          end
+        end,
+      },
+      ['<C-j>'] = {
+        c = function(fallback)
+          if cmp.visible() then
+            cmp.select_prev_item()
+          else
+            fallback()
+          end
+        end,
+      },
+      ['<C-Space>'] = {
+        c = cmp.mapping.complete()
+      },
+      ['<Tab>'] = {
+        c = cmp.mapping.confirm({ behavior = cmp.ConfirmBehavior.Replace })
+      },
+    }
+
+    cmp.setup.cmdline(':', {
+      mapping = cmdline_mapping,
+      sources = {
+        { name = 'cmdline' },
+        { name = 'path' },
+        { name = 'buffer' },
+      }
+    })
+
+    cmp.setup.cmdline('/', {
+      mapping = cmdline_mapping,
+      sources = {
+        { name = 'buffer' },
+      }
+    })
+  end,
+  dependencies = {
+    { 'MattiasMTS/cmp-dbee', ft = 'sql' },
+    'hrsh7th/cmp-nvim-lsp',
+    'hrsh7th/cmp-nvim-lsp-document-symbol',
+    'hrsh7th/cmp-buffer',
+    'hrsh7th/cmp-cmdline',
+    'hrsh7th/cmp-path',
+    'hrsh7th/cmp-vsnip',
+    {
+      'hrsh7th/vim-vsnip',
+      config = function()
+        vim.g.vsnip_snippet_dir = vim.fn.stdpath('config') .. '/snippets'
+      end
+    },
+    'hrsh7th/vim-vsnip-integ',
+  },
+  run = ':TSUpdate',
+}
