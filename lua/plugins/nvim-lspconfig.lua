@@ -43,12 +43,10 @@ return {
 
     vim.opt.shortmess:append('c')
 
-    local cmp_nvim_lsp_capabilities = require('cmp_nvim_lsp').default_capabilities(
-      vim.lsp.protocol.make_client_capabilities()
-    )
+    local blink_lsp_capabilities = require('blink.cmp').get_lsp_capabilities()
 
     lspconfig.jdtls.setup({
-      capabilities = cmp_nvim_lsp_capabilities,
+      capabilities = blink_lsp_capabilities,
       on_attach = on_attach,
       settings = {
         java = {
@@ -105,78 +103,78 @@ return {
     })
 
     lspconfig.angularls.setup({
-      capabilities = cmp_nvim_lsp_capabilities,
+      capabilities = blink_lsp_capabilities,
       on_attach = on_attach,
     })
 
     lspconfig.bashls.setup({
-      capabilities = cmp_nvim_lsp_capabilities,
+      capabilities = blink_lsp_capabilities,
       on_attach = on_attach,
     })
 
     lspconfig.clojure_lsp.setup({
-      capabilities = cmp_nvim_lsp_capabilities,
+      capabilities = blink_lsp_capabilities,
       on_attach = on_attach,
     })
 
     lspconfig.cssls.setup({
-      capabilities = cmp_nvim_lsp_capabilities,
+      capabilities = blink_lsp_capabilities,
       on_attach = on_attach,
     })
 
     lspconfig.html.setup({
-      capabilities = cmp_nvim_lsp_capabilities,
+      capabilities = blink_lsp_capabilities,
       on_attach = on_attach,
     })
 
     lspconfig.jsonls.setup({
-      capabilities = cmp_nvim_lsp_capabilities,
+      capabilities = blink_lsp_capabilities,
       on_attach = on_attach,
     })
 
     lspconfig.sqlls.setup({
-      capabilities = cmp_nvim_lsp_capabilities,
+      capabilities = blink_lsp_capabilities,
       on_attach = on_attach,
     })
 
     lspconfig.html.setup({
-      capabilities = cmp_nvim_lsp_capabilities,
+      capabilities = blink_lsp_capabilities,
       on_attach = on_attach,
     })
 
     lspconfig.jsonls.setup({
-      capabilities = cmp_nvim_lsp_capabilities,
+      capabilities = blink_lsp_capabilities,
       on_attach = on_attach,
     })
 
     lspconfig.lemminx.setup({
-      capabilities = cmp_nvim_lsp_capabilities,
+      capabilities = blink_lsp_capabilities,
       on_attach = on_attach,
     })
 
     lspconfig.yamlls.setup({
-      capabilities = cmp_nvim_lsp_capabilities,
+      capabilities = blink_lsp_capabilities,
       on_attach = on_attach,
     })
 
     lspconfig.sqlls.setup({
-      capabilities = cmp_nvim_lsp_capabilities,
+      capabilities = blink_lsp_capabilities,
       on_attach = on_attach,
     })
 
     require('neodev').setup({})
     lspconfig.lua_ls.setup({
-      capabilities = cmp_nvim_lsp_capabilities,
+      capabilities = blink_lsp_capabilities,
       on_attach = on_attach,
     })
 
     lspconfig.ts_ls.setup({
-      capabilities = cmp_nvim_lsp_capabilities,
+      capabilities = blink_lsp_capabilities,
       on_attach = on_attach,
     })
 
     lspconfig.cucumber_language_server.setup({
-      capabilities = cmp_nvim_lsp_capabilities,
+      capabilities = blink_lsp_capabilities,
       on_attach = on_attach,
       settings = {
         cucumber = {
@@ -215,7 +213,7 @@ return {
     })
 
     lspconfig.tailwindcss.setup({
-      capabilities = cmp_nvim_lsp_capabilities,
+      capabilities = blink_lsp_capabilities,
       on_attach = on_attach,
       filetypes = { "aspnetcorerazor", "astro", "astro-markdown", "blade", "django-html", "edge", "eelixir", "ejs", "erb", "eruby", "gohtml", "haml", "handlebars", "hbs", "html", "html-eex", "jade", "leaf", "liquid", "markdown", "mdx", "mustache", "njk", "nunjucks", "php", "razor", "slim", "twig", "css", "less", "postcss", "sass", "scss", "stylus", "sugarss", "javascript", "javascriptreact", "reason", "rescript", "typescript", "typescriptreact", "vue", "svelte", "clojure" },
       settings = {
@@ -234,12 +232,12 @@ return {
     })
 
     lspconfig.fennel_language_server.setup({
-      capabilities = cmp_nvim_lsp_capabilities,
+      capabilities = blink_lsp_capabilities,
       on_attach = on_attach,
     })
 
     lspconfig.fsautocomplete.setup({
-      capabilities = cmp_nvim_lsp_capabilities,
+      capabilities = blink_lsp_capabilities,
       on_attach = on_attach,
     })
 
@@ -252,12 +250,12 @@ return {
             or util.root_pattern('compile_commands.json', 'sdkconfig', 'Package.swift')(filename)
             or util.find_git_ancestor(filename)
       end,
-      capabilities = cmp_nvim_lsp_capabilities,
+      capabilities = blink_lsp_capabilities,
       on_attach = on_attach,
     })
 
     lspconfig.clangd.setup({
-      capabilities = cmp_nvim_lsp_capabilities,
+      capabilities = blink_lsp_capabilities,
       on_attach = on_attach,
     })
 
