@@ -27,7 +27,6 @@ return {
         function() require('conform').format({ async = true, lsp_fallback = true }) end,
         { opts, desc = 'format buffer/selection' })
       vim.keymap.set({ 'n', 'x' }, '<leader>rr', vim.lsp.buf.rename, { opts, desc = 'rename' })
-      vim.keymap.set('', '<leader><leader>', require('lsp_lines').toggle, { desc = 'toggle diagnostics' })
 
       vim.lsp.codelens.refresh()
       if client.supports_method("textDocument/codeLens") then
@@ -267,19 +266,6 @@ return {
     vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
       border = "rounded",
     })
-
-    vim.diagnostic.config({
-      virtual_text = false,
-      virtual_lines = false,
-      signs = true,
-      update_in_insert = true,
-    })
-
-    local signs = { Error = " ", Warn = " ", Hint = " ", Info = " " }
-    for type, icon in pairs(signs) do
-      local hl = "DiagnosticSign" .. type
-      vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
-    end
 
     return { on_attach = on_attach }
   end,

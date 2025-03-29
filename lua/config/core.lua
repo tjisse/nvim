@@ -55,3 +55,17 @@ vim.api.nvim_create_autocmd('BufReadPost', {
     vim.cmd.tcd(root)
   end
 })
+
+vim.diagnostic.config({
+  virtual_text = false,
+  virtual_lines = false,
+  update_in_insert = true,
+  signs = {
+    text = {
+      [vim.diagnostic.severity.ERROR] = " ",
+      [vim.diagnostic.severity.WARN] = " ",
+      [vim.diagnostic.severity.INFO] = " ",
+      [vim.diagnostic.severity.HINT] = " ",
+    },
+  },
+})
