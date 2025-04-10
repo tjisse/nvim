@@ -11,6 +11,14 @@ return {
     vim.g['conjure#client#clojure#nrepl#connection#auto_repl#cmd'] = 'clj -A:dev:test -M:repl/reloaded'
     vim.g['conjure#log#wrap'] = true
 
-    vim.api.nvim_create_autocmd('BufNewFile', { pattern = 'conjure-log-*', command = 'lua vim.diagnostic.disable(0)' })
+    vim.api.nvim_create_autocmd('BufNewFile', {
+      pattern = 'conjure-log-*',
+      callback = function(args)
+        local ns = vim.diagnostic.get_namespaces()
+        for _, namespace in pairs(ns) do
+          vim.diagnostic.disable(args.buf, namespace)
+        end
+      end
+    })
   end
 }
