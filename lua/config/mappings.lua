@@ -30,10 +30,6 @@ vim.keymap.set('x', '>', '>gv', { opts })
 -- Buffer management
 vim.keymap.set('n', '<leader>bd', '<Cmd>BD<CR>', { opts, desc = 'delete buffer' })
 vim.keymap.set('n', '<leader>bk', '<Cmd>BD!<CR>', { opts, desc = 'kill buffer' })
-vim.keymap.set('n', '<leader>bf', '<Cmd>bfirst<CR>', { opts, desc = 'first buffer' })
-vim.keymap.set('n', '<leader>bl', '<Cmd>blast<CR>', { opts, desc = 'last buffer' })
-vim.keymap.set('n', '<leader>bn', '<Cmd>bnext<CR>', { opts, desc = 'next buffer' })
-vim.keymap.set('n', '<leader>bN', '<Cmd>bprevious<CR>', { opts, desc = 'previous buffer' })
 
 -- Window management
 vim.keymap.set('n', '<C-h>', '<C-w>h', { opts })
@@ -81,3 +77,12 @@ vim.keymap.set('n', '<leader>Q', '<Cmd>quitall!<CR>', { opts, desc = 'quit witho
 vim.keymap.set('n', '<leader>U', '<Cmd>MundoToggle<CR>', { opts, desc = 'undo tree' })
 vim.keymap.set('n', '<leader>gg', '<Cmd>Neogit kind=floating<CR>', { opts, desc = 'Neogit' })
 vim.keymap.set('n', '<leader>gb', '<Cmd>Gitsigns blame<CR>', { opts, desc = 'blame' })
+
+-- Clear buffer-local mappings for [[ and ]]
+vim.api.nvim_create_autocmd("TermOpen", {
+  pattern = "*",
+  callback = function()
+    vim.keymap.del({ 'n', 'x', 'o' }, '[[', { buffer = true })
+    vim.keymap.del({ 'n', 'x', 'o' }, ']]', { buffer = true })
+  end,
+})
