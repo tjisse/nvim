@@ -257,6 +257,11 @@ return {
     --   on_attach = on_attach,
     -- })
 
+    lspconfig.janet_lsp.setup({
+      capabilities = blink_lsp_capabilities,
+      on_attach = on_attach,
+    })
+
     vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
       border = "rounded",
     })
