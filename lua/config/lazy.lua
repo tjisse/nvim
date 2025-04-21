@@ -20,5 +20,4 @@ require('lazy').setup({
     { import = 'plugins' },
   },
   install = { colorscheme = { 'arctic' } },
-  checker = { enabled = true },
 })
