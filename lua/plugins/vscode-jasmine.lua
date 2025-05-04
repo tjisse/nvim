@@ -1,1 +1,0 @@
-return { 'xabikos/vscode-jasmine' }

@@ -3,6 +3,13 @@ return {
   event = { 'InsertEnter', 'CmdlineEnter' },
   dependencies = {
     'rafamadriz/friendly-snippets',
+    {
+      'L3MON4D3/LuaSnip',
+      version = 'v2.*',
+      config = function()
+        require("luasnip.loaders.from_vscode").lazy_load()
+      end
+    },
     'fang2hou/blink-copilot'
   },
   version = '1.*',
@@ -30,6 +37,7 @@ return {
         show_with_menu = true,
       },
       menu = {
+        direction_priority = { 'n', 's' },
         draw = {
           components = {
             label = {
@@ -71,14 +79,19 @@ return {
     signature = {
       enabled = true,
     },
+    snippets = { preset = 'luasnip' },
     sources = {
       default = { 'lsp', 'path', 'snippets', 'buffer', 'copilot' },
       providers = {
         copilot = {
           name = 'copilot',
           module = 'blink-copilot',
-          score_offset = 100,
+          score_offset = 10,
           async = true,
+        },
+        snippets = {
+          name = 'snippets',
+          score_offset = 10,
         },
       },
     },
