@@ -59,7 +59,7 @@ vim.api.nvim_create_autocmd('BufReadPost', {
 
 vim.diagnostic.config({
   virtual_text = false,
-  virtual_lines = false,
+  virtual_lines = { current_line = true },
   update_in_insert = true,
   signs = {
     text = {
