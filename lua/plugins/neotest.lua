@@ -5,18 +5,16 @@ return {
     'nvim-lua/plenary.nvim',
     'nvim-neotest/nvim-nio',
     'nvim-treesitter/nvim-treesitter',
-    'nvim-neotest/neotest-vim-test',
-    'vim-test/vim-test'
+    'nvim-neotest/neotest-jest',
+    'marilari88/neotest-vitest',
   },
   config = function()
     local neotest = require('neotest')
 
-    vim.g['test#javascript#jest#options'] = '--color=always'
-    vim.g['test#javascript#jest#file_pattern'] = '\\v(__tests__/.*|(spec|test))\\.(js|mjs|jsx|coffee|ts|tsx)$'
-
     neotest.setup({
       adapters = {
-        require('neotest-vim-test')({})
+        require('neotest-jest')({}),
+        require('neotest-vitest'),
       }
     })
 
