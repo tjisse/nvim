@@ -235,7 +235,7 @@ return {
     })
 
     lspconfig.sourcekit.setup({
-      cmd = { 'sourcekit-lsp', '--experimental-feature', 'background-indexing' },
+      cmd = { 'sourcekit-lsp', '--experimental-feature', 'on-type-formatting' },
       root_dir = function(filename, _)
         return util.root_pattern 'buildServer.json' (filename)
             or util.root_pattern('*.xcodeproj', '*.xcworkspace')(filename)
