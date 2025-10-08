@@ -75,7 +75,7 @@ vim.keymap.set('n', '<leader>\'', '<Cmd>terminal<CR>', { opts })
 vim.keymap.set('n', '<leader>q', '<Cmd>quitall<CR>', { opts, desc = 'quit' })
 vim.keymap.set('n', '<leader>Q', '<Cmd>quitall!<CR>', { opts, desc = 'quit without saving' })
 vim.keymap.set('n', '<leader>U', '<Cmd>MundoToggle<CR>', { opts, desc = 'undo tree' })
-vim.keymap.set('n', '<leader>gg', '<Cmd>Neogit kind=floating<CR>', { opts, desc = 'Neogit' })
+vim.keymap.set('n', '<leader>gg', '<Cmd>Neogit kind=auto<CR>', { opts, desc = 'Neogit' })
 vim.keymap.set('n', '<leader>gb', '<Cmd>Gitsigns blame<CR>', { opts, desc = 'blame' })
 
 -- Clear buffer-local mappings for [[ and ]]

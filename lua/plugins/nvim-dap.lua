@@ -56,10 +56,10 @@ return {
       callback({ type = 'server', host = config.host, port = config.port })
     end
 
-    dap.adapters.node2 = {
+    dap.adapters.js = {
       type = 'executable',
       command = 'node',
-      args = { vim.fn.expand('$MASON/packages/node-debug2-adapter/out/src/nodeDebug.js') },
+      args = { vim.fn.expand('$MASON/packages/js-debug2-adapter/out/src/nodeDebug.js') },
     }
 
     dap.configurations.javascript = {
@@ -76,7 +76,7 @@ return {
       {
         -- For this to work you need to make sure the node process is started with the `--inspect` flag.
         name = 'Attach to process',
-        type = 'node2',
+        type = 'js',
         request = 'attach',
         port = 9229,
         -- processId = require('dap.utils').pick_process,

@@ -8,7 +8,7 @@ return {
     vim.g['conjure#client#clojure#nrepl#refresh#before'] = 'mount/stop'
     vim.g['conjure#client#clojure#nrepl#refresh#after'] = 'mount/start'
     vim.g['conjure#client#clojure#nrepl#tap#enabled'] = true
-    vim.g['conjure#client#clojure#nrepl#connection#auto_repl#cmd'] = 'clj -A:dev:test -M:repl/reloaded'
+    vim.g['conjure#client#clojure#nrepl#connection#auto_repl#cmd'] = 'clj -A:dev:test -M:repl/reloaded --port 7888'
     vim.g['conjure#log#wrap'] = true
 
     vim.api.nvim_create_autocmd('BufNewFile', {
