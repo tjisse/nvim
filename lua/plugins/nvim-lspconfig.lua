@@ -3,7 +3,6 @@ return {
   cmd = 'LspInfo',
   event = { 'BufReadPre', 'BufNewFile' },
   config = function()
-    local lspconfig = require('lspconfig')
     local util = require('lspconfig.util')
 
     local on_attach = function(client, bufnr)
@@ -31,14 +30,11 @@ return {
       end
     end
 
-    require('mason').setup()
-    require('mason-lspconfig').setup({ automatic_installation = true })
-
     vim.opt.shortmess:append('c')
 
     local blink_lsp_capabilities = require('blink.cmp').get_lsp_capabilities()
 
-    lspconfig.jdtls.setup({
+    vim.lsp.config('jdtls', {
       capabilities = blink_lsp_capabilities,
       on_attach = on_attach,
       settings = {
@@ -95,78 +91,78 @@ return {
       },
     })
 
-    lspconfig.angularls.setup({
+    vim.lsp.config('angularls', {
       capabilities = blink_lsp_capabilities,
       on_attach = on_attach,
     })
 
-    lspconfig.bashls.setup({
+    vim.lsp.config('bashls', {
       capabilities = blink_lsp_capabilities,
       on_attach = on_attach,
     })
 
-    lspconfig.clojure_lsp.setup({
+    vim.lsp.config('clojure_lsp', {
       capabilities = blink_lsp_capabilities,
       on_attach = on_attach,
     })
 
-    lspconfig.cssls.setup({
+    vim.lsp.config('cssls', {
       capabilities = blink_lsp_capabilities,
       on_attach = on_attach,
     })
 
-    lspconfig.html.setup({
+    vim.lsp.config('html', {
       capabilities = blink_lsp_capabilities,
       on_attach = on_attach,
     })
 
-    lspconfig.jsonls.setup({
+    vim.lsp.config('jsonls', {
       capabilities = blink_lsp_capabilities,
       on_attach = on_attach,
     })
 
-    lspconfig.sqlls.setup({
+    vim.lsp.config('sqlls', {
       capabilities = blink_lsp_capabilities,
       on_attach = on_attach,
     })
 
-    lspconfig.html.setup({
+    vim.lsp.config('html', {
       capabilities = blink_lsp_capabilities,
       on_attach = on_attach,
     })
 
-    lspconfig.jsonls.setup({
+    vim.lsp.config('jsonls', {
       capabilities = blink_lsp_capabilities,
       on_attach = on_attach,
     })
 
-    lspconfig.lemminx.setup({
+    vim.lsp.config('lemminx', {
       capabilities = blink_lsp_capabilities,
       on_attach = on_attach,
     })
 
-    lspconfig.yamlls.setup({
+    vim.lsp.config('yamlls', {
       capabilities = blink_lsp_capabilities,
       on_attach = on_attach,
     })
 
-    lspconfig.sqlls.setup({
+    vim.lsp.config('sqlls', {
       capabilities = blink_lsp_capabilities,
       on_attach = on_attach,
     })
 
     require('neodev').setup({})
-    lspconfig.lua_ls.setup({
+    vim.lsp.config('lua_ls', {
       capabilities = blink_lsp_capabilities,
       on_attach = on_attach,
     })
 
-    lspconfig.ts_ls.setup({
+    vim.lsp.config('ts_ls', {
       capabilities = blink_lsp_capabilities,
       on_attach = on_attach,
     })
 
-    lspconfig.cucumber_language_server.setup({
+    vim.lsp.config('cucumber_language_server', {
       capabilities = blink_lsp_capabilities,
       on_attach = on_attach,
       settings = {
@@ -205,7 +201,7 @@ return {
       },
     })
 
-    lspconfig.tailwindcss.setup({
+    vim.lsp.config('tailwindcss', {
       capabilities = blink_lsp_capabilities,
       on_attach = on_attach,
       filetypes = { "aspnetcorerazor", "astro", "astro-markdown", "blade", "django-html", "edge", "eelixir", "ejs", "erb", "eruby", "gohtml", "haml", "handlebars", "hbs", "html", "html-eex", "jade", "leaf", "liquid", "markdown", "mdx", "mustache", "njk", "nunjucks", "php", "razor", "slim", "twig", "css", "less", "postcss", "sass", "scss", "stylus", "sugarss", "javascript", "javascriptreact", "reason", "rescript", "typescript", "typescriptreact", "vue", "svelte", "clojure" },
@@ -224,17 +220,17 @@ return {
       },
     })
 
-    lspconfig.fennel_language_server.setup({
+    vim.lsp.config('fennel_language_server', {
       capabilities = blink_lsp_capabilities,
       on_attach = on_attach,
     })
 
-    lspconfig.fsautocomplete.setup({
+    vim.lsp.config('fsautocomplete', {
       capabilities = blink_lsp_capabilities,
       on_attach = on_attach,
     })
 
-    lspconfig.sourcekit.setup({
+    vim.lsp.config('sourcekit', {
       cmd = { 'sourcekit-lsp', '--experimental-feature', 'on-type-formatting' },
       root_dir = function(filename, _)
         return util.root_pattern 'buildServer.json' (filename)
@@ -247,17 +243,17 @@ return {
       on_attach = on_attach,
     })
 
-    lspconfig.clangd.setup({
+    vim.lsp.config('clangd', {
       capabilities = blink_lsp_capabilities,
       on_attach = on_attach,
     })
 
-    -- lspconfig.groovyls.setup({
+    -- vim.lsp.config('groovyls', {
     --   capabilities = cmp_nvim_lsp_capabilities,
     --   on_attach = on_attach,
     -- })
 
-    lspconfig.janet_lsp.setup({
+    vim.lsp.config('janet_lsp', {
       capabilities = blink_lsp_capabilities,
       on_attach = on_attach,
     })
@@ -271,7 +267,6 @@ return {
   dependencies = {
     'abecodes/tabout.nvim',
     'folke/neodev.nvim',
-    'nvim-java/nvim-java',
     'williamboman/mason-lspconfig.nvim'
   },
 }

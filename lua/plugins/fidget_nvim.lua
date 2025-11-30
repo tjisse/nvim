@@ -1,6 +1,6 @@
 return {
   'j-hui/fidget.nvim',
-  event = 'VeryLazy',
+  lazy = false,
   opts = {
     progress = {
       suppress_on_insert = true,
