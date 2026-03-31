@@ -33,7 +33,7 @@ vim.opt.number = true
 vim.opt.clipboard = 'unnamedplus,unnamed'
 vim.opt.undofile = true
 vim.opt.laststatus = 3
-vim.opt.shortmess:append('csATWI')
+vim.opt.shortmess:append('csATW')
 
 vim.opt.guifont = 'Iosevka NF:l:h8'
 

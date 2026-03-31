@@ -35,15 +35,6 @@ return {
   lazy = false,
   opts = {
     bigfile = { enabled = true },
-    dashboard = {
-      sections = {
-        { section = "header" },
-        { icon = " ", title = "Projects", section = "projects", indent = 2, padding = 1 },
-        { icon = " ", title = "Recent Files", section = "recent_files", indent = 2, padding = 1 },
-        { section = "keys", gap = 1 },
-        { section = "startup" },
-      },
-    },
     input = { enabled = true },
     picker = { enabled = true },
     quickfile = { enabled = true },
