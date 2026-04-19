@@ -8,16 +8,20 @@ return {
     vim.g['conjure#client#clojure#nrepl#refresh#before'] = 'mount/stop'
     vim.g['conjure#client#clojure#nrepl#refresh#after'] = 'mount/start'
     vim.g['conjure#client#clojure#nrepl#tap#enabled'] = true
-    vim.g['conjure#client#clojure#nrepl#connection#auto_repl#cmd'] = 'clj -A:dev:test -M:repl/reloaded --port 7888'
+    vim.g['conjure#client#clojure#nrepl#connection#auto_repl#cmd'] = 'clj -M:dev:test:clerk:repl/reloaded --port 7888'
     vim.g['conjure#log#wrap'] = true
+
+    local function clerk_show()
+      vim.cmd.write()
+      vim.cmd('ConjureEval (nextjournal.clerk/show! "' .. vim.fn.expand('%:p') .. '")')
+    end
+
+    vim.keymap.set('n', '<localleader>cs', clerk_show, { silent = true, desc = 'Clerk Show' })
 
     vim.api.nvim_create_autocmd('BufNewFile', {
       pattern = 'conjure-log-*',
       callback = function(args)
-        local ns = vim.diagnostic.get_namespaces()
-        for _, namespace in pairs(ns) do
-          vim.diagnostic.disable(args.buf, namespace)
-        end
+        vim.diagnostic.enable(false, { bufnr = args.buf })
       end
     })
   end
