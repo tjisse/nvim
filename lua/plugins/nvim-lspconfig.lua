@@ -22,10 +22,10 @@ return {
       vim.keymap.set({ 'n', 'x' }, '<leader>rr', vim.lsp.buf.rename, { opts, desc = 'rename' })
 
       vim.lsp.codelens.refresh()
-      if client.supports_method("textDocument/codeLens") then
+      if client:supports_method("textDocument/codeLens") then
         vim.api.nvim_create_autocmd({ 'InsertLeave', 'BufEnter' }, {
           buffer = bufnr,
-          callback = vim.lsp.codelens.refresh,
+          callback = function () vim.lsp.codelens.enable(true, { bufnr = bufnr }) end,
         })
       end
     end
