@@ -12,7 +12,7 @@ return {
     references = false,
     colorscheme = false,
     git = false,
-    keymaps = { prefix = '<localleader>' },
+    keymaps = false,
   },
   config = function(_, opts)
     -- The plugin starts its client directly, so it does not read vim.lsp.config('*').
