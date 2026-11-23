@@ -81,8 +81,14 @@ return {
     },
     snippets = { preset = 'luasnip' },
     sources = {
-      default = { 'lsp', 'path', 'snippets', 'buffer', 'copilot' },
+      default = { 'lazydev', 'lsp', 'path', 'snippets', 'buffer', 'copilot' },
       providers = {
+        lazydev = {
+          name = 'LazyDev',
+          module = 'lazydev.integrations.blink',
+          score_offset = 100,
+          enabled = function() return vim.bo.filetype == 'lua' end,
+        },
         copilot = {
           name = 'copilot',
           module = 'blink-copilot',
