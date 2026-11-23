@@ -1,5 +1,5 @@
 return {
   'johmsalas/text-case.nvim',
   event = { 'BufReadPre', 'BufNewFile' },
-  opts = {},
+  opts = { prefix = '<leader>rx' },
 }

@@ -1,3 +1,7 @@
+local function show_words(cmp)
+  return cmp.show({ providers = { 'buffer' } })
+end
+
 return {
   'saghen/blink.cmp',
   event = { 'InsertEnter', 'CmdlineEnter' },
@@ -53,7 +57,7 @@ return {
     },
     keymap = {
       preset = 'none',
-      ['<C-Space>'] = { 'show', 'hide' },
+      ['<C-Space>'] = { 'show', 'show_documentation', 'hide_documentation', 'fallback' },
       ['<Up>'] = { 'select_prev', 'fallback' },
       ['<Down>'] = { 'select_next', 'fallback' },
       ['<C-k>'] = { 'select_prev', 'fallback' },
@@ -61,20 +65,10 @@ return {
       ['<C-u>'] = { 'scroll_documentation_up', 'fallback' },
       ['<C-d>'] = { 'scroll_documentation_down', 'fallback' },
       ['<CR>'] = { 'accept', 'fallback' },
-      ['<Tab>'] = {
-        function(cmp)
-          if cmp.snippet_active() then
-            return cmp.snippet_forward()
-          elseif cmp.is_visible() then
-            return cmp.select_and_accept()
-          else
-            vim.fn.feedkeys(vim.api.nvim_replace_termcodes('<Plug>(Tabout)', true, true, true), '')
-          end
-        end,
-      },
+      ['<Tab>'] = { 'snippet_forward', 'fallback' },
       ['<S-Tab>'] = { 'snippet_backward', 'fallback' },
-      ['K'] = { 'show_documentation', 'hide_documentation', 'fallback' },
-      ['<C-p>'] = { 'show_signature', 'hide_signature', 'fallback' },
+      ['<C-p>'] = { 'select_prev', show_words, 'fallback' },
+      ['<C-n>'] = { 'select_next', show_words, 'fallback' },
     },
     signature = {
       enabled = true,

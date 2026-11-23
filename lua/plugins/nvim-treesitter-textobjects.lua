@@ -45,8 +45,8 @@ return {
             ["if"] = "@function.inner",
             ["ac"] = "@class.outer",
             ["ic"] = "@class.inner",
-            ["ap"] = "@parameter.outer",
-            ["ip"] = "@parameter.inner",
+            ["aa"] = "@parameter.outer",
+            ["ia"] = "@parameter.inner",
           },
         },
         swap = {
@@ -62,9 +62,9 @@ return {
       incremental_selection = {
         enable = true,
         keymaps = {
-          init_selection = '<C-K>',
-          node_incremental = '<C-K>',
-          node_decremental = '<C-J>',
+          init_selection = '[x',
+          node_incremental = '[x',
+          node_decremental = ']x',
         },
       },
     })

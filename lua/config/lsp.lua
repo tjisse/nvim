@@ -11,14 +11,21 @@ vim.api.nvim_create_autocmd('LspAttach', {
     local client = vim.lsp.get_client_by_id(event.data.client_id)
     if not client then return end
     local opts = { silent = true, buffer = event.buf }
-    vim.keymap.set('n', '<c-p>', vim.lsp.buf.signature_help, opts)
-    vim.keymap.set('i', '<c-p>', '<C-o>:lua vim.lsp.buf.signature_help()<CR>', opts)
-    vim.keymap.set('n', 'dq', vim.diagnostic.setqflist, opts)
-    vim.keymap.set('n', 'dl', vim.diagnostic.setloclist, opts)
-    vim.keymap.set({ 'n', 'x' }, '<M-CR>', vim.lsp.buf.code_action, opts)
-    vim.keymap.set('i', '<M-CR>', '<C-o>:lua vim.lsp.buf.code_action()<CR>', opts)
-    vim.keymap.set('n', '<leader>rc', vim.lsp.codelens.run, vim.tbl_extend('force', opts, { desc = 'code lens' }))
-    vim.keymap.set({ 'n', 'x' }, '<leader>rr', vim.lsp.buf.rename, vim.tbl_extend('force', opts, { desc = 'rename' }))
+    if client:supports_method('textDocument/definition', event.buf) then
+      vim.keymap.set('n', '<C-w>d', function()
+        Snacks.picker.lsp_definitions({ confirm = { action = 'jump', cmd = 'vsplit' } })
+      end, { buffer = event.buf, desc = 'Open definition in vertical split' })
+    end
+    if client:supports_method('textDocument/typeDefinition', event.buf) then
+      vim.keymap.set('n', '<C-w>D', function()
+        Snacks.picker.lsp_type_definitions({ confirm = { action = 'jump', cmd = 'vsplit' } })
+      end, { buffer = event.buf, desc = 'Open type definition in vertical split' })
+    end
+    vim.keymap.set('n', 'gh', vim.lsp.buf.hover, { buffer = event.buf, desc = 'Show hover documentation' })
+    vim.keymap.set({ 'n', 'x' }, 'g.', vim.lsp.buf.code_action, { buffer = event.buf, desc = 'Choose code action' })
+    vim.keymap.set('i', '<C-x><C-l>', vim.lsp.buf.code_action, { buffer = event.buf, desc = 'Choose code action' })
+    vim.keymap.set('n', '<leader>rc', vim.lsp.codelens.run, vim.tbl_extend('force', opts, { desc = 'Run code lens' }))
+    vim.keymap.set({ 'n', 'x' }, '<leader>rr', vim.lsp.buf.rename, vim.tbl_extend('force', opts, { desc = 'Rename symbol' }))
     vim.keymap.set({ 'n', 'x' }, '<leader>=', function()
       require('conform').format({ async = true, lsp_fallback = true })
     end, vim.tbl_extend('force', opts, { desc = 'format buffer/selection' }))
