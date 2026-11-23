@@ -30,7 +30,10 @@ return {
       end,
     })
 
-    vim.keymap.set('n', '-', function() mini_files.open(vim.api.nvim_buf_get_name(0)) end,
+    vim.keymap.set('n', '<leader>e', function()
+      mini_files.open(Snacks.git.get_root() or vim.fn.getcwd(), false)
+    end, { desc = 'Explore project' })
+    vim.keymap.set('n', '-', function() mini_files.open(vim.api.nvim_buf_get_name(0), false) end,
       { silent = true, desc = 'open directory of current file' })
   end
 }

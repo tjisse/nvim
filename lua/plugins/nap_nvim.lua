@@ -4,8 +4,9 @@ return {
   config = function()
     local nap = require('nap')
     nap.setup({
-      next_repeat = ']]',
-      prev_repeat = '[[',
+      exclude_default_operators = { 'a', 'A', 'e', 'z' },
+      next_repeat = '<leader>]',
+      prev_repeat = '<leader>[',
     })
     nap.map('c', require('nap').gitsigns())
     nap.map('r', require("nap").illuminate())
