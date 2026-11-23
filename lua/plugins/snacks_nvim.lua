@@ -1,34 +1,3 @@
-local function workspace_picker()
-  local items = {}
-  local longest_name = 0
-  for i, workspace in ipairs(require('workspaces').get()) do
-    table.insert(items, {
-      idx = i,
-      score = i,
-      text = workspace.path,
-      name = workspace.name,
-    })
-    longest_name = math.max(longest_name, #workspace.name)
-  end
-  longest_name = longest_name + 2
-  return Snacks.picker({
-    items = items,
-    format = function(item)
-      local ret = {}
-      ret[#ret + 1] = { ('%-' .. longest_name .. 's'):format(item.name), 'SnacksPickerLabel' }
-      ret[#ret + 1] = { item.text, 'SnacksPickerComment' }
-      return ret
-    end,
-    confirm = function(picker, item)
-      picker:close()
-      vim.cmd(('WorkspacesOpen %s'):format(item.name))
-    end,
-    layout = {
-      preview = false,
-    },
-  })
-end
-
 return {
   "folke/snacks.nvim",
   priority = 1000,
@@ -52,8 +21,6 @@ return {
     { "<leader>fc",      function() Snacks.picker.files({ cwd = vim.fn.stdpath("config") }) end, desc = "Find Config File" },
     { "<leader>ff",      function() Snacks.picker.files() end,                                   desc = "Find Files" },
     { "<leader>fg",      function() Snacks.picker.git_files() end,                               desc = "Find Git Files" },
-    { "<leader>fp",      function() Snacks.picker.projects() end,                                desc = "Projects" },
-    { "<leader>fw",      function() workspace_picker() end,                                      desc = "Workspaces" },
     { "<leader>fr",      function() Snacks.picker.recent() end,                                  desc = "Recent" },
     -- git
     { "<leader>gb",      function() Snacks.picker.git_branches() end,                            desc = "Git Branches" },

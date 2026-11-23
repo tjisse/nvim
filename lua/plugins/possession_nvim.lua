@@ -3,7 +3,6 @@ return {
   dependencies = 'tiagovla/scope.nvim',
   event = 'VeryLazy',
   opts = {
-    autoload = 'auto_cwd',
     hooks = {
       after_save = function()
         vim.cmd([[ScopeSaveState]])
