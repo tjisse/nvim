@@ -6,7 +6,6 @@ return {
   ft = { 'scala', 'sbt' },
   config = function()
     local metals_config = require("metals").bare_config()
-    local lsp_pluginconfig = require("plugin-config.nvim-lspconfig")
 
     local function metals_status_handler(err, status, ctx)
       local val = {}
@@ -36,8 +35,7 @@ return {
       },
     }
 
-    local capabilities = vim.lsp.protocol.make_client_capabilities()
-    metals_config.capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
+    metals_config.capabilities = require("blink.cmp").get_lsp_capabilities()
 
     local dap = require("dap")
 
@@ -62,7 +60,6 @@ return {
     }
 
     metals_config.on_attach = function(client, bufnr)
-      lsp_pluginconfig.on_attach()
       require("metals").setup_dap()
     end
 

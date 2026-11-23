@@ -1,7 +1,1 @@
-return {
-  'mason-org/mason-lspconfig.nvim',
-  opts = {},
-  dependencies = {
-    { 'mason-org/mason.nvim', cmd = 'Mason', opts = {} },
-  }
-}
+return { 'mason-org/mason.nvim', lazy = false, opts = {} }

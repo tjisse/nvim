@@ -4,3 +4,4 @@ vim.g.maplocalleader = ','
 require('config.core')
 require('config.lazy')
 require('config.mappings')
+require('config.lsp')
